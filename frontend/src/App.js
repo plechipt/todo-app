@@ -1,7 +1,8 @@
 import "./App.css";
 
 import Navbar from "./components/Navbar";
-import Todo from "./components/Todo";
+import TodoList from "./components/TodoList";
+import CreateForm from "./components/CreateForm";
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
         <Navbar />
       </header>
       <main>
-        <Todo />
+        <CreateForm />
+        <TodoList />
       </main>
     </div>
   );
