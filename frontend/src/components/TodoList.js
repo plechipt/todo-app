@@ -2,14 +2,27 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
+  todoContainer: {
+    display: "flex",
+    justifyContent: "center",
+  },
   paper: {
-    padding: theme.spacing(3),
-    textAlign: "left",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: theme.spacing(2),
+  },
+  content: {
+    //textDecoration: "line-through",
+    fontSize: 16,
   },
 }));
 
@@ -18,12 +31,14 @@ const TodoList = () => {
 
   return (
     <div className={classes.root}>
-      <Grid justify="center" alignItems="center" container spacing={3}>
-        <Grid item xs={8}>
-          <Paper className={classes.paper}>xs=12</Paper>
-        </Grid>
-        <Grid item xs={8}>
-          <Paper className={classes.paper}>xs=12</Paper>
+      <Grid className={classes.todoContainer} container spacing={2}>
+        <Grid item xs={7}>
+          <Paper className={classes.paper}>
+            <Typography className={classes.content}>xs=12</Typography>
+            <IconButton aria-label="delete">
+              <DeleteIcon />
+            </IconButton>
+          </Paper>
         </Grid>
       </Grid>
     </div>

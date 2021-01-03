@@ -21,14 +21,11 @@ const CreateForm = () => {
   return (
     <div className={classes.root}>
       <Grid justify="center" alignItems="center" container spacing={3}>
-        <Grid item xs={8}>
+        <Grid item xs={7}>
           <TextField
             className={classes.createField}
             label="Create Todo"
             fullWidth
-            inputProps={{
-              maxLength: 50,
-            }}
           />
           <Button
             className={classes.submitButton}
