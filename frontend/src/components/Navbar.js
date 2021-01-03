@@ -1,5 +1,6 @@
 import React from "react";
 
+import { Route, Switch } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -32,6 +33,8 @@ const Navbar = () => {
           <Typography variant="h6" className={classes.title}>
             Todo
           </Typography>
+          <Button color="inherit">Login</Button>
+          <Button color="inherit">Register</Button>
           <Button color="inherit">Logout</Button>
         </Toolbar>
       </AppBar>
