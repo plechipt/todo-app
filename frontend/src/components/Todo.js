@@ -1,7 +1,7 @@
 import React from "react";
 
 const Todo = () => {
-  return <div>Todo</div>;
+  return null;
 };
 
 export default Todo;
