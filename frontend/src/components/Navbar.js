@@ -9,6 +9,10 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    marginBottom: 100,
+  },
+  appBar: {
+    background: "#1976D2",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -23,7 +27,7 @@ const Navbar = () => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar className={classes.appBar} position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             Todo
