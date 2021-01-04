@@ -32,7 +32,7 @@ const TodoList = () => {
   return (
     <div className={classes.root}>
       <Grid className={classes.todoContainer} container spacing={2}>
-        <Grid item xs={7}>
+        <Grid item xs={11} sm={8} md={6} lg={4}>
           <Paper className={classes.paper}>
             <Typography className={classes.content}>xs=12</Typography>
             <IconButton aria-label="delete">
