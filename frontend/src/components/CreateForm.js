@@ -26,6 +26,9 @@ const CreateForm = () => {
             className={classes.createField}
             label="Create Todo"
             fullWidth
+            inputProps={{
+              maxLength: 70,
+            }}
           />
           <Button
             className={classes.submitButton}
