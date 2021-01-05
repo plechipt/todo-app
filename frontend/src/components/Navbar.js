@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -14,16 +15,18 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     background: "#1976D2",
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
   title: {
     flexGrow: 1,
   },
 }));
 
 const Navbar = () => {
+  const history = useHistory();
   const classes = useStyles();
+
+  const handleOnRedirect = (path) => {
+    history.push(path);
+  };
 
   return (
     <div className={classes.root}>
@@ -32,8 +35,12 @@ const Navbar = () => {
           <Typography variant="h6" className={classes.title}>
             Todo
           </Typography>
-          <Button color="inherit">Login</Button>
-          <Button color="inherit">Register</Button>
+          <Button onClick={() => handleOnRedirect("/login")} color="inherit">
+            Login
+          </Button>
+          <Button onClick={() => handleOnRedirect("/register")} color="inherit">
+            Register
+          </Button>
           <Button color="inherit">Logout</Button>
         </Toolbar>
       </AppBar>

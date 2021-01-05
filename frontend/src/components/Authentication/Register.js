@@ -34,7 +34,7 @@ const Register = () => {
             fullWidth
             InputProps={{
               startAdornment: (
-                <InputAdornment>
+                <InputAdornment position="start">
                   <AccountCircle />
                 </InputAdornment>
               ),
@@ -48,7 +48,7 @@ const Register = () => {
             type="password"
             InputProps={{
               startAdornment: (
-                <InputAdornment>
+                <InputAdornment position="start">
                   <EmailIcon />
                 </InputAdornment>
               ),
@@ -62,7 +62,7 @@ const Register = () => {
             type="password"
             InputProps={{
               startAdornment: (
-                <InputAdornment>
+                <InputAdornment position="start">
                   <LockIcon />
                 </InputAdornment>
               ),
@@ -76,7 +76,7 @@ const Register = () => {
             type="password"
             InputProps={{
               startAdornment: (
-                <InputAdornment>
+                <InputAdornment position="start">
                   <LockIcon />
                 </InputAdornment>
               ),
