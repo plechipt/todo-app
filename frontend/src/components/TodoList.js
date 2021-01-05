@@ -38,7 +38,9 @@ const TodoList = () => {
             </IconButton>
           </Paper>
           <Paper className={classes.paper}>
-            <Typography className={classes.content}>xs=12</Typography>
+            <Typography className={classes.content}>
+              sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+            </Typography>
             <IconButton aria-label="delete">
               <DeleteIcon />
             </IconButton>

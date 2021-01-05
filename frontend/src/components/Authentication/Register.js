@@ -27,7 +27,7 @@ const Register = () => {
   return (
     <div className={classes.root}>
       <Grid className={classes.formsContainer} container>
-        <Grid item xs={11} sm={8} md={6} lg={3}>
+        <Grid item xs={11} sm={8} md={5} lg={3}>
           <TextField
             id="username-input"
             label="Username"

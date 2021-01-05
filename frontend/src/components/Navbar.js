@@ -21,8 +21,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Navbar = () => {
-  const history = useHistory();
   const classes = useStyles();
+  const history = useHistory();
 
   const handleOnRedirect = (path) => {
     history.push(path);
