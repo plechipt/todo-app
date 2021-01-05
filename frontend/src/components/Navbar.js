@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     background: "#1976D2",
   },
-  title: {
+  logo: {
     flexGrow: 1,
   },
 }));
@@ -32,7 +32,7 @@ const Navbar = () => {
     <div className={classes.root}>
       <AppBar className={classes.appBar} position="static">
         <Toolbar>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h6" className={classes.logo}>
             Todo
           </Typography>
           <Button onClick={() => handleOnRedirect("/login")} color="inherit">
