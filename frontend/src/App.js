@@ -14,7 +14,7 @@ const App = () => {
         <Navbar />
       </header>
       <main>
-        {true ? (
+        {false ? (
           <>
             <CreateForm />
             <TodoList />
