@@ -28,7 +28,7 @@ const Login = () => {
       <Grid className={classes.formsContainer} container>
         <Grid item xs={11} sm={8} md={6} lg={3}>
           <TextField
-            id="input-with-icon-textfield"
+            id="login-input"
             label="Username"
             fullWidth
             InputProps={{
@@ -41,7 +41,7 @@ const Login = () => {
           />
           <TextField
             className={classes.passwordField}
-            id="input-with-icon-textfield"
+            id="password-input"
             label="Password"
             fullWidth
             type="password"
