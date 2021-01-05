@@ -12,8 +12,11 @@ const useStyles = makeStyles((theme) => ({
   formsContainer: {
     justifyContent: "center",
   },
-  field: {
+  passwordField: {
     marginTop: 20,
+  },
+  submitButton: {
+    marginTop: 25,
   },
 }));
 
@@ -37,10 +40,11 @@ const Login = () => {
             }}
           />
           <TextField
-            className={classes.field}
+            className={classes.passwordField}
             id="input-with-icon-textfield"
             label="Password"
             fullWidth
+            type="password"
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -54,7 +58,7 @@ const Login = () => {
             size="large"
             color="primary"
             fullWidth
-            className={classes.field}
+            className={classes.submitButton}
           >
             Login
           </Button>
