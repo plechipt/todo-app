@@ -9,7 +9,7 @@ import EmailIcon from "@material-ui/icons/Email";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import LockIcon from "@material-ui/icons/Lock";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   formsContainer: {
     justifyContent: "center",
   },

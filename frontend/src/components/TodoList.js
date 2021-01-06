@@ -27,8 +27,12 @@ const useStyles = makeStyles((theme) => ({
     wordBreak: "break-word",
     padding: theme.spacing(2),
   },
+  test: {
+    display: "flex",
+    marginLeft: 15,
+  },
   content: {
-    //textDecoration: "line-through",
+    //atextDecoration: "line-through",
     fontSize: 16,
   },
 }));
@@ -41,8 +45,10 @@ const TodoList = () => {
       <Grid className={classes.todoContainer} container>
         <Grid className={classes.item} item xs={11} sm={8} md={6} lg={4}>
           <Paper className={classes.paper}>
-            <Typography className={classes.content}>Run today</Typography>
-            <div>
+            <Typography className={classes.content}>
+              mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+            </Typography>
+            <div className={classes.test}>
               <IconButton aria-label="edit">
                 <EditIcon />
               </IconButton>

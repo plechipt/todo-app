@@ -27,7 +27,7 @@ const CreateForm = () => {
             label="Create Todo"
             fullWidth
             inputProps={{
-              maxLength: 70,
+              maxLength: 80,
             }}
           />
           <Button

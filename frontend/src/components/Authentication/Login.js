@@ -8,7 +8,7 @@ import Button from "@material-ui/core/Button";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import LockIcon from "@material-ui/icons/Lock";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   formsContainer: {
     justifyContent: "center",
   },
