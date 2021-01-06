@@ -49,12 +49,76 @@ const TodoList = () => {
     <div className={classes.root}>
       <Grid className={classes.todoContainer} container>
         <Grid className={classes.item} item xs={11} sm={8} md={6} lg={4}>
-          <Paper className={classes.paper}>
+          <Paper disabled={true} className={classes.paper}>
             <Typography
               onClick={() => setCompleted(!completed)}
               className={completed ? classes.completed : classes.notCompleted}
             >
-              mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+              mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+            </Typography>
+            <div className={classes.iconsContainer}>
+              <IconButton aria-label="edit">
+                <EditIcon />
+              </IconButton>
+              <IconButton aria-label="delete">
+                <DeleteIcon />
+              </IconButton>
+            </div>
+          </Paper>
+          <Paper disabled={true} className={classes.paper}>
+            <Typography
+              onClick={() => setCompleted(!completed)}
+              className={completed ? classes.completed : classes.notCompleted}
+            >
+              mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+            </Typography>
+            <div className={classes.iconsContainer}>
+              <IconButton aria-label="edit">
+                <EditIcon />
+              </IconButton>
+              <IconButton aria-label="delete">
+                <DeleteIcon />
+              </IconButton>
+            </div>
+          </Paper>
+          <Paper disabled={true} className={classes.paper}>
+            <Typography
+              onClick={() => setCompleted(!completed)}
+              className={completed ? classes.completed : classes.notCompleted}
+            >
+              mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+            </Typography>
+            <div className={classes.iconsContainer}>
+              <IconButton aria-label="edit">
+                <EditIcon />
+              </IconButton>
+              <IconButton aria-label="delete">
+                <DeleteIcon />
+              </IconButton>
+            </div>
+          </Paper>
+          <Paper disabled={true} className={classes.paper}>
+            <Typography
+              onClick={() => setCompleted(!completed)}
+              className={completed ? classes.completed : classes.notCompleted}
+            >
+              WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+            </Typography>
+            <div className={classes.iconsContainer}>
+              <IconButton aria-label="edit">
+                <EditIcon />
+              </IconButton>
+              <IconButton aria-label="delete">
+                <DeleteIcon />
+              </IconButton>
+            </div>
+          </Paper>
+          <Paper disabled={true} className={classes.paper}>
+            <Typography
+              onClick={() => setCompleted(!completed)}
+              className={completed ? classes.completed : classes.notCompleted}
+            >
+              mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
             </Typography>
             <div className={classes.iconsContainer}>
               <IconButton aria-label="edit">
