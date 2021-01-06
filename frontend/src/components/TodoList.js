@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -14,11 +14,6 @@ const useStyles = makeStyles((theme) => ({
   todoContainer: {
     justifyContent: "center",
   },
-  paginationContainer: {
-    justifyContent: "center",
-    position: "absolute",
-    bottom: 50,
-  },
   paper: {
     display: "flex",
     alignItems: "center",
@@ -27,28 +22,41 @@ const useStyles = makeStyles((theme) => ({
     wordBreak: "break-word",
     padding: theme.spacing(2),
   },
-  test: {
+  completed: {
+    textDecoration: "line-through",
+    cursor: "pointer",
+  },
+  notCompleted: {
+    cursor: "pointer",
+  },
+  iconsContainer: {
     display: "flex",
     marginLeft: 15,
   },
-  content: {
-    //atextDecoration: "line-through",
-    fontSize: 16,
+  paginationContainer: {
+    justifyContent: "center",
+    position: "absolute",
+    bottom: 50,
   },
 }));
 
 const TodoList = () => {
   const classes = useStyles();
+  const [completed, setCompleted] = useState(false);
+  console.log(completed);
 
   return (
     <div className={classes.root}>
       <Grid className={classes.todoContainer} container>
         <Grid className={classes.item} item xs={11} sm={8} md={6} lg={4}>
           <Paper className={classes.paper}>
-            <Typography className={classes.content}>
+            <Typography
+              onClick={() => setCompleted(!completed)}
+              className={completed ? classes.completed : classes.notCompleted}
+            >
               mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
             </Typography>
-            <div className={classes.test}>
+            <div className={classes.iconsContainer}>
               <IconButton aria-label="edit">
                 <EditIcon />
               </IconButton>
