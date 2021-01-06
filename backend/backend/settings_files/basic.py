@@ -11,7 +11,8 @@ INSTALLED_APPS = [
     'users',
 
     # Pip packages
-    "graphene_django"
+    "graphene_django",
+    'graphql_jwt'
 ]
 
 MIDDLEWARE = [

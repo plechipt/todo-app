@@ -1,6 +1,12 @@
 import graphene
+from users.schema import UserQuery, UserMutation
 
-class Query(graphene.ObjectType):
-    hello = graphene.String(default_value="Hi!")
 
-schema = graphene.Schema(query=Query)
+class Query(UserQuery, graphene.ObjectType):
+    pass
+
+class Mutation(UserMutation, graphene.ObjectType):
+    pass
+
+
+schema = graphene.Schema(query=Query, mutation=Mutation)
