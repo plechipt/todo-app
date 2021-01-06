@@ -4,6 +4,7 @@ from pathlib import Path
 
 from backend.settings_files.basic import *
 from backend.settings_files.development import *
+from backend.settings_files.graphene import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
