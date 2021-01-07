@@ -37,8 +37,8 @@ const App = () => {
         ) : (
           <>
             <Switch>
-              <Route path="/login" component={() => <Login />} />
               <Route path="/register" component={() => <Register />} />
+              <Route path="/" component={() => <Login />} />
             </Switch>
           </>
         )}

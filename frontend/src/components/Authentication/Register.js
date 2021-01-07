@@ -58,7 +58,9 @@ const Register = () => {
             className={classes.usernameField}
             id="username-input"
             label="Username"
+            autoComplete="one-time-code"
             fullWidth
+            autoFocus
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -72,6 +74,7 @@ const Register = () => {
             className={classes.field}
             id="email-input"
             label="Email"
+            autoComplete="one-time-code"
             fullWidth
             InputProps={{
               startAdornment: (
@@ -86,6 +89,7 @@ const Register = () => {
             className={classes.field}
             id="password-input"
             label="Password"
+            autoComplete="one-time-code"
             fullWidth
             type="password"
             InputProps={{
@@ -101,6 +105,7 @@ const Register = () => {
             className={classes.field}
             id="confirm-password-input"
             label="Confirm Password"
+            autoComplete="one-time-code"
             fullWidth
             type="password"
             InputProps={{

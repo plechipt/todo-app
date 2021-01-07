@@ -50,7 +50,9 @@ const Login = () => {
             className={classes.usernameField}
             id="login-input"
             label="Username"
+            autoComplete="one-time-code"
             fullWidth
+            autoFocus
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -64,6 +66,7 @@ const Login = () => {
             className={classes.passwordField}
             id="password-input"
             label="Password"
+            autoComplete="one-time-code"
             fullWidth
             type="password"
             InputProps={{
