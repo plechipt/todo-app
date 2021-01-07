@@ -11,6 +11,7 @@ INSTALLED_APPS = [
     'users',
 
     # Pip packages
+    'corsheaders',
     "graphene_django",
     'graphql_jwt',
     'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
@@ -25,6 +26,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware', # Corsheaders
 ]
 
 # Password validation
