@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import "./App.css";
@@ -16,13 +16,20 @@ const App = () => {
     fetchPolicy: "network-only",
   });
 
+  // Set user to memory
+  useEffect(() => {
+    if (meQuery && meQuery.me) {
+      setUser(meQuery.me.username);
+    }
+  }, [meQuery]);
+
   return (
     <div className="App">
       <header>
         <Navbar />
       </header>
       <main>
-        {true ? (
+        {user && loading === false ? (
           <>
             <CreateForm />
             <TodoList />

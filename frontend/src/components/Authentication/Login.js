@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useMutation } from "@apollo/client";
+import { USER_LOGIN_MUTATION } from "../Api/user";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -22,12 +24,30 @@ const useStyles = makeStyles(() => ({
 
 const Login = () => {
   const classes = useStyles();
+  const [loginUser, { data: loginData }] = useMutation(USER_LOGIN_MUTATION, {
+    errorPolicy: "all",
+  });
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    console.log(loginData);
+  }, [loginData]);
+
+  const handleOnLogin = async () => {
+    await loginUser({
+      variables: { username: username, password: password },
+    });
+  };
 
   return (
     <div className={classes.root}>
       <Grid className={classes.formsContainer} container>
         <Grid item xs={11} sm={8} md={5} lg={3}>
           <TextField
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             className={classes.usernameField}
             id="login-input"
             label="Username"
@@ -41,6 +61,8 @@ const Login = () => {
             }}
           />
           <TextField
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className={classes.passwordField}
             id="password-input"
             label="Password"
@@ -55,6 +77,7 @@ const Login = () => {
             }}
           />
           <Button
+            onClick={handleOnLogin}
             variant="contained"
             size="large"
             color="primary"
