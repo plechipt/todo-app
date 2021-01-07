@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useMutation } from "@apollo/client";
+import { USER_REGISTER_MUTATION } from "../Api/user";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -23,12 +25,36 @@ const useStyles = makeStyles(() => ({
 
 const Register = () => {
   const classes = useStyles();
+  const [register, { data: registerData }] = useMutation(
+    USER_REGISTER_MUTATION
+  );
+
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+
+  useEffect(() => {
+    console.log(registerData);
+  }, [registerData]);
+
+  const handleOnRegister = async () => {
+    await register({
+      variables: {
+        username,
+        email,
+        password1: password,
+        password2: passwordConfirm,
+      },
+    });
+  };
 
   return (
     <div className={classes.root}>
       <Grid className={classes.formsContainer} container>
         <Grid item xs={11} sm={8} md={5} lg={3}>
           <TextField
+            onChange={(e) => setUsername(e.target.value)}
             className={classes.usernameField}
             id="username-input"
             label="Username"
@@ -42,11 +68,11 @@ const Register = () => {
             }}
           />
           <TextField
+            onChange={(e) => setEmail(e.target.value)}
             className={classes.field}
             id="email-input"
             label="Email"
             fullWidth
-            type="password"
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -56,6 +82,7 @@ const Register = () => {
             }}
           />
           <TextField
+            onChange={(e) => setPassword(e.target.value)}
             className={classes.field}
             id="password-input"
             label="Password"
@@ -70,6 +97,7 @@ const Register = () => {
             }}
           />
           <TextField
+            onChange={(e) => setPasswordConfirm(e.target.value)}
             className={classes.field}
             id="confirm-password-input"
             label="Confirm Password"
@@ -84,11 +112,12 @@ const Register = () => {
             }}
           />
           <Button
+            onClick={handleOnRegister}
+            className={classes.submitButton}
             variant="contained"
             size="large"
             color="primary"
             fullWidth
-            className={classes.submitButton}
           >
             Register
           </Button>

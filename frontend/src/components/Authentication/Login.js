@@ -24,7 +24,7 @@ const useStyles = makeStyles(() => ({
 
 const Login = () => {
   const classes = useStyles();
-  const [loginUser, { data: loginData }] = useMutation(USER_LOGIN_MUTATION, {
+  const [login, { data: loginData }] = useMutation(USER_LOGIN_MUTATION, {
     errorPolicy: "all",
   });
 
@@ -36,8 +36,8 @@ const Login = () => {
   }, [loginData]);
 
   const handleOnLogin = async () => {
-    await loginUser({
-      variables: { username: username, password: password },
+    await login({
+      variables: { username, password },
     });
   };
 
@@ -46,7 +46,6 @@ const Login = () => {
       <Grid className={classes.formsContainer} container>
         <Grid item xs={11} sm={8} md={5} lg={3}>
           <TextField
-            value={username}
             onChange={(e) => setUsername(e.target.value)}
             className={classes.usernameField}
             id="login-input"
@@ -61,7 +60,6 @@ const Login = () => {
             }}
           />
           <TextField
-            value={password}
             onChange={(e) => setPassword(e.target.value)}
             className={classes.passwordField}
             id="password-input"
