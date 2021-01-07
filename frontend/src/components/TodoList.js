@@ -43,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
 const TodoList = () => {
   const classes = useStyles();
   const [completed, setCompleted] = useState(false);
-  console.log(completed);
 
   return (
     <div className={classes.root}>
