@@ -1,14 +1,23 @@
 import graphene
-from graphene_django import DjangoObjectType
 import graphql_jwt
-from .models import User
+from .mutations.users import *
+from graphql_jwt.refresh_token.signals import refresh_token_rotated
+from django.dispatch import receiver
 
 
-class UserType(DjangoObjectType):
-    class Meta:
-        model = User
+# Revoke refresh token after it has been used
+@receiver(refresh_token_rotated)
+def revoke_refresh_token(sender, request, refresh_token, **kwargs):
+    refresh_token.revoke(request)
+
 
 class UserMutation:
+    register = Register.Field()
+    login = Login.Field()
+    logout = Logout.Field()
+    verify_access_token = VerifyAccessToken.Field()
+
+    # Django-graphql-jwt
     token_auth = graphql_jwt.ObtainJSONWebToken.Field()
     verify_token = graphql_jwt.Verify.Field()
     refresh_token = graphql_jwt.Refresh.Field()
