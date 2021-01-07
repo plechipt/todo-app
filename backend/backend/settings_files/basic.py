@@ -12,7 +12,9 @@ INSTALLED_APPS = [
 
     # Pip packages
     "graphene_django",
-    'graphql_jwt'
+    'graphql_jwt',
+    'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
+
 ]
 
 MIDDLEWARE = [
