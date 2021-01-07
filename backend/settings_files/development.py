@@ -1,8 +1,16 @@
+import os
+
+SECRET_KEY = os.environ.get('TODO_APP_SECRET_KEY')
 
 # Corsheaders
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000'
+]
+
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost'
 ]
 
 ROOT_URLCONF = 'backend.urls'
