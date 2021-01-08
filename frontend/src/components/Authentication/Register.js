@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
+import { useHistory } from "react-router-dom";
 import { USER_REGISTER_MUTATION } from "../Api/user";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -25,6 +26,7 @@ const useStyles = makeStyles(() => ({
 
 const Register = () => {
   const classes = useStyles();
+  const history = useHistory();
   const [register, { data: registerData }] = useMutation(
     USER_REGISTER_MUTATION
   );
@@ -55,7 +57,6 @@ const Register = () => {
     }
     if (field === "password2") {
       setPasswordConfirmMessageError(message);
-    } else {
     }
   };
 
@@ -80,9 +81,11 @@ const Register = () => {
           const [message] = messages;
           setErrorMessage(message, field);
         });
+      } else {
+        history.push("/login");
       }
     }
-  }, [registerData]);
+  }, [registerData, history]);
 
   const handleOnRegister = async () => {
     await register({
