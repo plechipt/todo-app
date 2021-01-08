@@ -36,10 +36,17 @@ const Login = () => {
   const [usernameIsNotFilled, setUsernameIsNotFilled] = useState(false);
   const [passwordIsNotFilled, setPasswordIsNotFilled] = useState(false);
 
+  const resetErrorMessages = () => {
+    setUsernameIsNotFilled(false);
+    setPasswordIsNotFilled(false);
+  };
+
   useEffect(() => {
     if (loginData) {
       const { tokenAuth } = loginData;
       const loginWasSuccessful = tokenAuth !== null;
+
+      resetErrorMessages();
 
       if (loginWasSuccessful) {
         client.resetStore();
@@ -51,7 +58,10 @@ const Login = () => {
   }, [loginData, client]);
 
   const setErrorMessage = () => {
+    setFailedToLogin(false);
+
     if (username === "") {
+      console.log("test");
       setUsernameIsNotFilled(true);
     }
     if (password === "") {
@@ -59,14 +69,8 @@ const Login = () => {
     }
   };
 
-  const resetErrorMessages = () => {
-    setUsernameIsNotFilled(false);
-    setPasswordIsNotFilled(false);
-  };
-
   const handleOnLogin = async () => {
     if (username === "" || password === "") {
-      resetErrorMessages(); // Remove the previous error message
       setErrorMessage();
     } else {
       await login({
@@ -74,6 +78,8 @@ const Login = () => {
       });
     }
   };
+
+  console.log(failedToLogin);
 
   return (
     <div className={classes.root}>

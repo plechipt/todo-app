@@ -9,6 +9,6 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('graphql/', jwt_cookie(GraphQLView.as_view(graphiql=True))),
+    path('graphql/', csrf_exempt(GraphQLView.as_view(graphiql=True))),
     re_path('.*', TemplateView.as_view(template_name='index.html'))
 ]
