@@ -30,9 +30,19 @@ const Login = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [failedToLogin, setFailedToLogin] = useState(false);
 
   useEffect(() => {
-    console.log(loginData);
+    if (loginData) {
+      const { tokenAuth } = loginData;
+
+      if (tokenAuth !== null) {
+        window.location.reload();
+      } else {
+        setFailedToLogin(true);
+        setPassword("");
+      }
+    }
   }, [loginData]);
 
   const handleOnLogin = async () => {
@@ -46,8 +56,10 @@ const Login = () => {
       <Grid className={classes.formsContainer} container>
         <Grid item xs={11} sm={8} md={5} lg={3}>
           <TextField
+            value={username}
             onChange={(e) => setUsername(e.target.value)}
             className={classes.usernameField}
+            error={failedToLogin ? true : false}
             id="login-input"
             label="Username"
             autoComplete="one-time-code"
@@ -62,8 +74,13 @@ const Login = () => {
             }}
           />
           <TextField
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
             className={classes.passwordField}
+            error={failedToLogin ? true : false}
+            helperText={
+              failedToLogin ? "Username or password is incorrect" : ""
+            }
             id="password-input"
             label="Password"
             autoComplete="one-time-code"
