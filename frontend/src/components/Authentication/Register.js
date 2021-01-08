@@ -34,9 +34,53 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
+  const [usernameMessageError, setUsernameMessageError] = useState("");
+  const [emailMessageError, setEmailMessageError] = useState("");
+  const [passwordMessageError, setPasswordMessageError] = useState("");
+  const [
+    passwordConfirmMessageError,
+    setPasswordConfirmMessageError,
+  ] = useState("");
+
+  const setErrorMessage = (message, field) => {
+    console.log(field);
+    if (field === "username") {
+      setUsernameMessageError(message);
+    }
+    if (field === "email") {
+      setEmailMessageError(message);
+    }
+    if (field === "password1") {
+      setPasswordMessageError(message);
+    }
+    if (field === "password2") {
+      setPasswordConfirmMessageError(message);
+    } else {
+    }
+  };
+
+  const resetErrorMessages = () => {
+    setUsernameMessageError("");
+    setEmailMessageError("");
+    setPasswordConfirmMessageError("");
+    setPasswordConfirmMessageError("");
+  };
+
   useEffect(() => {
     if (registerData) {
-      console.log(registerData);
+      const {
+        register: { errors, user },
+      } = registerData;
+      const registerWasNotSuccessful = user === null;
+
+      resetErrorMessages();
+
+      if (registerWasNotSuccessful) {
+        errors.forEach(({ messages, field }) => {
+          const [message] = messages;
+          setErrorMessage(message, field);
+        });
+      }
     }
   }, [registerData]);
 
@@ -58,9 +102,11 @@ const Register = () => {
           <TextField
             onChange={(e) => setUsername(e.target.value)}
             className={classes.usernameField}
+            error={usernameMessageError !== "" ? true : false}
+            helperText={usernameMessageError !== "" ? usernameMessageError : ""}
             id="username-input"
             label="Username"
-            autoComplete="one-time-code"
+            autoComplete="off"
             fullWidth
             autoFocus
             InputProps={{
@@ -74,9 +120,11 @@ const Register = () => {
           <TextField
             onChange={(e) => setEmail(e.target.value)}
             className={classes.field}
+            error={emailMessageError !== "" ? true : false}
+            helperText={emailMessageError !== "" ? emailMessageError : ""}
             id="email-input"
             label="Email"
-            autoComplete="one-time-code"
+            autoComplete="off"
             fullWidth
             InputProps={{
               startAdornment: (
@@ -89,6 +137,8 @@ const Register = () => {
           <TextField
             onChange={(e) => setPassword(e.target.value)}
             className={classes.field}
+            error={passwordMessageError !== "" ? true : false}
+            helperText={passwordMessageError !== "" ? passwordMessageError : ""}
             id="password-input"
             label="Password"
             autoComplete="one-time-code"
@@ -105,6 +155,12 @@ const Register = () => {
           <TextField
             onChange={(e) => setPasswordConfirm(e.target.value)}
             className={classes.field}
+            error={passwordConfirmMessageError !== "" ? true : false}
+            helperText={
+              passwordConfirmMessageError !== ""
+                ? passwordConfirmMessageError
+                : ""
+            }
             id="confirm-password-input"
             label="Confirm Password"
             autoComplete="one-time-code"

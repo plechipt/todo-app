@@ -31,25 +31,25 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const [failedToLogin, setFailedToLogin] = useState(false);
   const [usernameIsNotFilled, setUsernameIsNotFilled] = useState(false);
   const [passwordIsNotFilled, setPasswordIsNotFilled] = useState(false);
-  const [failedToLogin, setFailedToLogin] = useState(false);
 
   useEffect(() => {
     if (loginData) {
       const { tokenAuth } = loginData;
+      const loginWasSuccessful = tokenAuth !== null;
 
-      if (tokenAuth !== null) {
+      if (loginWasSuccessful) {
         window.location.reload(); // Reset page
       } else {
         setFailedToLogin(true);
-        setUsernameIsNotFilled(false); // Remove the previous error message
         setPassword("");
       }
     }
   }, [loginData]);
 
-  const setNotFilledFieldError = () => {
+  const setErrorMessage = () => {
     if (username === "") {
       setUsernameIsNotFilled(true);
     }
@@ -58,9 +58,15 @@ const Login = () => {
     }
   };
 
+  const resetErrorMessages = () => {
+    setUsernameIsNotFilled(false);
+    setPasswordIsNotFilled(false);
+  };
+
   const handleOnLogin = async () => {
     if (username === "" || password === "") {
-      setNotFilledFieldError();
+      resetErrorMessages(); // Remove the previous error message
+      setErrorMessage();
     } else {
       await login({
         variables: { username, password },
@@ -83,7 +89,7 @@ const Login = () => {
             }
             id="login-input"
             label="Username"
-            autoComplete="one-time-code"
+            autoComplete="off"
             fullWidth
             autoFocus
             InputProps={{
@@ -106,7 +112,7 @@ const Login = () => {
             }
             id="password-input"
             label="Password"
-            autoComplete="one-time-code"
+            autoComplete="off"
             fullWidth
             type="password"
             InputProps={{
