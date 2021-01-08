@@ -36,10 +36,12 @@ const App = () => {
           </>
         ) : (
           <>
-            <Switch>
-              <Route path="/register" component={() => <Register />} />
-              <Route path="/" component={() => <Login />} />
-            </Switch>
+            {loading === false ? (
+              <Switch>
+                <Route path="/register" component={() => <Register />} />
+                <Route path="/" component={() => <Login />} />
+              </Switch>
+            ) : null}
           </>
         )}
       </main>
