@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useMutation } from "@apollo/client";
+import { useMutation, useApolloClient } from "@apollo/client";
 import { USER_LOGIN_MUTATION } from "../Api/user";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -24,6 +24,7 @@ const useStyles = makeStyles(() => ({
 
 const Login = () => {
   const classes = useStyles();
+  const client = useApolloClient();
   const [login, { data: loginData }] = useMutation(USER_LOGIN_MUTATION, {
     errorPolicy: "all",
   });
@@ -41,13 +42,13 @@ const Login = () => {
       const loginWasSuccessful = tokenAuth !== null;
 
       if (loginWasSuccessful) {
-        window.location.reload(); // Reset page
+        client.resetStore();
       } else {
         setFailedToLogin(true);
         setPassword("");
       }
     }
-  }, [loginData]);
+  }, [loginData, client]);
 
   const setErrorMessage = () => {
     if (username === "") {
@@ -89,7 +90,7 @@ const Login = () => {
             }
             id="login-input"
             label="Username"
-            autoComplete="off"
+            autoComplete="none"
             fullWidth
             autoFocus
             InputProps={{
@@ -112,7 +113,7 @@ const Login = () => {
             }
             id="password-input"
             label="Password"
-            autoComplete="off"
+            autoComplete="one-time-code"
             fullWidth
             type="password"
             InputProps={{

@@ -109,7 +109,7 @@ const Register = () => {
             helperText={usernameMessageError !== "" ? usernameMessageError : ""}
             id="username-input"
             label="Username"
-            autoComplete="off"
+            autoComplete="one-time-code"
             fullWidth
             autoFocus
             InputProps={{
@@ -127,7 +127,7 @@ const Register = () => {
             helperText={emailMessageError !== "" ? emailMessageError : ""}
             id="email-input"
             label="Email"
-            autoComplete="off"
+            autoComplete="one-time-code"
             fullWidth
             InputProps={{
               startAdornment: (

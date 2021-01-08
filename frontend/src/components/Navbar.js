@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
+import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "./UserContext";
+import { USER_DELETE_TOKENS_MUTATION } from "./Api/user";
 
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -26,8 +28,15 @@ const Navbar = () => {
   const classes = useStyles();
   const history = useHistory();
 
+  const [deleteTokens] = useMutation(USER_DELETE_TOKENS_MUTATION);
+
   const handleOnRedirect = (path) => {
     history.push(path);
+  };
+
+  const handleOnLogout = async () => {
+    await deleteTokens();
+    window.location.reload(); // Reset page
   };
 
   return (
@@ -38,7 +47,9 @@ const Navbar = () => {
             Todo
           </Typography>
           {user ? (
-            <Button color="inherit">Logout</Button>
+            <Button onClick={handleOnLogout} color="inherit">
+              Logout
+            </Button>
           ) : (
             <>
               <Button
