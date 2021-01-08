@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { UserContext } from "./UserContext";
 
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -21,12 +22,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Navbar = () => {
+  const { user } = useContext(UserContext);
   const classes = useStyles();
   const history = useHistory();
 
   const handleOnRedirect = (path) => {
     history.push(path);
   };
+
+  console.log(user);
 
   return (
     <div className={classes.root}>
@@ -35,13 +39,24 @@ const Navbar = () => {
           <Typography variant="h6" className={classes.logo}>
             Todo
           </Typography>
-          <Button onClick={() => handleOnRedirect("/login")} color="inherit">
-            Login
-          </Button>
-          <Button onClick={() => handleOnRedirect("/register")} color="inherit">
-            Register
-          </Button>
-          <Button color="inherit">Logout</Button>
+          {user ? (
+            <Button color="inherit">Logout</Button>
+          ) : (
+            <>
+              <Button
+                onClick={() => handleOnRedirect("/login")}
+                color="inherit"
+              >
+                Login
+              </Button>
+              <Button
+                onClick={() => handleOnRedirect("/register")}
+                color="inherit"
+              >
+                Register
+              </Button>
+            </>
+          )}
         </Toolbar>
       </AppBar>
     </div>

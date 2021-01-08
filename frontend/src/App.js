@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Route, Switch } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import "./App.css";
 import { USER_ME_QUERY } from "./components/Api/user";
+import { UserContext } from "./components/UserContext";
 
 import Navbar from "./components/Navbar";
 import TodoList from "./components/TodoList";
@@ -12,6 +13,7 @@ import Register from "./components/Authentication/Register";
 
 const App = () => {
   const [user, setUser] = useState(null);
+  const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
   const { data: meQuery, loading } = useQuery(USER_ME_QUERY, {
     fetchPolicy: "network-only",
   });
@@ -26,14 +28,16 @@ const App = () => {
   return (
     <div className="App">
       <header>
-        <Navbar />
+        <UserContext.Provider value={userValue}>
+          <Navbar />
+        </UserContext.Provider>
       </header>
       <main>
         {user && loading === false ? (
-          <>
+          <UserContext.Provider value={userValue}>
             <CreateForm />
             <TodoList />
-          </>
+          </UserContext.Provider>
         ) : (
           <>
             {loading === false ? (

@@ -37,7 +37,7 @@ const Login = () => {
       const { tokenAuth } = loginData;
 
       if (tokenAuth !== null) {
-        window.location.reload();
+        window.location.reload(); // Reset page
       } else {
         setFailedToLogin(true);
         setPassword("");
