@@ -30,6 +30,9 @@ const Login = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const [usernameIsNotFilled, setUsernameIsNotFilled] = useState(false);
+  const [passwordIsNotFilled, setPasswordIsNotFilled] = useState(false);
   const [failedToLogin, setFailedToLogin] = useState(false);
 
   useEffect(() => {
@@ -40,15 +43,29 @@ const Login = () => {
         window.location.reload(); // Reset page
       } else {
         setFailedToLogin(true);
+        setUsernameIsNotFilled(false); // Remove the previous error message
         setPassword("");
       }
     }
   }, [loginData]);
 
+  const setNotFilledFieldError = () => {
+    if (username === "") {
+      setUsernameIsNotFilled(true);
+    }
+    if (password === "") {
+      setPasswordIsNotFilled(true);
+    }
+  };
+
   const handleOnLogin = async () => {
-    await login({
-      variables: { username, password },
-    });
+    if (username === "" || password === "") {
+      setNotFilledFieldError();
+    } else {
+      await login({
+        variables: { username, password },
+      });
+    }
   };
 
   return (
@@ -59,7 +76,11 @@ const Login = () => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             className={classes.usernameField}
-            error={failedToLogin ? true : false}
+            error={failedToLogin || usernameIsNotFilled ? true : false}
+            helperText={
+              /* Handle blank username */
+              usernameIsNotFilled ? "Please enter your username" : ""
+            }
             id="login-input"
             label="Username"
             autoComplete="one-time-code"
@@ -77,9 +98,11 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className={classes.passwordField}
-            error={failedToLogin ? true : false}
+            error={failedToLogin || passwordIsNotFilled ? true : false}
             helperText={
-              failedToLogin ? "Username or password is incorrect" : ""
+              /* Handle bad login or blank password */
+              (failedToLogin ? "Username or password is incorrect" : "") ||
+              (passwordIsNotFilled ? "Please enter your password" : "")
             }
             id="password-input"
             label="Password"

@@ -30,6 +30,7 @@ export const USER_REGISTER_MUTATION = gql`
       }
       errors {
         messages
+        field
       }
     }
   }

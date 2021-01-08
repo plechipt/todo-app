@@ -30,8 +30,6 @@ const Navbar = () => {
     history.push(path);
   };
 
-  console.log(user);
-
   return (
     <div className={classes.root}>
       <AppBar className={classes.appBar} position="static">

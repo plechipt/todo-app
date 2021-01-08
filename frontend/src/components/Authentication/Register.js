@@ -35,7 +35,9 @@ const Register = () => {
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
   useEffect(() => {
-    console.log(registerData);
+    if (registerData) {
+      console.log(registerData);
+    }
   }, [registerData]);
 
   const handleOnRegister = async () => {
