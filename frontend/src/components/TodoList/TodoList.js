@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import { TODO_USER_LIST_QUERY } from "../Api/todo";
+import { TODO_USER_LIST_QUERY } from "../Api/todo/todo";
 import Todo from "./Todo";
 
 const TodoList = () => {
