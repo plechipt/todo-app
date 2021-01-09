@@ -41,8 +41,6 @@ const Todo = ({ content, completed: completedTodo }) => {
     setCompleted(completedTodo);
   }, [completedTodo]);
 
-  console.log("test");
-
   return (
     <Grid className={classes.todoContainer} container>
       <Grid className={classes.item} item xs={11} sm={8} md={6} lg={4}>

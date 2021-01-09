@@ -20,18 +20,24 @@ const useStyles = makeStyles((theme) => ({
 const CreateForm = () => {
   const classes = useStyles();
   const [createTodo] = useMutation(TODO_CREATE_MUTATION);
+
   const [content, setContent] = useState("");
+  const [contentIsFilled, setContentIsFilled] = useState(true);
 
   const handleOnCreate = async (e) => {
     e.preventDefault();
 
-    await createTodo({
-      variables: {
-        content,
-      },
-    });
+    if (content === "") {
+      setContentIsFilled(false);
+    } else {
+      await createTodo({
+        variables: {
+          content,
+        },
+      });
 
-    window.location.reload(); // Reset page
+      window.location.reload(); // Reset page
+    }
   };
 
   return (
@@ -43,6 +49,7 @@ const CreateForm = () => {
               value={content}
               onChange={(e) => setContent(e.target.value)}
               className={classes.createField}
+              error={contentIsFilled ? false : true}
               label="Create Todo"
               fullWidth
               inputProps={{

@@ -6,12 +6,6 @@ import Todo from "./Todo";
 const TodoList = () => {
   const { data: todos } = useQuery(TODO_USER_LIST_QUERY);
 
-  if (todos) {
-    todos.userTodos.forEach((todo) => {
-      console.log(todo);
-    });
-  }
-
   return (
     <div className="todo-container">
       {todos && todos.userTodos ? (
