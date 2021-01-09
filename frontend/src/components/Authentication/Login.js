@@ -61,7 +61,6 @@ const Login = () => {
     setFailedToLogin(false);
 
     if (username === "") {
-      console.log("test");
       setUsernameIsNotFilled(true);
     }
     if (password === "") {
@@ -78,8 +77,6 @@ const Login = () => {
       });
     }
   };
-
-  console.log(failedToLogin);
 
   return (
     <div className={classes.root}>

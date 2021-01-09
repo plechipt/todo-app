@@ -45,7 +45,8 @@ const Register = () => {
   ] = useState("");
 
   const setErrorMessage = (message, field) => {
-    console.log(field);
+    message = message.replace(".", ""); // Remove dot from message
+
     if (field === "username") {
       setUsernameMessageError(message);
     }
@@ -78,7 +79,7 @@ const Register = () => {
 
       if (registerWasNotSuccessful) {
         errors.forEach(({ messages, field }) => {
-          const [message] = messages;
+          let [message] = messages;
           setErrorMessage(message, field);
         });
       } else {
