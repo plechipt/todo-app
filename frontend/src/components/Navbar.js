@@ -44,7 +44,7 @@ const Navbar = () => {
       <AppBar className={classes.appBar} position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.logo}>
-            Todo
+            Todo List
           </Typography>
           {user ? (
             <Button onClick={handleOnLogout} color="inherit">

@@ -19,7 +19,7 @@ const CreateForm = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div className="create-container">
       <Grid className={classes.createContainer} container>
         <Grid item xs={11} sm={8} md={6} lg={4}>
           <TextField

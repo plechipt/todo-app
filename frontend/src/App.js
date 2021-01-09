@@ -6,8 +6,9 @@ import { USER_ME_QUERY } from "./components/Api/user";
 import { UserContext } from "./components/UserContext";
 
 import Navbar from "./components/Navbar";
-import TodoList from "./components/TodoList";
+import TodoList from "./components/TodoList/TodoList";
 import CreateForm from "./components/CreateForm";
+import Paginator from "./components/Paginator";
 import Login from "./components/Authentication/Login";
 import Register from "./components/Authentication/Register";
 
@@ -33,7 +34,7 @@ const App = () => {
         </UserContext.Provider>
       </header>
       <main>
-        {user && loading === false ? (
+        {true && loading === false ? (
           <UserContext.Provider value={userValue}>
             <CreateForm />
             <TodoList />
@@ -49,6 +50,7 @@ const App = () => {
           </>
         )}
       </main>
+      <footer>{true && loading === false ? <Paginator /> : null}</footer>
     </div>
   );
 };
