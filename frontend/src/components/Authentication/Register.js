@@ -88,7 +88,9 @@ const Register = () => {
     }
   }, [registerData, history]);
 
-  const handleOnRegister = async () => {
+  const handleOnRegister = async (e) => {
+    e.preventDefault();
+
     await register({
       variables: {
         username,
@@ -103,91 +105,97 @@ const Register = () => {
     <div className={classes.root}>
       <Grid className={classes.formsContainer} container>
         <Grid item xs={11} sm={8} md={5} lg={3}>
-          <TextField
-            onChange={(e) => setUsername(e.target.value)}
-            className={classes.usernameField}
-            error={usernameMessageError !== "" ? true : false}
-            helperText={usernameMessageError !== "" ? usernameMessageError : ""}
-            id="username-input"
-            label="Username"
-            autoComplete="one-time-code"
-            fullWidth
-            autoFocus
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <AccountCircle />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            onChange={(e) => setEmail(e.target.value)}
-            className={classes.field}
-            error={emailMessageError !== "" ? true : false}
-            helperText={emailMessageError !== "" ? emailMessageError : ""}
-            id="email-input"
-            label="Email"
-            autoComplete="one-time-code"
-            fullWidth
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <EmailIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            onChange={(e) => setPassword(e.target.value)}
-            className={classes.field}
-            error={passwordMessageError !== "" ? true : false}
-            helperText={passwordMessageError !== "" ? passwordMessageError : ""}
-            id="password-input"
-            label="Password"
-            autoComplete="one-time-code"
-            fullWidth
-            type="password"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <LockIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            onChange={(e) => setPasswordConfirm(e.target.value)}
-            className={classes.field}
-            error={passwordConfirmMessageError !== "" ? true : false}
-            helperText={
-              passwordConfirmMessageError !== ""
-                ? passwordConfirmMessageError
-                : ""
-            }
-            id="confirm-password-input"
-            label="Confirm Password"
-            autoComplete="one-time-code"
-            fullWidth
-            type="password"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <LockIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <Button
-            onClick={handleOnRegister}
-            className={classes.submitButton}
-            variant="contained"
-            size="large"
-            color="primary"
-            fullWidth
-          >
-            Register
-          </Button>
+          <form onSubmit={handleOnRegister}>
+            <TextField
+              onChange={(e) => setUsername(e.target.value)}
+              className={classes.usernameField}
+              error={usernameMessageError !== "" ? true : false}
+              helperText={
+                usernameMessageError !== "" ? usernameMessageError : ""
+              }
+              id="username-input"
+              label="Username"
+              autoComplete="one-time-code"
+              fullWidth
+              autoFocus
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AccountCircle />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              onChange={(e) => setEmail(e.target.value)}
+              className={classes.field}
+              error={emailMessageError !== "" ? true : false}
+              helperText={emailMessageError !== "" ? emailMessageError : ""}
+              id="email-input"
+              label="Email"
+              autoComplete="one-time-code"
+              fullWidth
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <EmailIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              onChange={(e) => setPassword(e.target.value)}
+              className={classes.field}
+              error={passwordMessageError !== "" ? true : false}
+              helperText={
+                passwordMessageError !== "" ? passwordMessageError : ""
+              }
+              id="password-input"
+              label="Password"
+              autoComplete="one-time-code"
+              fullWidth
+              type="password"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LockIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              onChange={(e) => setPasswordConfirm(e.target.value)}
+              className={classes.field}
+              error={passwordConfirmMessageError !== "" ? true : false}
+              helperText={
+                passwordConfirmMessageError !== ""
+                  ? passwordConfirmMessageError
+                  : ""
+              }
+              id="confirm-password-input"
+              label="Confirm Password"
+              autoComplete="one-time-code"
+              fullWidth
+              type="password"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LockIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <Button
+              type="submit"
+              className={classes.submitButton}
+              variant="contained"
+              size="large"
+              color="primary"
+              fullWidth
+            >
+              Register
+            </Button>
+          </form>
         </Grid>
       </Grid>
     </div>

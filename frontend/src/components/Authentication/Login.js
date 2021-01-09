@@ -68,7 +68,9 @@ const Login = () => {
     }
   };
 
-  const handleOnLogin = async () => {
+  const handleOnLogin = async (e) => {
+    e.preventDefault();
+
     if (username === "" || password === "") {
       setErrorMessage();
     } else {
@@ -82,61 +84,63 @@ const Login = () => {
     <div className={classes.root}>
       <Grid className={classes.formsContainer} container>
         <Grid item xs={11} sm={8} md={5} lg={3}>
-          <TextField
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className={classes.usernameField}
-            error={failedToLogin || usernameIsNotFilled ? true : false}
-            helperText={
-              /* Handle blank username */
-              usernameIsNotFilled ? "Please enter your username" : ""
-            }
-            id="login-input"
-            label="Username"
-            autoComplete="none"
-            fullWidth
-            autoFocus
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <AccountCircle />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className={classes.passwordField}
-            error={failedToLogin || passwordIsNotFilled ? true : false}
-            helperText={
-              /* Handle bad login or blank password */
-              (failedToLogin ? "Username or password is incorrect" : "") ||
-              (passwordIsNotFilled ? "Please enter your password" : "")
-            }
-            id="password-input"
-            label="Password"
-            autoComplete="one-time-code"
-            fullWidth
-            type="password"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <LockIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <Button
-            onClick={handleOnLogin}
-            variant="contained"
-            size="large"
-            color="primary"
-            fullWidth
-            className={classes.submitButton}
-          >
-            Login
-          </Button>
+          <form onSubmit={handleOnLogin}>
+            <TextField
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className={classes.usernameField}
+              error={failedToLogin || usernameIsNotFilled ? true : false}
+              helperText={
+                /* Handle blank username */
+                usernameIsNotFilled ? "Please enter your username" : ""
+              }
+              id="login-input"
+              label="Username"
+              autoComplete="none"
+              fullWidth
+              autoFocus
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AccountCircle />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className={classes.passwordField}
+              error={failedToLogin || passwordIsNotFilled ? true : false}
+              helperText={
+                /* Handle bad login or blank password */
+                (failedToLogin ? "Username or password is incorrect" : "") ||
+                (passwordIsNotFilled ? "Please enter your password" : "")
+              }
+              id="password-input"
+              label="Password"
+              autoComplete="one-time-code"
+              fullWidth
+              type="password"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LockIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <Button
+              type="submit"
+              variant="contained"
+              size="large"
+              color="primary"
+              fullWidth
+              className={classes.submitButton}
+            >
+              Login
+            </Button>
+          </form>
         </Grid>
       </Grid>
     </div>

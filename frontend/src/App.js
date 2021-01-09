@@ -15,6 +15,7 @@ import Register from "./components/Authentication/Register";
 const App = () => {
   const [user, setUser] = useState(null);
   const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
+
   const { data: meQuery, loading } = useQuery(USER_ME_QUERY, {
     fetchPolicy: "network-only",
   });
@@ -34,7 +35,7 @@ const App = () => {
         </UserContext.Provider>
       </header>
       <main>
-        {true && loading === false ? (
+        {false && loading === false ? (
           <UserContext.Provider value={userValue}>
             <CreateForm />
             <TodoList />
