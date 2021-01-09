@@ -10,7 +10,7 @@ class UserMutation(AuthMutation, graphene.ObjectType):
     verify_access_token = VerifyAccessToken.Field()
 
     
-class UserQuery:
+class UserQuery(graphene.ObjectType):
     me = graphene.Field(UserType)
 
     def resolve_me(self, info):

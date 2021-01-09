@@ -1,11 +1,12 @@
 import graphene
 from users.schema import UserQuery, UserMutation
+from todolist.schema import TodoQuery, TodoMutation
 
 
-class Query(UserQuery, graphene.ObjectType):
+class Query(UserQuery, TodoQuery, graphene.ObjectType):
     pass
 
-class Mutation(UserMutation, graphene.ObjectType):
+class Mutation(UserMutation, TodoMutation, graphene.ObjectType):
     pass
 
 
