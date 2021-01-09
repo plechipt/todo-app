@@ -25,9 +25,12 @@ const useStyles = makeStyles(() => ({
 const Login = () => {
   const classes = useStyles();
   const client = useApolloClient();
-  const [login, { data: loginData }] = useMutation(USER_LOGIN_MUTATION, {
-    errorPolicy: "all",
-  });
+  const [login, { data: loginData, loading }] = useMutation(
+    USER_LOGIN_MUTATION,
+    {
+      errorPolicy: "all",
+    }
+  );
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -79,6 +82,8 @@ const Login = () => {
       });
     }
   };
+
+  console.log(loading);
 
   return (
     <div className={classes.root}>
@@ -132,11 +137,12 @@ const Login = () => {
             />
             <Button
               type="submit"
+              className={classes.submitButton}
+              disabled={loading}
               variant="contained"
               size="large"
               color="primary"
               fullWidth
-              className={classes.submitButton}
             >
               Login
             </Button>

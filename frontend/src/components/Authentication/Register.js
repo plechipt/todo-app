@@ -27,7 +27,7 @@ const useStyles = makeStyles(() => ({
 const Register = () => {
   const classes = useStyles();
   const history = useHistory();
-  const [register, { data: registerData }] = useMutation(
+  const [register, { data: registerData, loading }] = useMutation(
     USER_REGISTER_MUTATION
   );
 
@@ -188,6 +188,7 @@ const Register = () => {
             <Button
               type="submit"
               className={classes.submitButton}
+              disabled={loading}
               variant="contained"
               size="large"
               color="primary"
