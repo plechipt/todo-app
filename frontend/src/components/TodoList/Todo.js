@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -33,34 +33,38 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Item = () => {
+const Todo = ({ content, completed: completedTodo }) => {
   const classes = useStyles();
   const [completed, setCompleted] = useState(false);
 
+  useEffect(() => {
+    setCompleted(completedTodo);
+  }, [completedTodo]);
+
+  console.log("test");
+
   return (
-    <>
-      <Grid className={classes.todoContainer} container>
-        <Grid className={classes.item} item xs={11} sm={8} md={6} lg={4}>
-          <Paper disabled={true} className={classes.paper}>
-            <Typography
-              onClick={() => setCompleted(!completed)}
-              className={completed ? classes.completed : classes.notCompleted}
-            >
-              mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
-            </Typography>
-            <div className={classes.iconsContainer}>
-              <IconButton aria-label="edit">
-                <EditIcon />
-              </IconButton>
-              <IconButton aria-label="delete">
-                <DeleteIcon />
-              </IconButton>
-            </div>
-          </Paper>
-        </Grid>
+    <Grid className={classes.todoContainer} container>
+      <Grid className={classes.item} item xs={11} sm={8} md={6} lg={4}>
+        <Paper disabled={true} className={classes.paper}>
+          <Typography
+            onClick={() => setCompleted(!completed)}
+            className={completed ? classes.completed : classes.notCompleted}
+          >
+            {content}
+          </Typography>
+          <div className={classes.iconsContainer}>
+            <IconButton aria-label="edit">
+              <EditIcon />
+            </IconButton>
+            <IconButton aria-label="delete">
+              <DeleteIcon />
+            </IconButton>
+          </div>
+        </Paper>
       </Grid>
-    </>
+    </Grid>
   );
 };
 
-export default Item;
+export default Todo;
