@@ -83,8 +83,6 @@ const Login = () => {
     }
   };
 
-  console.log(loading);
-
   return (
     <div className={classes.root}>
       <Grid className={classes.formsContainer} container>

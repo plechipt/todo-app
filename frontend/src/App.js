@@ -20,6 +20,8 @@ const App = () => {
     fetchPolicy: "network-only",
   });
 
+  console.log(user, userValue);
+
   // Set user to memory
   useEffect(() => {
     if (meQuery && meQuery.me) {
@@ -35,7 +37,7 @@ const App = () => {
         </UserContext.Provider>
       </header>
       <main>
-        {false && loading === false ? (
+        {user && loading === false ? (
           <UserContext.Provider value={userValue}>
             <CreateForm />
             <TodoList />

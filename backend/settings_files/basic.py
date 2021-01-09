@@ -9,6 +9,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'users',
+    'todolist',
 
     # Pip packages
     'corsheaders',
