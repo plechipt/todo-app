@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
   paginationContainer: {
     justifyContent: "center",
     position: "absolute",
-    bottom: 50,
+    bottom: 40,
   },
 }));
 
