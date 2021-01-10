@@ -14,6 +14,10 @@ const useStyles = makeStyles((theme) => ({
   submitButton: {
     marginTop: 25,
     marginBottom: 15,
+    background: "#1976D2",
+    "&:hover": {
+      background: "#1976D2",
+    },
   },
 }));
 
@@ -60,8 +64,8 @@ const CreateForm = () => {
               type="submit"
               className={classes.submitButton}
               variant="contained"
-              size="large"
               color="primary"
+              size="large"
             >
               Create
             </Button>

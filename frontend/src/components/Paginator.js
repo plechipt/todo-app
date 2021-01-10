@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     bottom: 40,
   },
+  pagination: {
+    color: "white",
+  },
 }));
 
 const Paginator = () => {
@@ -19,7 +22,12 @@ const Paginator = () => {
     <div className="pagination-container">
       <Grid className={classes.paginationContainer} container>
         <Grid item>
-          <Pagination size="large" count={10} color="primary" />
+          <Pagination
+            className={classes.pagination}
+            size="large"
+            count={10}
+            color={"primary"}
+          />
         </Grid>
       </Grid>
     </div>
