@@ -8,6 +8,8 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Button from "@material-ui/core/Button";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import EmailIcon from "@material-ui/icons/Email";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import LockIcon from "@material-ui/icons/Lock";
@@ -39,6 +41,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [showPasswords, setShowPasswords] = useState(false);
 
   const [usernameMessageError, setUsernameMessageError] = useState("");
   const [emailMessageError, setEmailMessageError] = useState("");
@@ -154,11 +157,11 @@ const Register = () => {
               helperText={
                 passwordMessageError !== "" ? passwordMessageError : ""
               }
+              type={showPasswords ? "text" : "password"}
               id="password-input"
               label="Password"
               autoComplete="one-time-code"
               fullWidth
-              type="password"
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -176,11 +179,11 @@ const Register = () => {
                   ? passwordConfirmMessageError
                   : ""
               }
+              type={showPasswords ? "text" : "password"}
               id="confirm-password-input"
               label="Confirm Password"
               autoComplete="one-time-code"
               fullWidth
-              type="password"
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -188,6 +191,17 @@ const Register = () => {
                   </InputAdornment>
                 ),
               }}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  onClick={() => setShowPasswords(!showPasswords)}
+                  defaultChecked={false}
+                  color="primary"
+                  inputProps={{ "aria-label": "secondary checkbox" }}
+                />
+              }
+              label="Show Passwords"
             />
             <Button
               type="submit"
