@@ -6,9 +6,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import LockIcon from "@material-ui/icons/Lock";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 const useStyles = makeStyles(() => ({
   formsContainer: {
@@ -38,6 +41,7 @@ const Login = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const [failedToLogin, setFailedToLogin] = useState(false);
   const [usernameIsNotFilled, setUsernameIsNotFilled] = useState(false);
@@ -124,15 +128,25 @@ const Login = () => {
                 (failedToLogin ? "Username or password is incorrect" : "") ||
                 (passwordIsNotFilled ? "Please enter your password" : "")
               }
+              type={showPassword ? "text" : "password"}
               id="password-input"
               label="Password"
               autoComplete="one-time-code"
               fullWidth
-              type="password"
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
                     <LockIcon />
+                  </InputAdornment>
+                ),
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={() => setShowPassword(!showPassword)}
+                      aria-label="toggle password visibility"
+                    >
+                      {showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
                   </InputAdornment>
                 ),
               }}

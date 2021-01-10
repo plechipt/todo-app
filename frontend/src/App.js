@@ -13,7 +13,7 @@ import Login from "./components/Authentication/Login";
 import Register from "./components/Authentication/Register";
 
 const App = () => {
-  const [user, setUser] = useState("TestUser");
+  const [user, setUser] = useState(null);
   const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
 
   const { data: meQuery, loading } = useQuery(USER_ME_QUERY, {
@@ -51,7 +51,7 @@ const App = () => {
           </>
         )}
       </main>
-      <footer>{true && loading === false ? <Paginator /> : null}</footer>
+      <footer>{user && loading === false ? <Paginator /> : null}</footer>
     </div>
   );
 };
