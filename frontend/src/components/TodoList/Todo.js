@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 import { useLocation } from "react-router-dom";
 import {
   TODO_DELETE_MUTATION,
+  TODO_TOGGLE_COMPLETED_MUTATION,
   TODO_SET_COMPLETED_MUTATION,
 } from "../Api/todo/todo";
 
@@ -46,11 +47,16 @@ const Todo = ({ id, content, completed: isCompleted }) => {
   const [completed, setCompleted] = useState(false);
   const [deleteTodo] = useMutation(TODO_DELETE_MUTATION);
   const [setCompletedTodo] = useMutation(TODO_SET_COMPLETED_MUTATION);
+  const [toggleCompleted] = useMutation(TODO_TOGGLE_COMPLETED_MUTATION);
 
   useEffect(() => {
-    console.log("test");
     setCompleted(isCompleted);
   }, [isCompleted]);
+
+  const handleOnToggleCompleted = async () => {
+    setCompleted(!completed);
+    await toggleCompleted({ variables: { id } });
+  };
 
   const handleOnDelete = async () => {
     await deleteTodo({ variables: { id } });
@@ -62,7 +68,7 @@ const Todo = ({ id, content, completed: isCompleted }) => {
       <Grid className={classes.item} item xs={11} sm={8} md={6} lg={4}>
         <Paper disabled={true} className={classes.paper}>
           <Typography
-            onClick={() => setCompleted(!completed)}
+            onClick={handleOnToggleCompleted}
             className={completed ? classes.completed : classes.notCompleted}
           >
             {content}
