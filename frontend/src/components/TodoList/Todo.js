@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { useLocation } from "react-router-dom";
 import {
   TODO_DELETE_MUTATION,
-  TODO_TOGGLE_COMPLETED_MUTATION,
+  TODO_SET_COMPLETED_MUTATION,
 } from "../Api/todo/todo";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -39,28 +39,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CURRENT_PATH = "/";
-
 const Todo = ({ id, content, completed: completedTodo }) => {
   const classes = useStyles();
   const location = useLocation();
 
   const [completed, setCompleted] = useState(false);
   const [deleteTodo] = useMutation(TODO_DELETE_MUTATION);
-  const [toggleCompleted] = useMutation(TODO_TOGGLE_COMPLETED_MUTATION);
+  const [setCompletedTodo] = useMutation(TODO_SET_COMPLETED_MUTATION);
 
-  useEffect(() => {
-    setCompleted(completedTodo);
-  }, [completedTodo]);
-
-  // Save
-  useEffect(() => {
-    toggleCompleted({ variables: { id } });
-  }, [location.pathname, id, toggleCompleted]);
-
-  const handleOnToggleCompleted = async () => {
-    setCompleted(!completed);
-  };
+  const toggleCompleted = useCallback(() => {
+    setCompleted((completed) => !completed);
+  }, []);
 
   const handleOnDelete = async () => {
     await deleteTodo({ variables: { id } });
@@ -72,7 +61,7 @@ const Todo = ({ id, content, completed: completedTodo }) => {
       <Grid className={classes.item} item xs={11} sm={8} md={6} lg={4}>
         <Paper disabled={true} className={classes.paper}>
           <Typography
-            onClick={handleOnToggleCompleted}
+            onClick={() => toggleCompleted(completed)}
             className={completed ? classes.completed : classes.notCompleted}
           >
             {content}

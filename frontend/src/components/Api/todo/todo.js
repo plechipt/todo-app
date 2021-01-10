@@ -40,6 +40,17 @@ export const TODO_DELETE_MUTATION = gql`
   }
 `;
 
+export const TODO_SET_COMPLETED_MUTATION = gql`
+  mutation($id: ID!, $isCompleted: Boolean!) {
+    setCompleted(id: $id, isCompleted: $isCompleted) {
+      todo {
+        ...TodoFields
+      }
+    }
+  }
+  ${TODO_FIELDS_FRAGMENT}
+`;
+
 export const TODO_TOGGLE_COMPLETED_MUTATION = gql`
   mutation($id: ID!) {
     toggleCompleted(id: $id) {

@@ -36,6 +36,21 @@ class DeleteTodo(graphene.Mutation):
         return DeleteTodo(message=message)
 
 
+class SetCompleted(graphene.Mutation):
+    class Arguments:
+        id = graphene.ID()
+        isCompleted = graphene.Boolean()
+
+    todo = graphene.Field(TodoType)
+
+    def mutate(root, info, id, isCompleted):
+        todo = Todo.objects.get(id=id)
+        todo.completed = isCompleted
+        todo.save()
+
+        return SetCompleted(todo=todo)
+    
+
 class ToggleCompleted(graphene.Mutation):
     class Arguments:
         id = graphene.ID()
