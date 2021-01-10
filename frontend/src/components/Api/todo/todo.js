@@ -31,3 +31,11 @@ export const TODO_CREATE_MUTATION = gql`
   }
   ${TODO_FIELDS_FRAGMENT}
 `;
+
+export const TODO_DELETE_MUTATION = gql`
+  mutation($id: ID!) {
+    deleteTodo(id: $id) {
+      message
+    }
+  }
+`;

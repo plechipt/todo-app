@@ -10,8 +10,8 @@ const TodoList = () => {
     <div className="todo-container">
       {todos && todos.userTodos ? (
         <>
-          {todos.userTodos.map(({ content, completed }) => {
-            return <Todo content={content} completed={completed} />;
+          {todos.userTodos.map(({ id, content, completed }) => {
+            return <Todo id={id} content={content} completed={completed} />;
           })}
         </>
       ) : null}

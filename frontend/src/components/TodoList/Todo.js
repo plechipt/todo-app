@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useMutation } from "@apollo/client";
+import { TODO_DELETE_MUTATION } from "../Api/todo/todo";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -33,13 +35,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Todo = ({ content, completed: completedTodo }) => {
+const Todo = ({ id, content, completed: completedTodo }) => {
   const classes = useStyles();
   const [completed, setCompleted] = useState(false);
+
+  const [deleteTodo] = useMutation(TODO_DELETE_MUTATION);
 
   useEffect(() => {
     setCompleted(completedTodo);
   }, [completedTodo]);
+
+  const handleOnDelete = async () => {
+    await deleteTodo({ variables: { id } });
+    window.location.reload(); // Reset page
+  };
 
   return (
     <Grid className={classes.todoContainer} container>
@@ -55,7 +64,7 @@ const Todo = ({ content, completed: completedTodo }) => {
             <IconButton aria-label="edit">
               <EditIcon />
             </IconButton>
-            <IconButton aria-label="delete">
+            <IconButton onClick={handleOnDelete} aria-label="delete">
               <DeleteIcon />
             </IconButton>
           </div>
