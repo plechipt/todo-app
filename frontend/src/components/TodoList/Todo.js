@@ -38,7 +38,6 @@ const useStyles = makeStyles((theme) => ({
 const Todo = ({ id, content, completed: completedTodo }) => {
   const classes = useStyles();
   const [completed, setCompleted] = useState(false);
-
   const [deleteTodo] = useMutation(TODO_DELETE_MUTATION);
 
   useEffect(() => {

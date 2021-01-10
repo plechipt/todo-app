@@ -5,6 +5,7 @@ from .mutations.todos import *
 class TodoMutation(graphene.ObjectType):
     create_todo = CreateTodo.Field()
     delete_todo = DeleteTodo.Field()
+    toggle_completed = ToggleCompleted.Field()
 
 
 class TodoQuery(graphene.ObjectType):
