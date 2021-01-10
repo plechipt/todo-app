@@ -39,3 +39,14 @@ export const TODO_DELETE_MUTATION = gql`
     }
   }
 `;
+
+export const TODO_TOGGLE_COMPLETED_MUTATION = gql`
+  mutation($id: ID!) {
+    toggleCompleted(id: $id) {
+      todo {
+        ...TodoFields
+      }
+    }
+  }
+  ${TODO_FIELDS_FRAGMENT}
+`;

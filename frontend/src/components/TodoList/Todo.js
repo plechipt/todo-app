@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
-import { TODO_DELETE_MUTATION } from "../Api/todo/todo";
+import {
+  TODO_DELETE_MUTATION,
+  TODO_TOGGLE_COMPLETED_MUTATION,
+} from "../Api/todo/todo";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -39,10 +42,16 @@ const Todo = ({ id, content, completed: completedTodo }) => {
   const classes = useStyles();
   const [completed, setCompleted] = useState(false);
   const [deleteTodo] = useMutation(TODO_DELETE_MUTATION);
+  const [toggleCompleted] = useMutation(TODO_TOGGLE_COMPLETED_MUTATION);
 
   useEffect(() => {
     setCompleted(completedTodo);
   }, [completedTodo]);
+
+  const handleOnToggleCompleted = async () => {
+    setCompleted(!completed);
+    await toggleCompleted({ variables: { id } });
+  };
 
   const handleOnDelete = async () => {
     await deleteTodo({ variables: { id } });
@@ -54,7 +63,7 @@ const Todo = ({ id, content, completed: completedTodo }) => {
       <Grid className={classes.item} item xs={11} sm={8} md={6} lg={4}>
         <Paper disabled={true} className={classes.paper}>
           <Typography
-            onClick={() => setCompleted(!completed)}
+            onClick={handleOnToggleCompleted}
             className={completed ? classes.completed : classes.notCompleted}
           >
             {content}
