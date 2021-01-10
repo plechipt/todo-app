@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
+import { useLocation } from "react-router-dom";
 import {
   TODO_DELETE_MUTATION,
   TODO_TOGGLE_COMPLETED_MUTATION,
@@ -38,8 +39,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const CURRENT_PATH = "/";
+
 const Todo = ({ id, content, completed: completedTodo }) => {
   const classes = useStyles();
+  const location = useLocation();
+
   const [completed, setCompleted] = useState(false);
   const [deleteTodo] = useMutation(TODO_DELETE_MUTATION);
   const [toggleCompleted] = useMutation(TODO_TOGGLE_COMPLETED_MUTATION);
@@ -48,9 +53,13 @@ const Todo = ({ id, content, completed: completedTodo }) => {
     setCompleted(completedTodo);
   }, [completedTodo]);
 
+  // Save
+  useEffect(() => {
+    toggleCompleted({ variables: { id } });
+  }, [location.pathname, id, toggleCompleted]);
+
   const handleOnToggleCompleted = async () => {
     setCompleted(!completed);
-    await toggleCompleted({ variables: { id } });
   };
 
   const handleOnDelete = async () => {
