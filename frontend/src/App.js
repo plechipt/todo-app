@@ -30,7 +30,7 @@ const App = () => {
     <div className="App">
       <header>
         <UserContext.Provider value={userValue}>
-          <Navbar />
+          {loading === false ? <Navbar /> : null}
         </UserContext.Provider>
       </header>
       <main>
