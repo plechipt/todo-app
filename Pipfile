@@ -9,6 +9,8 @@ graphene-django = "*"
 django-graphql-jwt = "*"
 django-cors-headers = "*"
 pyjwt = "==1.7.1"
+gunicorn = "*"
+whitenoise = "*"
 
 [dev-packages]
 
