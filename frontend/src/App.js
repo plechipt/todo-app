@@ -8,7 +8,6 @@ import { UserContext } from "./components/UserContext";
 import Navbar from "./components/Navbar";
 import TodoList from "./components/TodoList/TodoList";
 import CreateForm from "./components/CreateForm";
-import Paginator from "./components/Paginator";
 import Login from "./components/Authentication/Login";
 import Register from "./components/Authentication/Register";
 
@@ -51,7 +50,6 @@ const App = () => {
           </>
         )}
       </main>
-      <footer>{user && loading === false ? <Paginator /> : null}</footer>
     </div>
   );
 };
