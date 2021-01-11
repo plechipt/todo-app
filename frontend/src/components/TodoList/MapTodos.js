@@ -12,6 +12,8 @@ const MapTodos = ({ todos: { userTodos: todos } }) => {
   const indexOfFirstTodos = indexOfLastTodos - todosPerPage;
   const currentTodos = todos.slice(indexOfFirstTodos, indexOfLastTodos);
 
+  console.log(todos.length);
+
   return (
     <>
       <div className="todo-container">
@@ -19,13 +21,15 @@ const MapTodos = ({ todos: { userTodos: todos } }) => {
           return <Todo id={id} content={content} completed={completed} />;
         })}
       </div>
-      <div className="pagination-container">
-        <Paginator
-          todosPerPage={todosPerPage}
-          totalTodos={todos.length}
-          handlePaginationChange={(e, value) => setCurrentPage(value)}
-        />
-      </div>
+      {todos.length > 4 ? (
+        <div className="pagination-container">
+          <Paginator
+            todosPerPage={todosPerPage}
+            totalTodos={todos.length}
+            handlePaginationChange={(e, value) => setCurrentPage(value)}
+          />
+        </div>
+      ) : null}
     </>
   );
 };
