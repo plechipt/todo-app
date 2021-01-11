@@ -6,9 +6,8 @@ from backend.settings_files.basic import *
 from backend.settings_files.development import *
 from backend.settings_files.graphene import *
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-DEBUG = True
+DEBUG = False 
 
 # Database
 DATABASES = {
@@ -17,6 +16,11 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+'''
+Connect frontend to backend
+'''
 
 TEMPLATES = [
     {
@@ -39,3 +43,5 @@ TEMPLATES = [
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR / 'frontend' / 'build' / 'static'),
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR / 'staticfiles')

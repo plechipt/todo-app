@@ -29,6 +29,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'corsheaders.middleware.CorsMiddleware', # Corsheaders
+    'whitenoise.middleware.WhiteNoiseMiddleware', # Whitenoise
 ]
 
 # Password validation
