@@ -8,6 +8,6 @@ from django.middleware.csrf import rotate_token
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('graphql/', jwt_cookie(GraphQLView.as_view(graphiql=True))),
+    path('graphql/', jwt_cookie(GraphQLView.as_view(graphiql=False))),
     re_path('.*', TemplateView.as_view(template_name='index.html'))
 ]

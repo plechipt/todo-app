@@ -12,8 +12,6 @@ const MapTodos = ({ todos: { userTodos: todos } }) => {
   const indexOfFirstTodos = indexOfLastTodos - todosPerPage;
   const currentTodos = todos.slice(indexOfFirstTodos, indexOfLastTodos);
 
-  console.log(todos.length);
-
   return (
     <>
       <div className="todo-container">
