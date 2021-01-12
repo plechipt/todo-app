@@ -3,7 +3,6 @@ import os
 SECRET_KEY = os.environ.get('TODO_APP_SECRET_KEY')
 
 # Corsheaders
-
 CORS_ALLOW_CREDENTIALS = True
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
