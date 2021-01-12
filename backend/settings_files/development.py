@@ -10,6 +10,7 @@ SESSION_COOKIE_SECURE = True
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'https://awesome-todoapp.herokuapp.com',
+    'https://awesome-todoapp.herokuapp.com'
 ]
 
 ALLOWED_HOSTS = [
