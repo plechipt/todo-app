@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { useMutation } from "@apollo/client";
+import { UpdateModeContext } from "./UpdateModeContext";
+import { TODO_UPDATE_MUTATION } from "../Api/todo/todo";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -30,15 +33,31 @@ const useStyles = makeStyles((theme) => ({
 
 const UpdateForm = ({ todo }) => {
   const classes = useStyles();
+  const {
+    todo: { id, content },
+  } = todo;
 
-  console.log(todo);
+  const [newContent, setNewContent] = useState("");
+  const { toggleUpdateMode } = useContext(UpdateModeContext);
+  const [updateTodo] = useMutation(TODO_UPDATE_MUTATION);
+
+  useEffect(() => {
+    setNewContent(content);
+  }, [content]);
+
+  const handleOnUpdate = async () => {
+    await updateTodo({ variables: { id, newContent } });
+    toggleUpdateMode();
+  };
 
   return (
     <div className={classes.updateForm}>
       <Grid className={classes.gridContainer} container>
         <Grid item xs={11} sm={8} md={6} lg={4}>
-          <form>
+          <form onSubmit={handleOnUpdate}>
             <TextField
+              value={newContent}
+              onChange={(e) => setNewContent(e.target.value)}
               id="update-form"
               variant="outlined"
               fullWidth
@@ -48,6 +67,7 @@ const UpdateForm = ({ todo }) => {
             />
             <div className={classes.buttonsContainer}>
               <Button
+                type="submit"
                 className={classes.formButton}
                 variant="contained"
                 color="primary"
@@ -55,6 +75,7 @@ const UpdateForm = ({ todo }) => {
                 Update
               </Button>
               <Button
+                onClick={() => toggleUpdateMode(id)}
                 className={`${classes.formButton} ${classes.cancelButton}`}
                 variant="contained"
                 color="primary"

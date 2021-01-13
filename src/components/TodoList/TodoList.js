@@ -12,7 +12,7 @@ const TodoList = () => {
 
   const toggleUpdateMode = (id) => {
     getTodo({ variables: { id } });
-    setUpdateMode(true);
+    setUpdateMode(!updateMode);
   };
 
   return (
@@ -23,7 +23,11 @@ const TodoList = () => {
         </UpdateModeContext.Provider>
       ) : (
         <>
-          {updateMode && todo && todo.todo ? <UpdateForm todo={todo} /> : null}
+          {updateMode && todo && todo.todo ? (
+            <UpdateModeContext.Provider value={{ toggleUpdateMode }}>
+              <UpdateForm todo={todo} />
+            </UpdateModeContext.Provider>
+          ) : null}
         </>
       )}
     </>
