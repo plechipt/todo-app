@@ -4,6 +4,7 @@ from .mutations.todos import *
 
 class TodoMutation(graphene.ObjectType):
     create_todo = CreateTodo.Field()
+    update_todo = UpdateTodo.Field()
     delete_todo = DeleteTodo.Field()
     set_completed = SetCompleted.Field()
     toggle_completed = ToggleCompleted.Field()
