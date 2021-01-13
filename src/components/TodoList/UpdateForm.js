@@ -29,7 +29,14 @@ const UpdateForm = () => {
   return (
     <div className={classes.updateForm}>
       <form>
-        <TextField id="update-form" variant="outlined" fullWidth />
+        <TextField
+          inputProps={{
+            maxLength: 68,
+          }}
+          id="update-form"
+          variant="outlined"
+          fullWidth
+        />
         <div className={classes.buttonsContainer}>
           <Button
             className={classes.formButton}
@@ -40,7 +47,6 @@ const UpdateForm = () => {
           </Button>
           <Button
             className={`${classes.formButton} ${classes.cancelButton}`}
-            marginLeft={"10"}
             variant="contained"
             color="primary"
           >
