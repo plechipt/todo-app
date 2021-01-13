@@ -34,7 +34,7 @@ const App = () => {
         </UserContext.Provider>
       </header>
       <main>
-        {user && loading === false ? (
+        {true && loading === false ? (
           <UserContext.Provider value={userValue}>
             <CreateForm />
             <TodoList />

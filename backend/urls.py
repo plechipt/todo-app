@@ -11,6 +11,6 @@ ADMIN_PATH = os.environ.get('TODO_APP_ADMIN_PATH')
 
 urlpatterns = [
     path(f'{ADMIN_PATH}/', admin.site.urls),
-    path('graphql/', jwt_cookie(GraphQLView.as_view(graphiql=False))),
+    path('graphql/', jwt_cookie(GraphQLView.as_view(graphiql=True))),
     re_path('.*', TemplateView.as_view(template_name='index.html'))
 ]

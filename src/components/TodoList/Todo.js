@@ -6,6 +6,7 @@ import {
   TODO_TOGGLE_COMPLETED_MUTATION,
   TODO_SET_COMPLETED_MUTATION,
 } from "../Api/todo/todo";
+import UpdateForm from "./UpdateForm";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -45,6 +46,8 @@ const Todo = ({ id, content, completed: isCompleted }) => {
   const location = useLocation();
 
   const [completed, setCompleted] = useState(false);
+  const [updateMode, setUpdateMode] = useState(false);
+
   const [deleteTodo] = useMutation(TODO_DELETE_MUTATION);
   const [setCompletedTodo] = useMutation(TODO_SET_COMPLETED_MUTATION);
   const [toggleCompleted] = useMutation(TODO_TOGGLE_COMPLETED_MUTATION);
@@ -66,22 +69,31 @@ const Todo = ({ id, content, completed: isCompleted }) => {
   return (
     <Grid className={classes.todoContainer} container>
       <Grid className={classes.item} item xs={11} sm={8} md={6} lg={4}>
-        <Paper disabled={true} className={classes.paper}>
-          <Typography
-            onClick={handleOnToggleCompleted}
-            className={completed ? classes.completed : classes.notCompleted}
-          >
-            {content}
-          </Typography>
-          <div className={classes.iconsContainer}>
-            <IconButton aria-label="edit">
-              <EditIcon />
-            </IconButton>
-            <IconButton onClick={handleOnDelete} aria-label="delete">
-              <DeleteIcon />
-            </IconButton>
-          </div>
-        </Paper>
+        <>
+          {updateMode ? (
+            <UpdateForm />
+          ) : (
+            <Paper disabled={true} className={classes.paper}>
+              <Typography
+                onClick={handleOnToggleCompleted}
+                className={completed ? classes.completed : classes.notCompleted}
+              >
+                {content}
+              </Typography>
+              <div className={classes.iconsContainer}>
+                <IconButton
+                  onClick={() => setUpdateMode(true)}
+                  aria-label="edit"
+                >
+                  <EditIcon />
+                </IconButton>
+                <IconButton onClick={handleOnDelete} aria-label="delete">
+                  <DeleteIcon />
+                </IconButton>
+              </div>
+            </Paper>
+          )}
+        </>
       </Grid>
     </Grid>
   );
