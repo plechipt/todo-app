@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CreateForm = () => {
   const classes = useStyles();
-  const [createTodo] = useMutation(TODO_CREATE_MUTATION);
+  const [createTodo, { loading }] = useMutation(TODO_CREATE_MUTATION);
 
   const [content, setContent] = useState("");
   const [contentIsFilled, setContentIsFilled] = useState(true);
@@ -52,6 +52,7 @@ const CreateForm = () => {
             <TextField
               value={content}
               onChange={(e) => setContent(e.target.value)}
+              disabled={loading}
               className={classes.createField}
               error={contentIsFilled ? false : true}
               label="Create Todo"
