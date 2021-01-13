@@ -20,6 +20,15 @@ export const TODO_USER_LIST_QUERY = gql`
   ${TODO_FIELDS_FRAGMENT}
 `;
 
+export const TODO_GET_QUERY = gql`
+  query($id: ID!) {
+    todo(id: $id) {
+      ...TodoFields
+    }
+  }
+  ${TODO_FIELDS_FRAGMENT}
+`;
+
 // Mutations
 export const TODO_CREATE_MUTATION = gql`
   mutation($content: String!) {

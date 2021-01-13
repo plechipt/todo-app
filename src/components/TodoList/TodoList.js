@@ -1,29 +1,30 @@
 import React, { useState } from "react";
-import { useQuery } from "@apollo/client";
-import { TODO_USER_LIST_QUERY } from "../Api/todo/todo";
+import { useQuery, useLazyQuery } from "@apollo/client";
+import { TODO_USER_LIST_QUERY, TODO_GET_QUERY } from "../Api/todo/todo";
 import { UpdateModeContext } from "./UpdateModeContext";
 import MapTodos from "./MapTodos";
-import Todo from "./Todo";
 import UpdateForm from "./UpdateForm";
 
 const TodoList = () => {
   const [updateMode, setUpdateMode] = useState(false);
+  const [getTodo, { data: todo }] = useLazyQuery(TODO_GET_QUERY);
   const { data: todos } = useQuery(TODO_USER_LIST_QUERY);
 
   const toggleUpdateMode = (id) => {
+    getTodo({ variables: { id } });
     setUpdateMode(true);
   };
 
-  console.log(updateMode);
-
   return (
     <>
-      {todos && todos.userTodos && updateMode === true ? (
+      {todos && todos.userTodos && updateMode === false ? (
         <UpdateModeContext.Provider value={{ toggleUpdateMode }}>
           <MapTodos todos={todos} />
         </UpdateModeContext.Provider>
       ) : (
-        <>{updateMode ? <div>nigga</div> : null}</>
+        <>
+          {updateMode && todo && todo.todo ? <UpdateForm todo={todo} /> : null}
+        </>
       )}
     </>
   );

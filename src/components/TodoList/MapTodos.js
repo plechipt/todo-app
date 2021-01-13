@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Paginator from "./Paginator";
+import Paginator from "../Paginator";
 import Todo from "./Todo";
 
 const MapTodos = ({ todos: { userTodos: todos } }) => {
