@@ -1,4 +1,5 @@
 import graphene
+from django_graphql_ratelimit import ratelimit
 from todolist.models import Todo
 from graphene_django import DjangoObjectType
 
