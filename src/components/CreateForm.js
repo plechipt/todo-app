@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useMutation } from "@apollo/client";
+import { useMutation, useApolloClient } from "@apollo/client";
 import { TODO_CREATE_MUTATION } from "./Api/resolvers/todo/todo";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CreateForm = () => {
   const classes = useStyles();
+  const client = useApolloClient();
   const [createTodo, { loading }] = useMutation(TODO_CREATE_MUTATION);
 
   const [content, setContent] = useState("");
@@ -39,8 +40,8 @@ const CreateForm = () => {
           content,
         },
       });
-
-      window.location.reload(); // Reset page
+      client.resetStore();
+      setContent("");
     }
   };
 

@@ -45,10 +45,11 @@ export const TODO_UPDATE_MUTATION = gql`
   mutation($id: ID!, $newContent: String!) {
     updateTodo(id: $id, newContent: $newContent) {
       todo {
-        content
+        ...TodoFields
       }
     }
   }
+  ${TODO_FIELDS_FRAGMENT}
 `;
 
 export const TODO_DELETE_MUTATION = gql`

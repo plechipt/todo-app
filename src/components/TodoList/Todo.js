@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useMutation } from "@apollo/client";
+import { useMutation, useApolloClient } from "@apollo/client";
+import { UpdateModeContext } from "../Contexts/UpdateModeContext";
 import {
   TODO_DELETE_MUTATION,
   TODO_TOGGLE_COMPLETED_MUTATION,
   TODO_SET_COMPLETED_MUTATION,
 } from "../Api/resolvers/todo/todo";
-import { UpdateModeContext } from "../Contexts/UpdateModeContext";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Todo = ({ id, content, completed: isCompleted }) => {
   const classes = useStyles();
+  const client = useApolloClient();
 
   const [completed, setCompleted] = useState(false);
   const { toggleUpdateMode } = useContext(UpdateModeContext);
@@ -61,7 +62,7 @@ const Todo = ({ id, content, completed: isCompleted }) => {
 
   const handleOnDelete = async () => {
     await deleteTodo({ variables: { id } });
-    window.location.reload(); // Reset page
+    client.resetStore();
   };
 
   return (

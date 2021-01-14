@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useMutation } from "@apollo/client";
+import { useMutation, useApolloClient } from "@apollo/client";
 import { UpdateModeContext } from "../Contexts/UpdateModeContext";
 import { TODO_UPDATE_MUTATION } from "../Api/resolvers/todo/todo";
 
@@ -33,11 +33,14 @@ const useStyles = makeStyles((theme) => ({
 
 const UpdateForm = ({ todo }) => {
   const classes = useStyles();
+  const client = useApolloClient();
   const {
     todo: { id, content },
   } = todo;
 
   const [newContent, setNewContent] = useState("");
+  const [contentDidntChange, setContentDidntChange] = useState(false);
+
   const { toggleUpdateMode } = useContext(UpdateModeContext);
   const [updateTodo] = useMutation(TODO_UPDATE_MUTATION);
 
@@ -45,9 +48,16 @@ const UpdateForm = ({ todo }) => {
     setNewContent(content);
   }, [content]);
 
-  const handleOnUpdate = async () => {
-    await updateTodo({ variables: { id, newContent } });
-    await toggleUpdateMode();
+  const handleOnUpdate = async (e) => {
+    e.preventDefault();
+
+    if (content === newContent) {
+      setContentDidntChange(true);
+    } else {
+      await updateTodo({ variables: { id, newContent } });
+      toggleUpdateMode();
+      client.resetStore();
+    }
   };
 
   return (
@@ -58,6 +68,9 @@ const UpdateForm = ({ todo }) => {
             <TextField
               value={newContent}
               onChange={(e) => setNewContent(e.target.value)}
+              error={contentDidntChange ? true : false}
+              helperText={contentDidntChange ? "Please change content" : ""}
+              label={contentDidntChange ? "Error" : "Update Todo"}
               id="update-form"
               variant="outlined"
               fullWidth
