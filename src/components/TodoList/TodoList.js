@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useQuery, useLazyQuery } from "@apollo/client";
 import { TODO_USER_LIST_QUERY, TODO_GET_QUERY } from "../Api/todo/todo";
-import { UpdateModeContext } from "./UpdateModeContext";
+import { UpdateModeContext } from "../Contexts/UpdateModeContext";
 import MapTodos from "./MapTodos";
 import UpdateForm from "./UpdateForm";
 

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
-import { UserContext } from "./UserContext";
+import { UserContext } from "./Contexts/UserContext";
 import { USER_DELETE_TOKENS_MUTATION } from "./Api/user";
 
 import { makeStyles } from "@material-ui/core/styles";

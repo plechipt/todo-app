@@ -5,7 +5,7 @@ import {
   TODO_TOGGLE_COMPLETED_MUTATION,
   TODO_SET_COMPLETED_MUTATION,
 } from "../Api/todo/todo";
-import { UpdateModeContext } from "./UpdateModeContext";
+import { UpdateModeContext } from "../Contexts/UpdateModeContext";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";

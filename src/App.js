@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import "./App.css";
 import { USER_ME_QUERY } from "./components/Api/user";
-import { UserContext } from "./components/UserContext";
+import { UserContext } from "./components/Contexts/UserContext";
 
 import Navbar from "./components/Navbar";
 import TodoList from "./components/TodoList/TodoList";
