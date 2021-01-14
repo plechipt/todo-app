@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useHistory } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { UpdateModeContext } from "../Contexts/UpdateModeContext";
-import { TODO_UPDATE_MUTATION } from "../Api/todo/todo";
+import { TODO_UPDATE_MUTATION } from "../Api/resolvers/todo/todo";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -34,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
 
 const UpdateForm = ({ todo }) => {
   const classes = useStyles();
-  const history = useHistory();
   const {
     todo: { id, content },
   } = todo;
@@ -50,7 +48,6 @@ const UpdateForm = ({ todo }) => {
   const handleOnUpdate = async () => {
     await updateTodo({ variables: { id, newContent } });
     await toggleUpdateMode();
-    history.push("/");
   };
 
   return (

@@ -4,7 +4,7 @@ import {
   TODO_DELETE_MUTATION,
   TODO_TOGGLE_COMPLETED_MUTATION,
   TODO_SET_COMPLETED_MUTATION,
-} from "../Api/todo/todo";
+} from "../Api/resolvers/todo/todo";
 import { UpdateModeContext } from "../Contexts/UpdateModeContext";
 
 import { makeStyles } from "@material-ui/core/styles";

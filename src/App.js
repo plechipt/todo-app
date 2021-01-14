@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { Route, Switch } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import "./App.css";
-import { USER_ME_QUERY } from "./components/Api/user";
+import { USER_ME_QUERY } from "./components/Api/resolvers/user";
 import { UserContext } from "./components/Contexts/UserContext";
 
 import Navbar from "./components/Navbar";

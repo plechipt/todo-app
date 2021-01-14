@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useMutation, useApolloClient } from "@apollo/client";
-import { USER_LOGIN_MUTATION } from "../Api/user";
+import { useHistory } from "react-router-dom";
+import { USER_LOGIN_MUTATION } from "../Api/resolvers/user";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -31,6 +32,8 @@ const useStyles = makeStyles(() => ({
 
 const Login = () => {
   const classes = useStyles();
+  const history = useHistory();
+
   const client = useApolloClient();
   const [login, { data: loginData, loading }] = useMutation(
     USER_LOGIN_MUTATION,
@@ -61,6 +64,7 @@ const Login = () => {
 
       if (loginWasSuccessful) {
         client.resetStore();
+        history.push("/");
       } else {
         setFailedToLogin(true);
         setPassword("");

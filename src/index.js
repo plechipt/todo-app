@@ -3,20 +3,36 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import Cookies from "js-cookie";
+import { setContext } from "@apollo/client/link/context";
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
 } from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
+import {
+  refreshTokenSilently,
+  verifyAccessToken,
+} from "./components/Api/axios";
 
 const BASE_URL = "http://127.0.0.1:8000";
 //const BASE_URL = "https://awesome-todoapp.herokuapp.com";
 
+// Verify if access token expired
+const customFetch = async (uri, options) => {
+  const tokenExpired = await verifyAccessToken();
+
+  if (tokenExpired === "true") {
+    await refreshTokenSilently();
+  }
+
+  return fetch(uri, options);
+};
+
 const httpLink = createHttpLink({
   uri: `${BASE_URL}/graphql/`,
   credentials: "include",
+  fetch: customFetch,
 });
 
 // Access token is send through httponly cookie

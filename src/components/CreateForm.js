@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { TODO_CREATE_MUTATION } from "./Api/todo/todo";
+import { TODO_CREATE_MUTATION } from "./Api/resolvers/todo/todo";
 
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
