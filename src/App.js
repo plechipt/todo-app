@@ -4,6 +4,10 @@ import { useQuery } from "@apollo/client";
 import "./App.css";
 import { USER_ME_QUERY } from "./components/Api/resolvers/user";
 import { UserContext } from "./components/Contexts/UserContext";
+import {
+  refreshTokenSilently,
+  verifyAccessToken,
+} from "./components/Api/axios";
 
 import Navbar from "./components/Navbar";
 import TodoList from "./components/TodoList/TodoList";
