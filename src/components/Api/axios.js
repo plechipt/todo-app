@@ -1,6 +1,9 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
+const BASE_URL = "http://127.0.0.1:8000";
+//const BASE_URL = "https://awesome-todoapp.herokuapp.com";
+
 export const refreshTokenSilently = async () => {
   const csrftoken = Cookies.get("csrftoken");
 
