@@ -70,7 +70,7 @@ const Login = () => {
         setPassword("");
       }
     }
-  }, [loginData, client]);
+  }, [loginData, history, client]);
 
   const setErrorMessage = () => {
     setFailedToLogin(false);

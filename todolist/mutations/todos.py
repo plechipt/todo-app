@@ -15,6 +15,7 @@ class CreateTodo(graphene.Mutation):
 
     todo = graphene.Field(TodoType)
 
+    @ratelimit(key="ip", rate="15/m", block=True)
     def mutate(root, info, content):
         user = info.context.user
         todo = Todo.objects.create(user=user, content=content)
