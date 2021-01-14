@@ -77,13 +77,22 @@ class VerifyAccessToken(graphene.Mutation):
     def mutate(self, info, input=None):
         is_expired = None
         request = info.context
+        user = request.user
         access_token = request.COOKIES.get('accessToken')
         refresh_token = request.COOKIES.get('refreshToken')
 
-        if refresh_token != None and access_token == None:
+        token_expired = refresh_token != None and access_token == None
+        user_is_not_authenticated = user.is_authenticated == False
+
+        if token_expired:
             is_expired = True
       
+        elif user_is_not_authenticated:
+            is_expired = None
+        
         else:
             is_expired = False
 
         return VerifyAccessToken(is_expired)
+    
+    
