@@ -9,6 +9,10 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,6 +34,9 @@ const Navbar = () => {
 
   const [deleteTokens] = useMutation(USER_DELETE_TOKENS_MUTATION);
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
   const handleOnRedirect = (path) => {
     history.push(path);
   };
@@ -47,9 +54,26 @@ const Navbar = () => {
             Todo List
           </Typography>
           {user ? (
-            <Button onClick={handleOnLogout} color="inherit">
-              Logout
-            </Button>
+            <>
+              <IconButton
+                onClick={(e) => setAnchorEl(e.currentTarget)}
+                edge="end"
+                aria-label="account of current user"
+                aria-haspopup="true"
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                onClose={() => setAnchorEl(null)}
+                anchorEl={anchorEl}
+                open={open}
+                id="menu-appbar"
+                keepMounted
+              >
+                <MenuItem onClick={handleOnLogout}>Logout</MenuItem>
+              </Menu>
+            </>
           ) : (
             <>
               <Button

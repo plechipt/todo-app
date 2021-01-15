@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Route, Switch } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import "./App.css";
 import { USER_ME_QUERY } from "./components/Api/resolvers/user";
 import { UserContext } from "./components/Contexts/UserContext";
+import "./App.css";
 
 import Navbar from "./components/Navbar";
 import TodoList from "./components/TodoList/TodoList";
@@ -30,7 +30,7 @@ const App = () => {
     <div className="App">
       <header>
         <UserContext.Provider value={userValue}>
-          {loading === false ? <Navbar /> : null}
+          {user && loading === false ? <Navbar /> : null}
         </UserContext.Provider>
       </header>
       <main>
@@ -42,10 +42,12 @@ const App = () => {
         ) : (
           <>
             {loading === false ? (
-              <Switch>
-                <Route path="/register" component={() => <Register />} />
-                <Route path="/" component={() => <Login />} />
-              </Switch>
+              <div className="auth-container">
+                <Switch>
+                  <Route path="/register" component={() => <Register />} />
+                  <Route path="/" component={() => <Login />} />
+                </Switch>
+              </div>
             ) : null}
           </>
         )}

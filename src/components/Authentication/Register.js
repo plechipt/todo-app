@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { USER_REGISTER_MUTATION } from "../Api/resolvers/user";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Button from "@material-ui/core/Button";
@@ -215,6 +216,12 @@ const Register = () => {
               Register
             </Button>
           </form>
+          <Typography justifyContent="center" color="textSecondary">
+            Already have an account?{" "}
+            <Link to="/" color="primary">
+              Log In
+            </Link>
+          </Typography>
         </Grid>
       </Grid>
     </div>

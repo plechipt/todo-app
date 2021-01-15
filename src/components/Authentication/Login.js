@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useMutation, useApolloClient } from "@apollo/client";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { USER_LOGIN_MUTATION } from "../Api/resolvers/user";
+import "../../App.css";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
@@ -96,7 +98,7 @@ const Login = () => {
   };
 
   return (
-    <div className={classes.root}>
+    <div className="login-container">
       <Grid className={classes.formsContainer} container>
         <Grid item xs={11} sm={8} md={5} lg={3}>
           <form onSubmit={handleOnLogin}>
@@ -167,6 +169,12 @@ const Login = () => {
               Login
             </Button>
           </form>
+          <Typography justifyContent="center" color="textSecondary">
+            Don't have an account?{" "}
+            <Link to="/register" color="primary">
+              Register
+            </Link>
+          </Typography>
         </Grid>
       </Grid>
     </div>
