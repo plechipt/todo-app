@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "./Contexts/UserContext";
@@ -36,7 +36,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
 
   const [deleteTokens] = useMutation(USER_DELETE_TOKENS_MUTATION);
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
   const handleOnRedirect = (path) => {
@@ -55,14 +55,14 @@ const Navbar = ({ darkMode, setDarkMode }) => {
           <Typography variant="h6" className={classes.logo}>
             Todo List
           </Typography>
-          {user ? (
+          {true ? (
             <>
               <IconButton
-                onClick={() => setDarkMode(!darkMode)}
+                onClick={() => setDarkMode((prevMode) => !prevMode)}
                 aria-label="dark mode toggle"
                 color="inherit"
               >
-                {darkMode ? <Brightness4Icon /> : <Brightness7Icon />}
+                {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
               </IconButton>
               <IconButton
                 onClick={(e) => setAnchorEl(e.currentTarget)}

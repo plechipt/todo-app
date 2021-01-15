@@ -6,6 +6,7 @@ import { UserContext } from "./components/Contexts/UserContext";
 import "./App.css";
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 import Navbar from "./components/Navbar";
@@ -15,7 +16,7 @@ import Login from "./components/Authentication/Login";
 import Register from "./components/Authentication/Register";
 
 const App = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(getThemeMode());
   const [user, setUser] = useState(null);
   const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
 
@@ -30,11 +31,24 @@ const App = () => {
     }
   }, [meQuery]);
 
-  const theme = createMuiTheme({
-    palette: {
-      type: darkMode ? "dark" : "light",
-    },
-  });
+  useEffect(() => {
+    localStorage.setItem("darkMode", JSON.stringify(darkMode));
+  }, [darkMode]);
+
+  const theme = React.useMemo(
+    () =>
+      createMuiTheme({
+        palette: {
+          type: darkMode ? "dark" : "light",
+        },
+      }),
+    [darkMode]
+  );
+
+  function getThemeMode() {
+    const mode = JSON.parse(localStorage.getItem("darkMode"));
+    return mode || false;
+  }
 
   return (
     <div className="App">
@@ -42,7 +56,7 @@ const App = () => {
         <CssBaseline />
         <header>
           <UserContext.Provider value={userValue}>
-            {user && loading === false ? (
+            {true && loading === false ? (
               <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
             ) : null}
           </UserContext.Provider>
