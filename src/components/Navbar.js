@@ -55,7 +55,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
           <Typography variant="h6" className={classes.logo}>
             Todo List
           </Typography>
-          {true ? (
+          {user ? (
             <>
               <IconButton
                 onClick={() => setDarkMode((prevMode) => !prevMode)}

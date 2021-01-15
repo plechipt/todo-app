@@ -56,7 +56,6 @@ const UpdateForm = ({ todo }) => {
     } else {
       await updateTodo({ variables: { id, newContent } });
       toggleUpdateMode();
-      client.resetStore();
     }
   };
 

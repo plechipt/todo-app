@@ -5,9 +5,22 @@ from graphene_django.views import GraphQLView
 from graphql_jwt.decorators import jwt_cookie
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
-from django.middleware.csrf import rotate_token
+from django.http import HttpResponse
 
 ADMIN_PATH = os.environ.get('TODO_APP_ADMIN_PATH')
+
+class CustomGraphQLView(GraphQLView):
+    def dispatch(self, request, *args, **kwargs):
+        res = super(CustomGraphQLView, self).dispatch(request, *args, **kwargs)
+        access_token = request.COOKIES.get('accessToken')
+        refresh_token = request.COOKIES.get('refreshToken')
+
+        jwt_expired = refresh_token != None and access_token == None
+
+        if jwt_expired:
+            return HttpResponse('JWT expired!', status=401)
+
+        return res
 
 urlpatterns = [
     path(f'{ADMIN_PATH}/', admin.site.urls),

@@ -4,7 +4,7 @@ import { UpdateModeContext } from "../Contexts/UpdateModeContext";
 import {
   TODO_DELETE_MUTATION,
   TODO_TOGGLE_COMPLETED_MUTATION,
-  //TODO_SET_COMPLETED_MUTATION,
+  TODO_USER_LIST_QUERY,
 } from "../Api/resolvers/todo/todo";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -61,8 +61,10 @@ const Todo = ({ id, content, completed: isCompleted }) => {
   };
 
   const handleOnDelete = async () => {
-    await deleteTodo({ variables: { id } });
-    client.resetStore();
+    await deleteTodo({
+      variables: { id },
+      refetchQueries: [{ query: TODO_USER_LIST_QUERY }],
+    });
   };
 
   return (

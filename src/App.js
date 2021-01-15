@@ -56,7 +56,7 @@ const App = () => {
         <CssBaseline />
         <header>
           <UserContext.Provider value={userValue}>
-            {true && loading === false ? (
+            {user && loading === false ? (
               <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
             ) : null}
           </UserContext.Provider>

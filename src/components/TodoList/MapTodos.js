@@ -16,7 +16,9 @@ const MapTodos = ({ todos: { userTodos: todos } }) => {
     <>
       <div className="todo-container">
         {currentTodos.map(({ id, content, completed }) => {
-          return <Todo id={id} content={content} completed={completed} />;
+          return (
+            <Todo key={id} id={id} content={content} completed={completed} />
+          );
         })}
       </div>
       {todos.length > 4 ? (

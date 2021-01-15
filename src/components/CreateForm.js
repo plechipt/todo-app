@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useMutation, useApolloClient } from "@apollo/client";
-import { TODO_CREATE_MUTATION } from "./Api/resolvers/todo/todo";
+import {
+  TODO_USER_LIST_QUERY,
+  TODO_CREATE_MUTATION,
+} from "./Api/resolvers/todo/todo";
 
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -39,8 +42,8 @@ const CreateForm = () => {
         variables: {
           content,
         },
+        refetchQueries: [{ query: TODO_USER_LIST_QUERY }],
       });
-      client.resetStore();
       setContent("");
     }
   };
