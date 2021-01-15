@@ -23,11 +23,20 @@ const useStyles = makeStyles(() => ({
     marginTop: 20,
   },
   submitButton: {
-    marginTop: 25,
+    marginTop: 15,
     background: "#1976D2",
     "&:hover": {
       background: "#1976D2",
     },
+  },
+  linkText: {
+    marginTop: 15,
+    //textAlign: "center",
+  },
+  loginLink: {
+    color: "#1976D2",
+    marginLeft: 5,
+    textDecoration: "none",
   },
 }));
 
@@ -216,9 +225,9 @@ const Register = () => {
               Register
             </Button>
           </form>
-          <Typography justifyContent="center" color="textSecondary">
+          <Typography className={classes.linkText} color="textSecondary">
             Already have an account?{" "}
-            <Link to="/" color="primary">
+            <Link to="/" className={classes.loginLink}>
               Log In
             </Link>
           </Typography>

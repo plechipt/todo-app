@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useMutation, useApolloClient } from "@apollo/client";
 import { useHistory, Link } from "react-router-dom";
 import { USER_LOGIN_MUTATION } from "../Api/resolvers/user";
-import "../../App.css";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -29,6 +28,15 @@ const useStyles = makeStyles(() => ({
     "&:hover": {
       background: "#1976D2",
     },
+  },
+  linkText: {
+    marginTop: 15,
+    //textAlign: "center",
+  },
+  registerLink: {
+    color: "#1976D2",
+    marginLeft: 5,
+    textDecoration: "none",
   },
 }));
 
@@ -169,9 +177,9 @@ const Login = () => {
               Login
             </Button>
           </form>
-          <Typography justifyContent="center" color="textSecondary">
+          <Typography className={classes.linkText} color="textSecondary">
             Don't have an account?{" "}
-            <Link to="/register" color="primary">
+            <Link to="/register" className={classes.registerLink}>
               Register
             </Link>
           </Typography>
