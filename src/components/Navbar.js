@@ -10,9 +10,11 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
-import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import Brightness4Icon from "@material-ui/icons/Brightness4";
+import Brightness7Icon from "@material-ui/icons/Brightness7";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Navbar = () => {
+const Navbar = ({ darkMode, setDarkMode }) => {
   const { user } = useContext(UserContext);
   const classes = useStyles();
   const history = useHistory();
@@ -56,8 +58,14 @@ const Navbar = () => {
           {user ? (
             <>
               <IconButton
+                onClick={() => setDarkMode(!darkMode)}
+                aria-label="dark mode toggle"
+                color="inherit"
+              >
+                {darkMode ? <Brightness4Icon /> : <Brightness7Icon />}
+              </IconButton>
+              <IconButton
                 onClick={(e) => setAnchorEl(e.currentTarget)}
-                edge="end"
                 aria-label="account of current user"
                 aria-haspopup="true"
                 color="inherit"
@@ -70,6 +78,14 @@ const Navbar = () => {
                 open={open}
                 id="menu-appbar"
                 keepMounted
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "center",
+                }}
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "center",
+                }}
               >
                 <MenuItem onClick={handleOnLogout}>Logout</MenuItem>
               </Menu>

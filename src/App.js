@@ -5,6 +5,9 @@ import { USER_ME_QUERY } from "./components/Api/resolvers/user";
 import { UserContext } from "./components/Contexts/UserContext";
 import "./App.css";
 
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+
 import Navbar from "./components/Navbar";
 import TodoList from "./components/TodoList/TodoList";
 import CreateForm from "./components/CreateForm";
@@ -12,6 +15,7 @@ import Login from "./components/Authentication/Login";
 import Register from "./components/Authentication/Register";
 
 const App = () => {
+  const [darkMode, setDarkMode] = useState(false);
   const [user, setUser] = useState(null);
   const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
 
@@ -26,32 +30,43 @@ const App = () => {
     }
   }, [meQuery]);
 
+  const theme = createMuiTheme({
+    palette: {
+      type: darkMode ? "dark" : "light",
+    },
+  });
+
   return (
     <div className="App">
-      <header>
-        <UserContext.Provider value={userValue}>
-          {user && loading === false ? <Navbar /> : null}
-        </UserContext.Provider>
-      </header>
-      <main>
-        {user && loading === false ? (
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <header>
           <UserContext.Provider value={userValue}>
-            <CreateForm />
-            <TodoList />
-          </UserContext.Provider>
-        ) : (
-          <>
-            {loading === false ? (
-              <div className="auth-container">
-                <Switch>
-                  <Route path="/register" component={() => <Register />} />
-                  <Route path="/" component={() => <Login />} />
-                </Switch>
-              </div>
+            {user && loading === false ? (
+              <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
             ) : null}
-          </>
-        )}
-      </main>
+          </UserContext.Provider>
+        </header>
+        <main>
+          {user && loading === false ? (
+            <UserContext.Provider value={userValue}>
+              <CreateForm />
+              <TodoList />
+            </UserContext.Provider>
+          ) : (
+            <>
+              {loading === false ? (
+                <div className="auth-container">
+                  <Switch>
+                    <Route path="/register" component={() => <Register />} />
+                    <Route path="/" component={() => <Login />} />
+                  </Switch>
+                </div>
+              ) : null}
+            </>
+          )}
+        </main>
+      </ThemeProvider>
     </div>
   );
 };
