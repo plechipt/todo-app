@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useMutation, useApolloClient } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { UpdateModeContext } from "../Contexts/UpdateModeContext";
 import {
   TODO_DELETE_MUTATION,
@@ -42,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Todo = ({ id, content, completed: isCompleted }) => {
   const classes = useStyles();
-  const client = useApolloClient();
 
   const [completed, setCompleted] = useState(false);
   const { toggleUpdateMode } = useContext(UpdateModeContext);

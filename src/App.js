@@ -6,8 +6,8 @@ import { UserContext } from "./components/Contexts/UserContext";
 import "./App.css";
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import Navbar from "./components/Navbar";
 import TodoList from "./components/TodoList/TodoList";
@@ -16,7 +16,9 @@ import Login from "./components/Authentication/Login";
 import Register from "./components/Authentication/Register";
 
 const App = () => {
+  const userPrefersLightMode = useMediaQuery("(prefers-color-scheme: light)");
   const [darkMode, setDarkMode] = useState(getThemeMode());
+
   const [user, setUser] = useState(null);
   const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
 
@@ -31,6 +33,7 @@ const App = () => {
     }
   }, [meQuery]);
 
+  // Set theme mode on change to local storage
   useEffect(() => {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
   }, [darkMode]);
@@ -46,8 +49,16 @@ const App = () => {
   );
 
   function getThemeMode() {
+    const returningUser = "darkMode" in localStorage;
     const mode = JSON.parse(localStorage.getItem("darkMode"));
-    return mode || false;
+
+    if (returningUser) {
+      return mode;
+    } else if (userPrefersLightMode === false) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   return (

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useMutation, useApolloClient } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import {
   TODO_USER_LIST_QUERY,
   TODO_CREATE_MUTATION,
@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
 
 const CreateForm = () => {
   const classes = useStyles();
-  const client = useApolloClient();
   const [createTodo, { loading }] = useMutation(TODO_CREATE_MUTATION);
 
   const [content, setContent] = useState("");

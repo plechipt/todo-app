@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useMutation, useApolloClient } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { UpdateModeContext } from "../Contexts/UpdateModeContext";
 import { TODO_UPDATE_MUTATION } from "../Api/resolvers/todo/todo";
 
@@ -33,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
 
 const UpdateForm = ({ todo }) => {
   const classes = useStyles();
-  const client = useApolloClient();
   const {
     todo: { id, content },
   } = todo;
