@@ -40,7 +40,7 @@ const UpdateForm = ({ todo }) => {
   const [newContent, setNewContent] = useState("");
   const [contentDidntChange, setContentDidntChange] = useState(false);
 
-  const { toggleUpdateMode } = useContext(UpdateModeContext);
+  const { turnOffUpdateMode } = useContext(UpdateModeContext);
   const [updateTodo] = useMutation(TODO_UPDATE_MUTATION);
 
   useEffect(() => {
@@ -54,7 +54,7 @@ const UpdateForm = ({ todo }) => {
       setContentDidntChange(true);
     } else {
       await updateTodo({ variables: { id, newContent } });
-      toggleUpdateMode();
+      turnOffUpdateMode();
     }
   };
 
@@ -86,7 +86,7 @@ const UpdateForm = ({ todo }) => {
                 Update
               </Button>
               <Button
-                onClick={() => toggleUpdateMode(id)}
+                onClick={() => turnOffUpdateMode()}
                 className={`${classes.formButton} ${classes.cancelButton}`}
                 variant="contained"
                 color="primary"

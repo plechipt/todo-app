@@ -44,7 +44,7 @@ const Todo = ({ id, content, completed: isCompleted }) => {
   const classes = useStyles();
 
   const [completed, setCompleted] = useState(false);
-  const { toggleUpdateMode } = useContext(UpdateModeContext);
+  const { turnOnUpdateMode } = useContext(UpdateModeContext);
 
   const [deleteTodo] = useMutation(TODO_DELETE_MUTATION);
   //const [setCompletedTodo] = useMutation(TODO_SET_COMPLETED_MUTATION);
@@ -77,7 +77,7 @@ const Todo = ({ id, content, completed: isCompleted }) => {
             {content}
           </Typography>
           <div className={classes.iconsContainer}>
-            <IconButton onClick={() => toggleUpdateMode(id)} aria-label="edit">
+            <IconButton onClick={() => turnOnUpdateMode(id)} aria-label="edit">
               <EditIcon />
             </IconButton>
             <IconButton onClick={handleOnDelete} aria-label="delete">

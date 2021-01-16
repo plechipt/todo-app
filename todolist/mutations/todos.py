@@ -86,4 +86,3 @@ class ToggleCompleted(graphene.Mutation):
 
         return ToggleCompleted(todo=todo)
     
-    

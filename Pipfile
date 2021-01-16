@@ -14,6 +14,7 @@ whitenoise = "*"
 dj-database-url = "*"
 psycopg2 = "*"
 django-graphql-ratelimit = "*"
+ipython = "*"
 
 [dev-packages]
 
