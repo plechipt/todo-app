@@ -9,21 +9,8 @@ from django.http import HttpResponse
 
 ADMIN_PATH = os.environ.get('TODO_APP_ADMIN_PATH')
 
-class CustomGraphQLView(GraphQLView):
-    def dispatch(self, request, *args, **kwargs):
-        res = super(CustomGraphQLView, self).dispatch(request, *args, **kwargs)
-        access_token = request.COOKIES.get('accessToken')
-        refresh_token = request.COOKIES.get('refreshToken')
-
-        jwt_expired = refresh_token != None and access_token == None
-
-        if jwt_expired:
-            return HttpResponse('JWT expired!', status=401)
-
-        return res
-
 urlpatterns = [
     path(f'{ADMIN_PATH}/', admin.site.urls),
-    path('graphql/', jwt_cookie(GraphQLView.as_view(graphiql=True))),
+    path('graphql/', jwt_cookie(GraphQLView.as_view(graphiql=False))),
     re_path('.*', TemplateView.as_view(template_name='index.html'))
 ]

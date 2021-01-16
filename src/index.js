@@ -15,8 +15,8 @@ import {
   verifyAccessToken,
 } from "./components/Api/axios";
 
-const BASE_URL = "http://127.0.0.1:8000";
-//const BASE_URL = "https://awesome-todoapp.herokuapp.com";
+//const BASE_URL = "http://127.0.0.1:8000";
+const BASE_URL = "https://awesome-todoapp.herokuapp.com";
 
 // Verify if access token expired
 const customFetch = async (uri, options) => {
