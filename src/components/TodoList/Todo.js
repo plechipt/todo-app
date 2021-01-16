@@ -46,9 +46,11 @@ const Todo = ({ id, content, completed: isCompleted }) => {
   const [completed, setCompleted] = useState(false);
   const { turnOnUpdateMode } = useContext(UpdateModeContext);
 
-  const [deleteTodo] = useMutation(TODO_DELETE_MUTATION);
-  //const [setCompletedTodo] = useMutation(TODO_SET_COMPLETED_MUTATION);
+  const [deleteTodo, { loading: deleteLoading }] = useMutation(
+    TODO_DELETE_MUTATION
+  );
   const [toggleCompleted] = useMutation(TODO_TOGGLE_COMPLETED_MUTATION);
+  //const [setCompletedTodo] = useMutation(TODO_SET_COMPLETED_MUTATION);
 
   useEffect(() => {
     setCompleted(isCompleted);
@@ -69,7 +71,7 @@ const Todo = ({ id, content, completed: isCompleted }) => {
   return (
     <Grid className={classes.todoContainer} container>
       <Grid className={classes.item} item xs={11} sm={8} md={6} lg={4}>
-        <Paper disabled={true} className={classes.paper}>
+        <Paper className={classes.paper}>
           <Typography
             onClick={handleOnToggleCompleted}
             className={completed ? classes.completed : classes.notCompleted}
@@ -77,10 +79,18 @@ const Todo = ({ id, content, completed: isCompleted }) => {
             {content}
           </Typography>
           <div className={classes.iconsContainer}>
-            <IconButton onClick={() => turnOnUpdateMode(id)} aria-label="edit">
+            <IconButton
+              onClick={() => turnOnUpdateMode(id)}
+              disabled={deleteLoading}
+              aria-label="edit"
+            >
               <EditIcon />
             </IconButton>
-            <IconButton onClick={handleOnDelete} aria-label="delete">
+            <IconButton
+              onClick={handleOnDelete}
+              disabled={deleteLoading}
+              aria-label="delete"
+            >
               <DeleteIcon />
             </IconButton>
           </div>

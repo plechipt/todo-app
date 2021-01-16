@@ -41,7 +41,9 @@ const UpdateForm = ({ todo }) => {
   const [contentDidntChange, setContentDidntChange] = useState(false);
 
   const { turnOffUpdateMode } = useContext(UpdateModeContext);
-  const [updateTodo] = useMutation(TODO_UPDATE_MUTATION);
+  const [updateTodo, { loading: updateLoading }] = useMutation(
+    TODO_UPDATE_MUTATION
+  );
 
   useEffect(() => {
     setNewContent(content);
@@ -78,6 +80,7 @@ const UpdateForm = ({ todo }) => {
             />
             <div className={classes.buttonsContainer}>
               <Button
+                disabled={updateLoading}
                 type="submit"
                 className={classes.formButton}
                 variant="contained"
@@ -86,6 +89,7 @@ const UpdateForm = ({ todo }) => {
                 Update
               </Button>
               <Button
+                disabled={updateLoading}
                 onClick={() => turnOffUpdateMode()}
                 className={`${classes.formButton} ${classes.cancelButton}`}
                 variant="contained"
