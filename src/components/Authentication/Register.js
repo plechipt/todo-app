@@ -15,7 +15,10 @@ import EmailIcon from "@material-ui/icons/Email";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import LockIcon from "@material-ui/icons/Lock";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
+  registerContainer: {
+    marginTop: theme.spacing(30),
+  },
   formsContainer: {
     justifyContent: "center",
   },
@@ -119,7 +122,7 @@ const Register = () => {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.registerContainer}>
       <Grid className={classes.formsContainer} container>
         <Grid item xs={11} sm={8} md={5} lg={3}>
           <form onSubmit={handleOnRegister}>

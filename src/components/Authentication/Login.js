@@ -15,7 +15,10 @@ import LockIcon from "@material-ui/icons/Lock";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
+  loginContainer: {
+    marginTop: theme.spacing(30),
+  },
   formsContainer: {
     justifyContent: "center",
   },
@@ -106,7 +109,7 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
+    <div className={classes.loginContainer}>
       <Grid className={classes.formsContainer} container>
         <Grid item xs={11} sm={8} md={5} lg={3}>
           <form onSubmit={handleOnLogin}>
