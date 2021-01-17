@@ -16,11 +16,11 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import LockIcon from "@material-ui/icons/Lock";
 
 const useStyles = makeStyles((theme) => ({
-  registerContainer: {
-    marginTop: theme.spacing(30),
-  },
   formsContainer: {
+    display: "flex",
     justifyContent: "center",
+    alignItems: "center",
+    height: "100vh",
   },
   field: {
     marginTop: 20,

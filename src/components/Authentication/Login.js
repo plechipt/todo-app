@@ -17,7 +17,10 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 const useStyles = makeStyles((theme) => ({
   loginContainer: {
-    marginTop: theme.spacing(30),
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100vh",
   },
   formsContainer: {
     justifyContent: "center",
