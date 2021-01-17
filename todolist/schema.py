@@ -19,7 +19,6 @@ class TodoQuery(graphene.ObjectType):
         return Todo.objects.get(id=id)
 
     def resolve_todos(root, info, **kwargs):
-        print(Todo.objects.all())
         return Todo.objects.all()
 
     def resolve_user_todos(root, info, **kwargs):

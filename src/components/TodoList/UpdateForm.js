@@ -80,8 +80,8 @@ const UpdateForm = ({ todo }) => {
             />
             <div className={classes.buttonsContainer}>
               <Button
-                disabled={updateLoading}
                 type="submit"
+                disabled={updateLoading}
                 className={classes.formButton}
                 variant="contained"
                 color="primary"
@@ -89,8 +89,8 @@ const UpdateForm = ({ todo }) => {
                 Update
               </Button>
               <Button
-                disabled={updateLoading}
                 onClick={() => turnOffUpdateMode()}
+                disabled={updateLoading}
                 className={`${classes.formButton} ${classes.cancelButton}`}
                 variant="contained"
                 color="primary"

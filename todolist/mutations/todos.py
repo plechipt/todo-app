@@ -48,11 +48,15 @@ class DeleteTodo(graphene.Mutation):
     message = graphene.String()
 
     def mutate(root, info, id):
+        todo_doesnt_exist = Todo.objects.filter(id=id).count() == 0
+
+        if todo_doesnt_exist:
+            return DeleteTodo(message="Post doesn't exist")
+
         todo = Todo.objects.get(id=id)
         todo.delete()
-        message = 'Success'
 
-        return DeleteTodo(message=message)
+        return DeleteTodo(message='Success')
 
 
 class SetCompleted(graphene.Mutation):
