@@ -2,20 +2,26 @@ import os
 
 SECRET_KEY = os.environ.get('TODO_APP_SECRET_KEY')
 
-# Corsheaders
-CORS_ALLOW_CREDENTIALS = True
+# HTTPS settings
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
 
+# HSTS settings
+SECURE_HSTS_SECONDS = 31536000 # 1 year
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+# Corsheaders
+CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'https://awesome-todoapp.herokuapp.com',
 ]
 
 ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'localhost:3000',
     'awesome-todoapp.herokuapp.com',
+    'www.awesome-todoapp.herokuapp.com'
 ]
 
 # Whitenoise
