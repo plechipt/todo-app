@@ -7,8 +7,8 @@ SECRET_KEY = os.environ.get('TODO_APP_SECRET_KEY')
 if DEBUG_VALUE == False:
     # HTTPS settings
     CSRF_COOKIE_HTTPONLY = False
-    CSRF_COOKIE_SECURE = True
-    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = False
+    SESSION_COOKIE_SECURE = False
     SECURE_SSL_REDIRECT = True
 
     # HSTS settings
