@@ -15,7 +15,7 @@ import LockIcon from "@material-ui/icons/Lock";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   loginContainer: {
     display: "flex",
     justifyContent: "center",
