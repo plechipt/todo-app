@@ -67,13 +67,13 @@ const App = () => {
         <CssBaseline />
         <header>
           <UserContext.Provider value={userValue}>
-            {user && loading === false ? (
+            {true && loading === false ? (
               <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
             ) : null}
           </UserContext.Provider>
         </header>
         <main>
-          {user && loading === false ? (
+          {true && loading === false ? (
             <UserContext.Provider value={userValue}>
               <CreateForm />
               <TodoList />
