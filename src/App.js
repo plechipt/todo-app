@@ -13,6 +13,7 @@ import Navbar from "./components/Navbar";
 import TodoList from "./components/TodoList/TodoList";
 import CreateForm from "./components/CreateForm";
 import Login from "./components/Authentication/Login";
+import SignIn from "./components/Authentication/SignIn";
 import Register from "./components/Authentication/Register";
 
 const App = () => {
@@ -42,7 +43,7 @@ const App = () => {
     () =>
       createMuiTheme({
         palette: {
-          type: darkMode ? "dark" : "light",
+          type: darkMode ? "light" : "light",
         },
       }),
     [darkMode]
@@ -67,13 +68,13 @@ const App = () => {
         <CssBaseline />
         <header>
           <UserContext.Provider value={userValue}>
-            {true && loading === false ? (
+            {user && loading === false ? (
               <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
             ) : null}
           </UserContext.Provider>
         </header>
         <main>
-          {true && loading === false ? (
+          {user && loading === false ? (
             <UserContext.Provider value={userValue}>
               <CreateForm />
               <TodoList />
@@ -84,7 +85,7 @@ const App = () => {
                 <div className="auth-container">
                   <Switch>
                     <Route path="/register" component={() => <Register />} />
-                    <Route path="/" component={() => <Login />} />
+                    <Route path="/" component={() => <SignIn />} />
                   </Switch>
                 </div>
               ) : null}
