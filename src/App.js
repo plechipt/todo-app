@@ -16,8 +16,7 @@ import SignUp from "./components/Authentication/SignUp";
 import Register from "./components/Authentication/Register";
 
 const App = () => {
-  const isDarkMode = JSON.parse(localStorage.getItem("darkMode"));
-  const [darkMode, setDarkMode] = useState(isDarkMode);
+  const [darkMode, setDarkMode] = useState(getThemeMode());
 
   const [user, setUser] = useState(null);
   const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
@@ -47,6 +46,17 @@ const App = () => {
       }),
     [darkMode]
   );
+
+  function getThemeMode() {
+    let mode = localStorage.getItem("darkMode");
+
+    if (mode === "true" || mode === "false") {
+      mode = JSON.parse(mode);
+      return mode;
+    } else {
+      return false;
+    }
+  }
 
   return (
     <div className="App">

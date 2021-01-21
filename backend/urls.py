@@ -17,6 +17,6 @@ IMAGE_URL = 'http://127.0.0.1:8000/logo192.png'
 urlpatterns = [
     path(f'{ADMIN_PATH}/', admin.site.urls),
     path('graphql/', jwt_cookie(GraphQLView.as_view(graphiql=False))),
-    path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/html')),
+    path('robots.txt', TemplateView.as_view(template_name='robots.txt')),
     re_path('.*', TemplateView.as_view(template_name='index.html')),
 ] 
