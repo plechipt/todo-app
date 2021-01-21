@@ -12,8 +12,8 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Navbar from "./components/Navbar";
 import TodoList from "./components/TodoList/TodoList";
 import CreateForm from "./components/CreateForm";
-import Login from "./components/Authentication/Login";
 import SignIn from "./components/Authentication/SignIn";
+import SignUp from "./components/Authentication/SignUp";
 import Register from "./components/Authentication/Register";
 
 const App = () => {
@@ -84,7 +84,11 @@ const App = () => {
               {loading === false ? (
                 <div className="auth-container">
                   <Switch>
-                    <Route path="/register" component={() => <Register />} />
+                    <Route
+                      path="/old-register"
+                      component={() => <Register />}
+                    />
+                    <Route path="/register" component={() => <SignUp />} />
                     <Route path="/" component={() => <SignIn />} />
                   </Switch>
                 </div>

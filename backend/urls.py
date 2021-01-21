@@ -18,7 +18,5 @@ urlpatterns = [
     path(f'{ADMIN_PATH}/', admin.site.urls),
     path('graphql/', jwt_cookie(GraphQLView.as_view(graphiql=False))),
     path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/html')),
-    path('manifest.json', TemplateView.as_view(template_name='manifest.json', content_type='application/manifest+json')),
-    path('service-worker.js', TemplateView.as_view(template_name='service-worker.js', content_type='application/javascript')),
     re_path('.*', TemplateView.as_view(template_name='index.html')),
 ] 
