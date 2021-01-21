@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, lazy, Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { USER_ME_QUERY } from "./components/Api/resolvers/user";
@@ -9,11 +9,10 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 import Navbar from "./components/Navbar";
-import TodoList from "./components/TodoList/TodoList";
-import CreateForm from "./components/CreateForm";
-import SignIn from "./components/Authentication/SignIn";
-import SignUp from "./components/Authentication/SignUp";
-import Register from "./components/Authentication/Register";
+const CreateForm = lazy(() => import("./components/CreateForm"));
+const TodoList = lazy(() => import("./components/TodoList/TodoList"));
+const SignIn = lazy(() => import("./components/Authentication/SignIn"));
+const SignUp = lazy(() => import("./components/Authentication/SignUp"));
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(getThemeMode());
@@ -72,21 +71,21 @@ const App = () => {
         <main>
           {user && loading === false ? (
             <UserContext.Provider value={userValue}>
-              <CreateForm />
-              <TodoList />
+              <Suspense fallback={<div>Loading...</div>}>
+                <CreateForm />
+                <TodoList />
+              </Suspense>
             </UserContext.Provider>
           ) : (
             <>
               {loading === false ? (
                 <div className="auth-container">
-                  <Switch>
-                    <Route
-                      path="/old-register"
-                      component={() => <Register />}
-                    />
-                    <Route path="/register" component={() => <SignUp />} />
-                    <Route path="/" component={() => <SignIn />} />
-                  </Switch>
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <Switch>
+                      <Route path="/register" component={() => <SignUp />} />
+                      <Route path="/" component={() => <SignIn />} />
+                    </Switch>
+                  </Suspense>
                 </div>
               ) : null}
             </>
