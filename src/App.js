@@ -50,8 +50,7 @@ const App = () => {
     let mode = localStorage.getItem("darkMode");
 
     if (mode === "true" || mode === "false") {
-      mode = JSON.parse(mode);
-      return mode;
+      return JSON.parse(mode);
     } else {
       return false;
     }
