@@ -82,7 +82,7 @@ const App = () => {
           ) : null}
         </header>
         <main>
-          {user && loading === false ? (
+          {true && loading === false ? (
             <MessageContext.Provider value={{ messageValue }}>
               <Suspense fallback={<div>Loading...</div>}>
                 <TextMessage />
