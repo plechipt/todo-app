@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import ProfileMenu from "./ProfileMenu";
 import PaymentModal from "../Payments/PaymentModal";
+import SelectLanguage from "./SelectLanguage";
 
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -31,7 +32,6 @@ const Navbar = ({ user, darkMode, setDarkMode }) => {
 
   const profileMenuRef = useRef();
   const [profileMenuIsOpen, setProfileMenuIsOpen] = useState(false);
-
   const [paymentModalIsOpen, setPaymentModalIsOpen] = useState(false);
 
   return (
@@ -43,6 +43,7 @@ const Navbar = ({ user, darkMode, setDarkMode }) => {
           </Typography>
           {user ? (
             <>
+              <SelectLanguage />
               <IconButton
                 onClick={() => setDarkMode((prevMode) => !prevMode)}
                 aria-label="dark mode toggle"
