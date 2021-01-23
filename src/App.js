@@ -8,7 +8,7 @@ import "./App.css";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 const CreateForm = lazy(() => import("./components/CreateForm"));
 const TodoList = lazy(() => import("./components/TodoList/TodoList"));
 const SignIn = lazy(() => import("./components/Authentication/SignIn"));
