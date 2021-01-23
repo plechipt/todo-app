@@ -12,6 +12,7 @@ INSTALLED_APPS = [
     'todolist',
 
     # Pip packages
+    'stripe',
     'corsheaders',
     "graphene_django",
     'graphql_jwt',

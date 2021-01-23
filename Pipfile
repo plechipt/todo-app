@@ -15,6 +15,7 @@ dj-database-url = "*"
 psycopg2 = "*"
 django-graphql-ratelimit = "*"
 ipython = "*"
+stripe = "*"
 
 [dev-packages]
 

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { useMutation } from "@apollo/client";
 import { UserContext } from "./Contexts/UserContext";
 import { USER_DELETE_TOKENS_MUTATION } from "./Api/resolvers/user";
@@ -33,11 +33,10 @@ const Navbar = ({ darkMode, setDarkMode }) => {
 
   const [deleteTokens] = useMutation(USER_DELETE_TOKENS_MUTATION);
 
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
+  const profileMenuRef = useRef();
+  const [profileMenuIsOpen, setProfileMenuIsOpen] = useState(false);
 
   const handleOnLogout = async () => {
-    setAnchorEl(null);
     await deleteTokens();
     window.location.reload(); // Reset page
   };
@@ -59,7 +58,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                 {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
               </IconButton>
               <IconButton
-                onClick={(e) => setAnchorEl(e.currentTarget)}
+                onClick={() => setProfileMenuIsOpen(true)}
                 aria-label="account of current user"
                 aria-haspopup="true"
                 color="inherit"
@@ -67,12 +66,20 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                 <AccountCircle />
               </IconButton>
               <Menu
-                onClose={() => setAnchorEl(null)}
-                anchorEl={anchorEl}
-                open={open}
+                onClose={() => setProfileMenuIsOpen(false)}
+                open={profileMenuIsOpen}
+                anchorEl={profileMenuRef.current}
                 id="menu-appbar"
                 keepMounted
                 getContentAnchorEl={null}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
               >
                 <MenuItem onClick={handleOnLogout}>Logout</MenuItem>
               </Menu>
