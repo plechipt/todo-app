@@ -1,15 +1,18 @@
 import React, { useContext, useState, useRef } from "react";
 import { UserContext } from "../Contexts/UserContext";
 import ProfileMenu from "./ProfileMenu";
+import PaymentModal from "./PaymentModal";
 
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+
 import IconButton from "@material-ui/core/IconButton";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Brightness4Icon from "@material-ui/icons/Brightness4";
 import Brightness7Icon from "@material-ui/icons/Brightness7";
+import PaymentIcon from "@material-ui/icons/Payment";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,6 +31,8 @@ const Navbar = ({ darkMode, setDarkMode }) => {
   const { user } = useContext(UserContext);
   const classes = useStyles();
 
+  const [paymentModalIsOpen, setPaymentModalIsOpen] = useState(false);
+
   const profileMenuRef = useRef();
   const [profileMenuIsOpen, setProfileMenuIsOpen] = useState(false);
 
@@ -38,7 +43,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
           <Typography variant="h6" className={classes.logo}>
             Todo List
           </Typography>
-          {user ? (
+          {true ? (
             <>
               <IconButton
                 onClick={() => setDarkMode((prevMode) => !prevMode)}
@@ -48,6 +53,13 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                 {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
               </IconButton>
               <IconButton
+                onClick={() => setPaymentModalIsOpen(() => true)}
+                aria-label="dark mode toggle"
+                color="inherit"
+              >
+                <PaymentIcon />
+              </IconButton>
+              <IconButton
                 onClick={() => setProfileMenuIsOpen(true)}
                 aria-label="account of current user"
                 aria-haspopup="true"
@@ -55,6 +67,10 @@ const Navbar = ({ darkMode, setDarkMode }) => {
               >
                 <AccountCircle />
               </IconButton>
+              <PaymentModal
+                closePaymentModal={() => setPaymentModalIsOpen(false)}
+                paymentModalIsOpen={paymentModalIsOpen}
+              />
               <ProfileMenu
                 closeProfileMenu={() => setProfileMenuIsOpen(false)}
                 anchorEl={profileMenuRef.current}
