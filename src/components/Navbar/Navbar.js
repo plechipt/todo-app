@@ -1,7 +1,6 @@
-import React, { useContext, useState, useRef } from "react";
-import { UserContext } from "../Contexts/UserContext";
+import React, { useState, useRef } from "react";
 import ProfileMenu from "./ProfileMenu";
-import PaymentModal from "./PaymentModal";
+import PaymentModal from "../Payments/PaymentModal";
 
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -14,7 +13,7 @@ import Brightness4Icon from "@material-ui/icons/Brightness4";
 import Brightness7Icon from "@material-ui/icons/Brightness7";
 import PaymentIcon from "@material-ui/icons/Payment";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
     marginBottom: 100,
@@ -27,14 +26,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Navbar = ({ darkMode, setDarkMode }) => {
-  const { user } = useContext(UserContext);
+const Navbar = ({ user, darkMode, setDarkMode }) => {
   const classes = useStyles();
-
-  const [paymentModalIsOpen, setPaymentModalIsOpen] = useState(false);
 
   const profileMenuRef = useRef();
   const [profileMenuIsOpen, setProfileMenuIsOpen] = useState(false);
+
+  const [paymentModalIsOpen, setPaymentModalIsOpen] = useState(false);
 
   return (
     <div className={classes.root}>

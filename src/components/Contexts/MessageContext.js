@@ -1,3 +1,3 @@
 import { createContext } from "react";
 
-export const UpdateModeContext = createContext(false);
+export const MessageContext = createContext(false);

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import { useMutation } from "@apollo/client";
-import { CREATE_CHECKOUT_SESSION_MUTATION } from "../Api/resolvers/payment";
 import { loadStripe } from "@stripe/stripe-js";
+import { CREATE_CHECKOUT_SESSION_MUTATION } from "../Api/resolvers/payment";
+import { MessageContext } from "../Contexts/MessageContext";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
@@ -41,6 +42,16 @@ const stripePromise = loadStripe(STRIPE_TEST_PUBLIC_KEY);
 const PaymentModal = ({ closePaymentModal, paymentModalIsOpen }) => {
   const classes = useStyles();
   const [createCheckoutSession] = useMutation(CREATE_CHECKOUT_SESSION_MUTATION);
+  const { setMessageFunction } = useContext(MessageContext);
+
+  useEffect(() => {
+    const query = new URLSearchParams(window.location.search);
+
+    if (query.get("success")) {
+      setMessageFunction("success");
+      console.log("test");
+    }
+  }, [setMessageFunction]);
 
   const handleOnSubmit = async () => {
     const stripe = await stripePromise;
@@ -52,6 +63,7 @@ const PaymentModal = ({ closePaymentModal, paymentModalIsOpen }) => {
     const result = await stripe.redirectToCheckout({
       sessionId: session.id,
     });
+
     if (result.error) {
       console.log("error");
     }

@@ -2,13 +2,15 @@ import React, { useState, useEffect, useMemo, lazy, Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { USER_ME_QUERY } from "./components/Api/resolvers/user";
-import { UserContext } from "./components/Contexts/UserContext";
+import { MessageContext } from "./components/Contexts/MessageContext";
+
 import "./App.css";
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 import Navbar from "./components/Navbar/Navbar";
+const TextMessage = lazy(() => import("./components/Payments/TextMessage"));
 const CreateForm = lazy(() => import("./components/CreateForm"));
 const TodoList = lazy(() => import("./components/TodoList/TodoList"));
 const SignIn = lazy(() => import("./components/Authentication/SignIn"));
@@ -18,7 +20,11 @@ const App = () => {
   const [darkMode, setDarkMode] = useState(getThemeMode());
 
   const [user, setUser] = useState(null);
-  const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
+  const [message, setMessage] = useState(null);
+  const messageValue = useMemo(() => ({ message, setMessage }), [
+    message,
+    setMessage,
+  ]);
 
   const { data: meQuery, loading } = useQuery(USER_ME_QUERY, {
     fetchPolicy: "network-only",
@@ -56,25 +62,34 @@ const App = () => {
     }
   }
 
+  const setMessageFunction = (value) => {
+    setMessage(value);
+  };
+
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <header>
-          <UserContext.Provider value={userValue}>
-            {true && loading === false ? (
-              <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-            ) : null}
-          </UserContext.Provider>
+          {true && loading === false ? (
+            <MessageContext.Provider value={{ setMessageFunction }}>
+              <Navbar
+                user={user}
+                darkMode={darkMode}
+                setDarkMode={setDarkMode}
+              />
+            </MessageContext.Provider>
+          ) : null}
         </header>
         <main>
           {user && loading === false ? (
-            <UserContext.Provider value={userValue}>
+            <MessageContext.Provider value={{ messageValue }}>
               <Suspense fallback={<div>Loading...</div>}>
+                <TextMessage />
                 <CreateForm />
                 <TodoList />
               </Suspense>
-            </UserContext.Provider>
+            </MessageContext.Provider>
           ) : (
             <>
               {loading === false ? (
