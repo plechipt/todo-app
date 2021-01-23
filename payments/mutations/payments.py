@@ -19,12 +19,12 @@ class CreateCheckoutSession(graphene.Mutation):
     session = graphene.JSONString()
 
     def mutate(root, info, input=None):
-        stripe.api_key = STRIPE_TEST_SECRET_KEY
+        stripe.api_key = STRIPE_LIVE_SECRET_KEY
 
         session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             line_items=[{
-                'price': TEST_PRODUCT_PRICE,
+                'price': LIVE_PRODUCT_PRICE,
                 'quantity': 1,
             }],
             mode='payment',
