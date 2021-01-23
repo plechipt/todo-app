@@ -15,7 +15,6 @@ LIVE_PRODUCT_PRICE = 'price_1Hn5ncFJBInLPu362CpNESpw'
 
 BASE_URL = os.environ.get('TODO_APP_BASE_URL')
 
-
 class CreateCheckoutSession(graphene.Mutation):
     session = graphene.JSONString()
 
