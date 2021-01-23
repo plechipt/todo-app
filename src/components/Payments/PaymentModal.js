@@ -49,7 +49,6 @@ const PaymentModal = ({ closePaymentModal, paymentModalIsOpen }) => {
 
     if (query.get("success")) {
       setMessageFunction("success");
-      console.log("test");
     }
   }, [setMessageFunction]);
 
@@ -65,7 +64,7 @@ const PaymentModal = ({ closePaymentModal, paymentModalIsOpen }) => {
     });
 
     if (result.error) {
-      console.log("error");
+      setMessageFunction("error");
     }
   };
 

@@ -71,7 +71,7 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <header>
-          {true && loading === false ? (
+          {user && loading === false ? (
             <MessageContext.Provider value={{ setMessageFunction }}>
               <Navbar
                 user={user}
@@ -82,7 +82,7 @@ const App = () => {
           ) : null}
         </header>
         <main>
-          {true && loading === false ? (
+          {user && loading === false ? (
             <MessageContext.Provider value={{ messageValue }}>
               <Suspense fallback={<div>Loading...</div>}>
                 <TextMessage />
