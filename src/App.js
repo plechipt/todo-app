@@ -87,7 +87,7 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <header>
-          {true && loading === false ? (
+          {user && loading === false ? (
             <LanguageContext.Provider value={englishSelectedValue}>
               <MessageContext.Provider value={messageValue}>
                 <Navbar
@@ -101,7 +101,7 @@ const App = () => {
           ) : null}
         </header>
         <main>
-          {true && loading === false ? (
+          {user && loading === false ? (
             <LanguageContext.Provider value={englishSelectedValue}>
               <MessageContext.Provider value={messageValue}>
                 <Suspense fallback={<div>Loading...</div>}>
