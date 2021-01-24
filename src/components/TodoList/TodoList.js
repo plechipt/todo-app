@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useQuery, useLazyQuery } from "@apollo/client";
 import {
   TODO_USER_LIST_QUERY,
@@ -10,17 +10,18 @@ import UpdateForm from "./UpdateForm";
 
 const TodoList = () => {
   const [updateMode, setUpdateMode] = useState(false);
-  const [getTodo, { data: todo }] = useLazyQuery(TODO_GET_QUERY);
-  const { data: todos } = useQuery(TODO_USER_LIST_QUERY);
+  const updateModeValue = useMemo(() => ({ updateMode, setUpdateMode }), [
+    updateMode,
+    setUpdateMode,
+  ]);
 
   const turnOnUpdateMode = (id) => {
     getTodo({ variables: { id } });
     setUpdateMode(true);
   };
 
-  const turnOffUpdateMode = () => {
-    setUpdateMode(false);
-  };
+  const [getTodo, { data: todo }] = useLazyQuery(TODO_GET_QUERY);
+  const { data: todos } = useQuery(TODO_USER_LIST_QUERY);
 
   return (
     <>
@@ -31,7 +32,7 @@ const TodoList = () => {
       ) : (
         <>
           {updateMode && todo && todo.todo ? (
-            <UpdateModeContext.Provider value={{ turnOffUpdateMode }}>
+            <UpdateModeContext.Provider value={updateModeValue}>
               <UpdateForm todo={todo} />
             </UpdateModeContext.Provider>
           ) : null}

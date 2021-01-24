@@ -40,7 +40,7 @@ const UpdateForm = ({ todo }) => {
   const [newContent, setNewContent] = useState("");
   const [contentDidntChange, setContentDidntChange] = useState(false);
 
-  const { turnOffUpdateMode } = useContext(UpdateModeContext);
+  const { setUpdateMode } = useContext(UpdateModeContext);
   const [updateTodo, { loading: updateLoading }] = useMutation(
     TODO_UPDATE_MUTATION
   );
@@ -56,7 +56,7 @@ const UpdateForm = ({ todo }) => {
       setContentDidntChange(true);
     } else {
       await updateTodo({ variables: { id, newContent } });
-      turnOffUpdateMode();
+      setUpdateMode(false);
     }
   };
 
@@ -89,7 +89,7 @@ const UpdateForm = ({ todo }) => {
                 Update
               </Button>
               <Button
-                onClick={() => turnOffUpdateMode()}
+                onClick={() => setUpdateMode(false)}
                 disabled={updateLoading}
                 className={`${classes.formButton} ${classes.cancelButton}`}
                 variant="contained"
