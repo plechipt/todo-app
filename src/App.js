@@ -82,21 +82,16 @@ const App = () => {
     }
   }
 
-  const setMessageFunction = (value) => {
-    setMessage(value);
-  };
-
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <header>
-          {user && loading === false ? (
+          {true && loading === false ? (
             <LanguageContext.Provider value={englishSelectedValue}>
-              <MessageContext.Provider value={{ setMessageFunction }}>
+              <MessageContext.Provider value={messageValue}>
                 <Navbar
                   user={user}
-                  englishSelected={englishSelected}
                   setEnglishSelected={setEnglishSelected}
                   darkMode={darkMode}
                   setDarkMode={setDarkMode}
@@ -106,8 +101,8 @@ const App = () => {
           ) : null}
         </header>
         <main>
-          {user && loading === false ? (
-            <MessageContext.Provider value={{ messageValue }}>
+          {true && loading === false ? (
+            <MessageContext.Provider value={messageValue}>
               <Suspense fallback={<div>Loading...</div>}>
                 <TextMessage />
                 <CreateForm />

@@ -28,9 +28,7 @@ const TextMessage = () => {
   const [open, setOpen] = React.useState(true);
   const [messageObject, setMessageObject] = useState({});
 
-  const {
-    messageValue: { message },
-  } = useContext(MessageContext);
+  const { message } = useContext(MessageContext);
 
   useEffect(() => {
     setOpen(true);

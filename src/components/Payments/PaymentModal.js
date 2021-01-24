@@ -33,24 +33,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// Get keys from .env file
-//const STRIPE_TEST_PUBLIC_KEY = process.env.REACT_APP_STRIPE_TEST_PUBLIC_KEY;
-const STRIPE_LIVE_PUBLIC_KEY = process.env.REACT_APP_STRIPE_LIVE_PUBLIC_KEY;
+// Get key from .env file
+const STRIPE_PUBLIC_KEY = process.env.REACT_APP_STRIPE_PUBLIC_KEY;
 
-const stripePromise = loadStripe(STRIPE_LIVE_PUBLIC_KEY);
+const stripePromise = loadStripe(STRIPE_PUBLIC_KEY);
 
 const PaymentModal = ({ closePaymentModal, paymentModalIsOpen }) => {
   const classes = useStyles();
   const [createCheckoutSession] = useMutation(CREATE_CHECKOUT_SESSION_MUTATION);
-  const { setMessageFunction } = useContext(MessageContext);
+  const { setMessage } = useContext(MessageContext);
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
 
     if (query.get("success")) {
-      setMessageFunction("success");
+      setMessage("success");
     }
-  }, [setMessageFunction]);
+  }, [setMessage]);
 
   const handleOnSubmit = async () => {
     const stripe = await stripePromise;
@@ -64,7 +63,7 @@ const PaymentModal = ({ closePaymentModal, paymentModalIsOpen }) => {
     });
 
     if (result.error) {
-      setMessageFunction("error");
+      setMessage("error");
     }
   };
 

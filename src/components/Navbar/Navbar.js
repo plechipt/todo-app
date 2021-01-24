@@ -41,7 +41,7 @@ const Navbar = ({ user, darkMode, setDarkMode }) => {
           <Typography variant="h6" className={classes.logo}>
             Todo List
           </Typography>
-          {user ? (
+          {true ? (
             <>
               <SelectLanguage />
               <IconButton
