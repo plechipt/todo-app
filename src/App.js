@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { USER_ME_QUERY } from "./components/Api/resolvers/user";
 import { MessageContext } from "./components/Contexts/MessageContext";
+import { LanguageContext } from "./components/Contexts/LanguageContext";
 
 import "./App.css";
 
@@ -18,6 +19,11 @@ const SignUp = lazy(() => import("./components/Authentication/SignUp"));
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(getThemeMode());
+  const [englishSelected, setEnglishSelected] = useState(getLanguage());
+  const englishSelectedValue = useMemo(
+    () => ({ englishSelected, setEnglishSelected }),
+    [englishSelected, setEnglishSelected]
+  );
 
   const [user, setUser] = useState(null);
   const [message, setMessage] = useState(null);
@@ -42,6 +48,10 @@ const App = () => {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
   }, [darkMode]);
 
+  useEffect(() => {
+    localStorage.setItem("englishSelected", JSON.stringify(englishSelected));
+  }, [englishSelected]);
+
   const theme = React.useMemo(
     () =>
       createMuiTheme({
@@ -62,6 +72,16 @@ const App = () => {
     }
   }
 
+  function getLanguage() {
+    let language = localStorage.getItem("englishSelected");
+
+    if (language === "true" || language === "false") {
+      return JSON.parse(language);
+    } else {
+      return true;
+    }
+  }
+
   const setMessageFunction = (value) => {
     setMessage(value);
   };
@@ -72,13 +92,17 @@ const App = () => {
         <CssBaseline />
         <header>
           {user && loading === false ? (
-            <MessageContext.Provider value={{ setMessageFunction }}>
-              <Navbar
-                user={user}
-                darkMode={darkMode}
-                setDarkMode={setDarkMode}
-              />
-            </MessageContext.Provider>
+            <LanguageContext.Provider value={englishSelectedValue}>
+              <MessageContext.Provider value={{ setMessageFunction }}>
+                <Navbar
+                  user={user}
+                  englishSelected={englishSelected}
+                  setEnglishSelected={setEnglishSelected}
+                  darkMode={darkMode}
+                  setDarkMode={setDarkMode}
+                />
+              </MessageContext.Provider>
+            </LanguageContext.Provider>
           ) : null}
         </header>
         <main>

@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
+import { LanguageContext } from "../Contexts/LanguageContext";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 
@@ -22,9 +23,15 @@ const useStyles = makeStyles((theme) => ({
 
 const SelectLanguage = () => {
   const classes = useStyles();
+  const { englishSelected, setEnglishSelected } = useContext(LanguageContext);
 
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useRef();
+
+  const handleItemClick = (value) => {
+    setIsOpen(false);
+    setEnglishSelected(value);
+  };
 
   return (
     <div>
@@ -38,7 +45,9 @@ const SelectLanguage = () => {
         data-ga-event-action="language"
       >
         <LanguageIcon />
-        <span className={classes.language}>English</span>
+        <span className={classes.language}>
+          {englishSelected ? "English" : "Czech"}
+        </span>
         <ExpandMoreIcon fontSize="small" />
       </Button>
       <Menu
@@ -56,8 +65,8 @@ const SelectLanguage = () => {
           horizontal: "right",
         }}
       >
-        <MenuItem onClick={() => setIsOpen(false)}>English</MenuItem>
-        <MenuItem onClick={() => setIsOpen(false)}>Czech</MenuItem>
+        <MenuItem onClick={() => handleItemClick(true)}>English</MenuItem>
+        <MenuItem onClick={() => handleItemClick(false)}>Czech</MenuItem>
       </Menu>
     </div>
   );
