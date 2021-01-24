@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { LanguageContext } from "../Contexts/LanguageContext";
 import { useHistory } from "react-router-dom";
 import { MessageContext } from "../Contexts/MessageContext";
 
@@ -29,22 +30,27 @@ const TextMessage = () => {
   const [messageObject, setMessageObject] = useState({});
 
   const { message } = useContext(MessageContext);
+  const { englishSelected } = useContext(LanguageContext);
 
   useEffect(() => {
     setOpen(true);
 
     if (message === "success") {
       setMessageObject({
-        title: "Success!",
-        content: "Thanks for supporting this website!",
+        title: englishSelected ? "Success!" : "Úspěch!",
+        content: englishSelected
+          ? "Thanks for supporting this website!"
+          : "Děkujeme za podpoření naší stránky!",
       });
     } else if (message === "error") {
       setMessageObject({
         title: "Error!",
-        content: "Sorry, something went wrong!",
+        content: englishSelected
+          ? "Sorry, something went wrong!"
+          : "Promiňte, došlo k chybě!",
       });
     }
-  }, [message]);
+  }, [message, englishSelected]);
 
   return (
     <div className={classes.root}>

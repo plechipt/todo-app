@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { LanguageContext } from "../Contexts/LanguageContext";
 import { useMutation } from "@apollo/client";
 import { UpdateModeContext } from "../Contexts/UpdateModeContext";
 import { TODO_UPDATE_MUTATION } from "../Api/resolvers/todo/todo";
@@ -40,6 +41,7 @@ const UpdateForm = ({ todo }) => {
   const [newContent, setNewContent] = useState("");
   const [contentDidntChange, setContentDidntChange] = useState(false);
 
+  const { englishSelected } = useContext(LanguageContext);
   const { setUpdateMode } = useContext(UpdateModeContext);
   const [updateTodo, { loading: updateLoading }] = useMutation(
     TODO_UPDATE_MUTATION
@@ -69,8 +71,24 @@ const UpdateForm = ({ todo }) => {
               value={newContent}
               onChange={(e) => setNewContent(e.target.value)}
               error={contentDidntChange ? true : false}
-              helperText={contentDidntChange ? "Please change content" : ""}
-              label={contentDidntChange ? "Error" : "Update Todo"}
+              helperText={
+                englishSelected
+                  ? contentDidntChange
+                    ? "Please change content"
+                    : ""
+                  : contentDidntChange
+                  ? "Prosím změnte obsah"
+                  : ""
+              }
+              label={
+                englishSelected
+                  ? contentDidntChange
+                    ? "Error"
+                    : "Update Todo"
+                  : contentDidntChange
+                  ? "Error"
+                  : "Změnit Úkol"
+              }
               id="update-form"
               variant="outlined"
               fullWidth
@@ -86,7 +104,7 @@ const UpdateForm = ({ todo }) => {
                 variant="contained"
                 color="primary"
               >
-                Update
+                {englishSelected ? "Update" : "Změnit"}
               </Button>
               <Button
                 onClick={() => setUpdateMode(false)}
@@ -95,7 +113,7 @@ const UpdateForm = ({ todo }) => {
                 variant="contained"
                 color="primary"
               >
-                Cancel
+                {englishSelected ? "Cancel" : "Zrušit"}
               </Button>
             </div>
           </form>

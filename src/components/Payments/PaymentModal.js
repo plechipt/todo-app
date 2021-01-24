@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from "react";
+import { LanguageContext } from "../Contexts/LanguageContext";
 import { useMutation } from "@apollo/client";
 import { loadStripe } from "@stripe/stripe-js";
 import { CREATE_CHECKOUT_SESSION_MUTATION } from "../Api/resolvers/payment";
@@ -40,16 +41,19 @@ const stripePromise = loadStripe(STRIPE_PUBLIC_KEY);
 
 const PaymentModal = ({ closePaymentModal, paymentModalIsOpen }) => {
   const classes = useStyles();
-  const [createCheckoutSession] = useMutation(CREATE_CHECKOUT_SESSION_MUTATION);
+  const [createCheckoutSession, { data }] = useMutation(
+    CREATE_CHECKOUT_SESSION_MUTATION
+  );
+
   const { setMessage } = useContext(MessageContext);
+  const { englishSelected } = useContext(LanguageContext);
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
-
     if (query.get("success")) {
       setMessage("success");
     }
-  }, [setMessage]);
+  }, [setMessage, data]);
 
   const handleOnSubmit = async () => {
     const stripe = await stripePromise;
@@ -83,11 +87,13 @@ const PaymentModal = ({ closePaymentModal, paymentModalIsOpen }) => {
       <Fade in={paymentModalIsOpen}>
         <div className={classes.paper}>
           <h2 align="center" id="transition-modal-title">
-            Support website owner
+            {englishSelected ? "Support website owner" : "Podpoř majitele webu"}
           </h2>
           <hr />
           <p id="transition-modal-description">
-            Support the owner of website by buying coffee for only 5$!
+            {englishSelected
+              ? "Support the owner of website by buying coffee for only 5$!"
+              : "Podpoř majitele webové aplikace koupi kávy jen za 5$"}
           </p>
           <Button
             className={classes.submitButton}
@@ -96,7 +102,7 @@ const PaymentModal = ({ closePaymentModal, paymentModalIsOpen }) => {
             variant="contained"
             color="primary"
           >
-            Support
+            {englishSelected ? "Support" : "Podpořit"}
           </Button>
         </div>
       </Fade>

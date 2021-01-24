@@ -46,7 +46,7 @@ const SelectLanguage = () => {
       >
         <LanguageIcon />
         <span className={classes.language}>
-          {englishSelected ? "English" : "Czech"}
+          {englishSelected ? "English" : "Čestina"}
         </span>
         <ExpandMoreIcon fontSize="small" />
       </Button>

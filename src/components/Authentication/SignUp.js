@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { LanguageContext } from "../Contexts/LanguageContext";
 import { useMutation } from "@apollo/client";
 import { useHistory, Link } from "react-router-dom";
 import { USER_REGISTER_MUTATION } from "../Api/resolvers/user";
@@ -46,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
   const classes = useStyles();
   const history = useHistory();
+  const { englishSelected } = useContext(LanguageContext);
   const [register, { data: registerData, loading }] = useMutation(
     USER_REGISTER_MUTATION
   );
@@ -128,7 +130,7 @@ export default function SignUp() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          {englishSelected ? "Sign Up" : "Registrovat se"}
         </Typography>
         <form onSubmit={handleOnRegister} className={classes.form}>
           <Grid container spacing={2}>
@@ -143,7 +145,7 @@ export default function SignUp() {
                 name="username"
                 variant="outlined"
                 id="username"
-                label="Username"
+                label={englishSelected ? "Username" : "Uživatelské Jméno"}
                 autoFocus
                 required
                 fullWidth
@@ -175,7 +177,7 @@ export default function SignUp() {
                 type={showPasswords ? "text" : "password"}
                 variant="outlined"
                 name="password"
-                label="Password"
+                label={englishSelected ? "Password" : "Heslo"}
                 id="password"
                 autoComplete="current-password"
                 required
@@ -195,7 +197,7 @@ export default function SignUp() {
                 type={showPasswords ? "text" : "password"}
                 variant="outlined"
                 name="password"
-                label="Confirm Password"
+                label={englishSelected ? "Confirm Password" : "Potvrdit Heslo"}
                 id="confirm-password"
                 autoComplete="confirm-password"
                 fullWidth
@@ -212,7 +214,7 @@ export default function SignUp() {
                     color="primary"
                   />
                 }
-                label="Show Passwords"
+                label={englishSelected ? "Show Passwords" : "Ukázat Hesla"}
               />
             </Grid>
           </Grid>
@@ -224,12 +226,12 @@ export default function SignUp() {
             variant="contained"
             color="primary"
           >
-            Sign Up
+            {englishSelected ? "Sign Up" : "Registrovat se"}
           </Button>
           <Typography color="textSecondary">
-            Already have an account?{" "}
+            {englishSelected ? "Already have an account?" : "Už máte účet?"}
             <Link to="/" className={classes.loginLink}>
-              Sign In
+              {englishSelected ? "Sign In" : "Přihlásit se"}
             </Link>
           </Typography>
         </form>

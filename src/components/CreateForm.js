@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { LanguageContext } from "./Contexts/LanguageContext";
 import { useMutation } from "@apollo/client";
 import {
   TODO_USER_LIST_QUERY,
@@ -27,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 const CreateForm = () => {
   const classes = useStyles();
   const [createTodo, { loading }] = useMutation(TODO_CREATE_MUTATION);
+  const { englishSelected } = useContext(LanguageContext);
 
   const [content, setContent] = useState("");
   const [contentIsFilled, setContentIsFilled] = useState(true);
@@ -58,7 +60,7 @@ const CreateForm = () => {
               disabled={loading}
               className={classes.createField}
               error={contentIsFilled ? false : true}
-              label="Create Todo"
+              label={englishSelected ? "Create Todo" : "Vytvořit úkol"}
               fullWidth
               inputProps={{
                 maxLength: 68,
@@ -71,7 +73,7 @@ const CreateForm = () => {
               color="primary"
               size="large"
             >
-              Create
+              {englishSelected ? "Create" : "Vytvořit"}
             </Button>
           </form>
         </Grid>

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { LanguageContext } from "../Contexts/LanguageContext";
 import { useMutation } from "@apollo/client";
 import { USER_DELETE_TOKENS_MUTATION } from "../Api/resolvers/user";
 
@@ -6,6 +7,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 
 const ProfileMenu = ({ closeProfileMenu, anchorEl, isOpen }) => {
+  const { englishSelected } = useContext(LanguageContext);
   const [deleteTokens] = useMutation(USER_DELETE_TOKENS_MUTATION);
 
   const handleOnLogout = async () => {
@@ -30,7 +32,9 @@ const ProfileMenu = ({ closeProfileMenu, anchorEl, isOpen }) => {
         horizontal: "right",
       }}
     >
-      <MenuItem onClick={handleOnLogout}>Logout</MenuItem>
+      <MenuItem onClick={handleOnLogout}>
+        {englishSelected ? "Logout" : "Odhlásit se"}
+      </MenuItem>
     </Menu>
   );
 };

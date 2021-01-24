@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { LanguageContext } from "../Contexts/LanguageContext";
 import { useMutation, useApolloClient } from "@apollo/client";
 import { useHistory, Link } from "react-router-dom";
 import { USER_LOGIN_MUTATION } from "../Api/resolvers/user";
@@ -48,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
 const SignIn = () => {
   const classes = useStyles();
   const history = useHistory();
+  const { englishSelected } = useContext(LanguageContext);
 
   const client = useApolloClient();
   const [login, { data: loginData, loading }] = useMutation(
@@ -93,7 +95,7 @@ const SignIn = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign In
+          {englishSelected ? "Sign In" : "Přihlásit se"}
         </Typography>
         <form onSubmit={handleOnLogin} className={classes.form}>
           <TextField
@@ -102,7 +104,7 @@ const SignIn = () => {
             variant="outlined"
             margin="normal"
             id="username"
-            label="Username"
+            label={englishSelected ? "Username" : "Uživatelské Jméno"}
             name="username"
             autoComplete="username"
             autoFocus
@@ -122,7 +124,7 @@ const SignIn = () => {
             variant="outlined"
             margin="normal"
             name="password"
-            label="Password"
+            label={englishSelected ? "Password" : "Heslo"}
             id="password"
             autoComplete="current-password"
             required
@@ -149,12 +151,12 @@ const SignIn = () => {
             variant="contained"
             color="primary"
           >
-            Sign In
+            {englishSelected ? "Sign In" : "Přihlásit se"}
           </Button>
           <Typography color="textSecondary">
-            Don't have an account?{" "}
+            {englishSelected ? "Don't have an account?" : "Nemáte účet?"}
             <Link to="/register" className={classes.registerLink}>
-              Sign Up
+              {englishSelected ? "Sign Up" : "Registrovat se"}
             </Link>
           </Typography>
         </form>

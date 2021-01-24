@@ -102,23 +102,27 @@ const App = () => {
         </header>
         <main>
           {true && loading === false ? (
-            <MessageContext.Provider value={messageValue}>
-              <Suspense fallback={<div>Loading...</div>}>
-                <TextMessage />
-                <CreateForm />
-                <TodoList />
-              </Suspense>
-            </MessageContext.Provider>
+            <LanguageContext.Provider value={englishSelectedValue}>
+              <MessageContext.Provider value={messageValue}>
+                <Suspense fallback={<div>Loading...</div>}>
+                  <TextMessage />
+                  <CreateForm />
+                  <TodoList />
+                </Suspense>
+              </MessageContext.Provider>
+            </LanguageContext.Provider>
           ) : (
             <>
               {loading === false ? (
                 <div className="auth-container">
-                  <Suspense fallback={<div>Loading...</div>}>
-                    <Switch>
-                      <Route path="/register" component={() => <SignUp />} />
-                      <Route path="/" component={() => <SignIn />} />
-                    </Switch>
-                  </Suspense>
+                  <LanguageContext.Provider value={englishSelectedValue}>
+                    <Suspense fallback={<div>Loading...</div>}>
+                      <Switch>
+                        <Route path="/register" component={() => <SignUp />} />
+                        <Route path="/" component={() => <SignIn />} />
+                      </Switch>
+                    </Suspense>
+                  </LanguageContext.Provider>
                 </div>
               ) : null}
             </>
