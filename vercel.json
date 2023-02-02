@@ -1,4 +1,7 @@
 {
+  "env": {
+    "BRANCH": "vercel"
+  },
   "builds": [
     {
       "src": "backend/wsgi.py",
