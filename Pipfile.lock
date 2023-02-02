@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "5b54cb6df95896e8cb7be4cfa5fa8abc309c194b015585e99e7ff706e147aa81"
+            "sha256": "b3f032ba033d3f358aad5169de49cce70b97ad28494bc9a60f603393a99e17a9"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -245,7 +245,7 @@
                 "sha256:06d2aad0ac723e35b1cb47885d3e5c45e956a53bc1b209a9fc5369007fe46676",
                 "sha256:5766780452bd5ec8ba133f8bf287dc92713e3868ddd83aee4faab9fc3e303dc3"
             ],
-            "markers": "python_version >= '3.6' and python_version < '4.0'",
+            "markers": "python_version >= '3.6' and python_version < '4'",
             "version": "==3.2.3"
         },
         "graphql-relay": {
@@ -253,7 +253,7 @@
                 "sha256:1ff1c51298356e481a0be009ccdff249832ce53f30559c1338f22a0e0d17250c",
                 "sha256:c9b22bd28b170ba1fe674c74384a8ff30a76c8e26f88ac3aa1584dd3179953e5"
             ],
-            "markers": "python_version >= '3.6' and python_version < '4.0'",
+            "markers": "python_version >= '3.6' and python_version < '4'",
             "version": "==3.2.0"
         },
         "gunicorn": {
@@ -424,6 +424,14 @@
             ],
             "index": "pypi",
             "version": "==2.6.0"
+        },
+        "python-decouple": {
+            "hashes": [
+                "sha256:1596dad2670cca5b1f87d087d9adb6a1958c590df346b85d4b19a9d6f0d52cef",
+                "sha256:e88a8d6bdf3b07d471a854099e455e20a6fa7a4d6ecf8631b250e3db654336e6"
+            ],
+            "index": "pypi",
+            "version": "==3.7"
         },
         "python-dotenv": {
             "hashes": [

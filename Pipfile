@@ -17,6 +17,7 @@ stripe = "*"
 python-dotenv = "*"
 psycopg2-binary = "*"
 pyjwt = "*"
+python-decouple = "*"
 
 [dev-packages]
 
