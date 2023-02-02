@@ -6,7 +6,7 @@
     {
       "src": "backend/wsgi.py",
       "use": "@vercel/python",
-      "config": { "maxLambdaSize": "15mb", "runtime": }
+      "config": { "maxLambdaSize": "15mb" }
     }
   ],
   "routes": [
