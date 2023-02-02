@@ -16,6 +16,8 @@ psycopg2 = "*"
 django-graphql-ratelimit = "*"
 ipython = "*"
 stripe = "*"
+python-dotenv = "*"
+psycopg-binary = "*"
 
 [dev-packages]
 
