@@ -14,6 +14,7 @@ load_dotenv()
 DEBUG = os.getenv('DEBUG')
 SECRET_KEY = 'i6-+5%&cy7i-py74)-cjkyo=3l4ru+@3fs7u(#kq&fz4c%x4#%'
 BASE_DIR = Path(__file__).resolve().parent.parent
+DB_URL = os.getenv("DATABASE_URL")
 
 # Database
 DATABASES = {
@@ -24,9 +25,11 @@ DATABASES = {
 }
 
 # Connect postgres 
-db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
-DATABASES['default'].update(db_from_env)
-
+DATABASES['default'] = dj_database_url.config(
+    default=DB_URL, 
+    conn_max_age=600, 
+    ssl_require=True
+)
 
 '''
 Connect frontend to backend
