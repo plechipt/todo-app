@@ -21,13 +21,12 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:8000',
     'http://localhost:3000',
-    'https://awesome-todoapp.herokuapp.com',
+    'https://my-todo-app-frontend-site.netlify.app'
 ]
 
 ALLOWED_HOSTS = [
     '.vercel.app',
-    'awesome-todoapp.herokuapp.com',
-    'www.awesome-todoapp.herokuapp.com'
+    'www.my-todo-app-frontend-site.netlify.app'
 ]
 
 # Whitenoise
