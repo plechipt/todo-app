@@ -25,7 +25,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 ALLOWED_HOSTS = [
-    '127.0.0.1',
+    '.vercel.app',
     'awesome-todoapp.herokuapp.com',
     'www.awesome-todoapp.herokuapp.com'
 ]
