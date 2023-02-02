@@ -8,7 +8,11 @@ from backend.settings_files.development import *
 from backend.settings_files.graphene import *
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-DEBUG = os.environ.get('TODO_APP_DEBUG')
+DEBUG = os.getenv('DEBUG')
+
+# Dotenv
+from dotenv import load_dotenv
+load_dotenv()
 
 # Database
 DATABASES = {

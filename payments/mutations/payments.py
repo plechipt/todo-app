@@ -6,10 +6,10 @@ from graphene_django.types import DjangoObjectType
 from graphql_jwt.decorators import login_required
 
 
-STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
-PRODUCT_PRICE = os.environ.get('STRIPE_COFFEE_PRODUCT')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
+PRODUCT_PRICE = os.getenv('STRIPE_COFFEE_PRODUCT')
 
-BASE_URL = os.environ.get('TODO_APP_BASE_URL')
+BASE_URL = os.getenv('BASE_URL')
 
 class CreateCheckoutSession(graphene.Mutation):
     session = graphene.JSONString()

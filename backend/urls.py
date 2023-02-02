@@ -10,7 +10,7 @@ from django.middleware.csrf import get_token
 from django.conf import settings
 from django.conf.urls.static import static
 
-ADMIN_PATH = os.environ.get('TODO_APP_ADMIN_PATH')
+ADMIN_PATH = os.getenv('ADMIN_PATH')
 
 urlpatterns = [
     path("", include("todolist.urls")),

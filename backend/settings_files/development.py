@@ -1,7 +1,7 @@
 import os
 
-DEBUG_VALUE = os.environ.get('TODO_APP_DEBUG')
-SECRET_KEY = os.environ.get('TODO_APP_SECRET_KEY')
+DEBUG_VALUE = os.getenv('DEBUG')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # Server is running in production
 if DEBUG_VALUE == False:
