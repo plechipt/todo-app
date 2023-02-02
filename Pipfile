@@ -8,7 +8,6 @@ django = "*"
 graphene-django = "*"
 django-graphql-jwt = "*"
 django-cors-headers = "*"
-pyjwt = "==1.7.1"
 gunicorn = "*"
 whitenoise = "*"
 dj-database-url = "*"
@@ -17,6 +16,7 @@ ipython = "*"
 stripe = "*"
 python-dotenv = "*"
 psycopg2-binary = "*"
+pyjwt = "*"
 
 [dev-packages]
 
