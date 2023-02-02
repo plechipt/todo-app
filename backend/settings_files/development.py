@@ -1,7 +1,7 @@
 import os
 
 DEBUG_VALUE = os.getenv('DEBUG')
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.getenv('i6-+5%&cy7i-py74)-cjkyo=3l4ru+@3fs7u(#kq&fz4c%x4#%')
 
 # Server is running in production
 if DEBUG_VALUE == False:
