@@ -1,5 +1,5 @@
 import graphene
-from django_graphql_ratelimit import ratelimit
+#from django_graphql_ratelimit import ratelimit
 from todolist.models import Todo
 from graphene_django import DjangoObjectType
 
@@ -15,7 +15,7 @@ class CreateTodo(graphene.Mutation):
 
     todo = graphene.Field(TodoType)
 
-    @ratelimit(key="ip", rate="30/m", block=True)
+    #@ratelimit(key="ip", rate="30/m", block=True)
     def mutate(root, info, content):
         user = info.context.user
         todo = Todo.objects.create(user=user, content=content)

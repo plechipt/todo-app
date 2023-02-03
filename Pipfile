@@ -8,14 +8,14 @@ django = "*"
 graphene-django = "*"
 django-graphql-jwt = "*"
 django-cors-headers = "*"
-pyjwt = "==1.7.1"
 gunicorn = "*"
 whitenoise = "*"
 dj-database-url = "*"
-psycopg2 = "*"
 django-graphql-ratelimit = "*"
 ipython = "*"
 stripe = "*"
+pyjwt = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 

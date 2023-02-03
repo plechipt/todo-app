@@ -31,7 +31,7 @@ MIDDLEWARE = [
 
     'corsheaders.middleware.CorsMiddleware', # Corsheaders
     'whitenoise.middleware.WhiteNoiseMiddleware', # Whitenoise
-    "django_graphql_ratelimit.middleware.ParseClientIpMiddleware", # Django graphql ratelimit
+    #"django_graphql_ratelimit.middleware.ParseClientIpMiddleware", # Django graphql ratelimit
 ]
 
 # Password validation
