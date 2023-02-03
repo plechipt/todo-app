@@ -27,16 +27,17 @@ const App = () => {
 
   const [user, setUser] = useState(null);
   const [message, setMessage] = useState(null);
-  const messageValue = useMemo(() => ({ message, setMessage }), [
-    message,
-    setMessage,
-  ]);
+  const messageValue = useMemo(
+    () => ({ message, setMessage }),
+    [message, setMessage]
+  );
 
   const { data: meQuery, loading } = useQuery(USER_ME_QUERY, {
     fetchPolicy: "network-only",
   });
 
   // Set user to memory
+  console.log(meQuery);
   useEffect(() => {
     if (meQuery && meQuery.me) {
       setUser(meQuery.me.username);

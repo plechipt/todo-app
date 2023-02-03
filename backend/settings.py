@@ -28,12 +28,13 @@ DATABASES = {
 }
 
 # Connect postgres 
-#DATABASES['default'] = dj_database_url.config()
+'''
 DATABASES['default'] = dj_database_url.config(
-    default=DB_URL, 
+    #default=DB_URL, 
     conn_max_age=600, 
     ssl_require=True
 )
+'''
 
 '''
 Connect frontend to backend

@@ -11,7 +11,7 @@ export const USER_ME_QUERY = gql`
 
 // Mutations
 export const USER_REGISTER_MUTATION = gql`
-  mutation(
+  mutation (
     $username: String!
     $email: String!
     $password1: String!
@@ -37,7 +37,7 @@ export const USER_REGISTER_MUTATION = gql`
 `;
 
 export const USER_LOGIN_MUTATION = gql`
-  mutation($username: String!, $password: String!) {
+  mutation ($username: String!, $password: String!) {
     tokenAuth(username: $username, password: $password) {
       payload
     }
