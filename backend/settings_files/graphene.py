@@ -1,5 +1,8 @@
 
+import os
 from datetime import timedelta
+
+HOST_URL = os.getenv('HOST_URL')
 
 GRAPHENE = {
     "SCHEMA": "backend.schema.schema",
@@ -9,6 +12,7 @@ GRAPHENE = {
 }
 
 GRAPHQL_JWT = {
+    'JWT_COOKIE_DOMAIN': HOST_URL,
     'JWT_VERIFY_EXPIRATION': False,
     'JWT_LONG_RUNNING_REFRESH_TOKEN': True,
     'JWT_EXPIRATION_DELTA': timedelta(minutes=15),
