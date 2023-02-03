@@ -1,7 +1,9 @@
 import os
+from pathlib import Path
 
 DEBUG_VALUE = os.getenv('DEBUG')
 SECRET_KEY = 'i6-+5%&cy7i-py74)-cjkyo=3l4ru+@3fs7u(#kq&fz4c%x4#%'
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Server is running in production
 if DEBUG_VALUE == False:
@@ -45,3 +47,4 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / '/staticfiles_build' / 'static'
