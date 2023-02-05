@@ -25,7 +25,6 @@ DATABASES = {
 # Connect postgres 
 DB_URL = os.getenv("DATABASE_URL")
 db_from_env = dj_database_url.config(
-    default=DB_URL,
     conn_max_age=600, 
     ssl_require=True
 )
