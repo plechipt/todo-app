@@ -29,7 +29,7 @@ DATABASES = {
 
 # Connect postgres 
 DATABASES['default'] = dj_database_url.config(
-    #default=DB_URL, 
+    default=DB_URL, 
     conn_max_age=600, 
     ssl_require=True
 )
@@ -58,4 +58,3 @@ TEMPLATES = [
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles_build' / 'static'
-print(STATIC_ROOT)
