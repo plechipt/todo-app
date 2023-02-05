@@ -11,9 +11,6 @@ from backend.settings_files.graphene import *
 from dotenv import load_dotenv
 load_dotenv()
 
-# Decouple
-from decouple import config
-
 DEBUG = os.getenv('DEBUG')
 SECRET_KEY = 'i6-+5%&cy7i-py74)-cjkyo=3l4ru+@3fs7u(#kq&fz4c%x4#%'
 BASE_DIR = Path(__file__).resolve().parent.parent
