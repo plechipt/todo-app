@@ -11,12 +11,13 @@ from backend.settings_files.graphene import *
 from dotenv import load_dotenv
 load_dotenv()
 
+from decouple import config
+
 DEBUG = os.getenv('DEBUG')
 SECRET_KEY = 'i6-+5%&cy7i-py74)-cjkyo=3l4ru+@3fs7u(#kq&fz4c%x4#%'
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Database
-''''''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -26,12 +27,7 @@ DATABASES = {
 
 # Connect postgres 
 DB_URL = os.getenv("DATABASE_URL")
-db_from_env = dj_database_url.config(
-    default=DB_URL, 
-    conn_max_age=600, 
-    ssl_require=True
-)
-DATABASES['default'].update(db_from_env)
+DATABASES['default'] = dj_database_url.config()
 
 
 '''
