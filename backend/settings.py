@@ -34,6 +34,10 @@ DATABASES['default'] = dj_database_url.config(
     ssl_require=True
 )
 
+'''
+Connect frontend to backend
+'''
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -50,11 +54,3 @@ TEMPLATES = [
         },
     },
 ]
-
-
-'''
-STATIC_ROOT = os.path.join(BASE_DIR / 'staticfiles')
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR / 'build' / 'static'),
-]
-'''
