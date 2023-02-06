@@ -19,16 +19,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Database
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
+
 # Connect postgres 
 DB_URL = os.getenv("DATABASE_URL")
-db_from_env = dj_database_url.config(
+DATABASES["default"] = dj_database_url.config(
+    default=DB_URL,
     conn_max_age=600, 
     ssl_require=True
 )
-DATABASES["default"].update(db_from_env)
+
 
 '''
 Connect frontend to backend
