@@ -38,6 +38,7 @@ else:
     )
 
 print(DATABASES)
+print(DEBUG)
 
 '''
 Connect frontend to backend
