@@ -13,7 +13,7 @@ load_dotenv()
 
 
 DEBUG = os.getenv('DEBUG')
-SECRET_KEY = 'i6-+5%&cy7i-py74)-cjkyo=3l4ru+@3fs7u(#kq&fz4c%x4#%'
+SECRET_KEY = os.getenv('SECRET_KEY')
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Database
@@ -30,15 +30,12 @@ if DEBUG == True or DEBUG == 'True':
 
 # PostgreSQL in production 
 else:
-    DB_URL = os.getenv("DATABASE_URL")
+    DB_URL = os.getenv('DATABASE_URL')
     DATABASES["default"] = dj_database_url.config(
         default=DB_URL,
         conn_max_age=600, 
         ssl_require=True
     )
-
-print(DATABASES)
-print(DEBUG)
 
 '''
 Connect frontend to backend
