@@ -16,12 +16,19 @@ DEBUG = os.getenv('DEBUG')
 SECRET_KEY = 'i6-+5%&cy7i-py74)-cjkyo=3l4ru+@3fs7u(#kq&fz4c%x4#%'
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+if DEBUG:
+    DATABASE_URL = BASE_DIR / 'db.sqlite3'
+else:
+    DATABASE_URL = os.getenv("DATABASE_URL")
+
+DATABASES = {'default': dj_database_url.config(default=DATABASE_URL)}
+
+'''
 # Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        #'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': BASE_DIR / '
 }
 
 # Connect postgres 
@@ -31,6 +38,7 @@ DATABASES["default"] = dj_database_url.config(
     conn_max_age=600, 
     ssl_require=True
 )
+'''
 
 
 '''
