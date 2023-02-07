@@ -4,7 +4,7 @@ DEBUG_VALUE = os.getenv('DEBUG')
 SECRET_KEY = 'i6-+5%&cy7i-py74)-cjkyo=3l4ru+@3fs7u(#kq&fz4c%x4#%'
 
 # Server is running in production
-if DEBUG_VALUE == False:
+if DEBUG_VALUE == False or DEBUG_VALUE == 'False':
     # HTTPS settings
     CSRF_COOKIE_HTTPONLY = False
     CSRF_COOKIE_SECURE = True
