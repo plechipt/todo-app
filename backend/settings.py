@@ -17,21 +17,27 @@ SECRET_KEY = 'i6-+5%&cy7i-py74)-cjkyo=3l4ru+@3fs7u(#kq&fz4c%x4#%'
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Database
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+
+DATABASES = {}
+
+if DEBUG or DEBUG == 'True':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
 
 # PostgreSQL in production 
-if DEBUG == False or DEBUG == 'False':
+else:
     DB_URL = os.getenv("DATABASE_URL")
     DATABASES["default"] = dj_database_url.config(
         default=DB_URL,
         conn_max_age=600, 
         ssl_require=True
     )
+
+print(DATABASES)
 
 '''
 Connect frontend to backend
