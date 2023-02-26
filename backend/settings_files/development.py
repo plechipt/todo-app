@@ -2,6 +2,17 @@ import os
 
 DEBUG_VALUE = os.getenv('DEBUG')
 SECRET_KEY = os.getenv('SECRET_KEY') 
+HOST_URL = os.getenv('HOST_URL') 
+
+# CSRF
+CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_NAME = "csrftoken"
+CSRF_COOKIE_DOMAIN = HOST_URL
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:3000',
+    'https://my-todo-app-frontend-site.netlify.app'
+]
 
 # Server is running in production
 if DEBUG_VALUE == False or DEBUG_VALUE == 'False':
@@ -26,6 +37,7 @@ CORS_ALLOWED_ORIGINS = [
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
+    'localhost',
     '.vercel.app',
     'www.my-todo-app-frontend-site.netlify.app'
 ]

@@ -38,6 +38,9 @@ const httpLink = createHttpLink({
 const authLink = setContext((_, { headers }) => {
   // Get csrftoken from Cookies
   const csrftoken = Cookies.get("csrftoken");
+  const allCookies = Cookies.get();
+
+  console.log(allCookies);
 
   // Return the headers to the context so httpLink can read them
   return {

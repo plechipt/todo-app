@@ -37,7 +37,6 @@ const App = () => {
   });
 
   // Set user to memory
-  console.log(meQuery);
   useEffect(() => {
     if (meQuery && meQuery.me) {
       setUser(meQuery.me.username);
