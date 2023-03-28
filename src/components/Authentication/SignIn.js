@@ -70,6 +70,8 @@ const SignIn = () => {
       const { tokenAuth } = loginData;
       const loginWasSuccessful = tokenAuth !== null;
 
+      console.log(tokenAuth);
+
       if (loginWasSuccessful) {
         client.resetStore();
         history.push("/");
