@@ -44,6 +44,10 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 5,
     textDecoration: "none",
   },
+  withoutAuth: {
+    color: "#1976D2",
+    textDecoration: "none",
+  },
 }));
 
 const SignIn = () => {
@@ -157,6 +161,12 @@ const SignIn = () => {
             {englishSelected ? "Don't have an account?" : "Nemáte účet?"}
             <Link to="/register" className={classes.registerLink}>
               {englishSelected ? "Sign Up" : "Registrovat se"}
+            </Link>
+          </Typography>
+
+          <Typography color="textSecondary">
+            <Link className={classes.withoutAuth}>
+              Continue without an account
             </Link>
           </Typography>
         </form>
