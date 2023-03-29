@@ -92,6 +92,11 @@ const SignIn = () => {
     });
   };
 
+  const handleAnon = () => {
+    sessionStorage.setItem("isAnonymous", true);
+    history.go(0);
+  };
+
   return (
     <Container component="main" maxWidth="xs">
       <div className={classes.paper}>
@@ -165,7 +170,7 @@ const SignIn = () => {
           </Typography>
 
           <Typography color="textSecondary">
-            <Link className={classes.withoutAuth}>
+            <Link to="/" onClick={handleAnon} className={classes.withoutAuth}>
               Continue without an account
             </Link>
           </Typography>
