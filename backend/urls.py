@@ -10,13 +10,21 @@ from django.middleware.csrf import get_token
 from django.conf import settings
 from django.conf.urls.static import static
 
+GRAPHIQL_VALUE = ''
+
 ADMIN_PATH = os.getenv('ADMIN_PATH')
 DEBUG = os.getenv('DEBUG')
+
+if DEBUG == 'False':
+    GRAPHIQL_VALUE = False
+else:
+    GRAPHIQL_VALUE = True
+
 
 urlpatterns = [
     path("", include("todolist.urls")),
     path(f'{ADMIN_PATH}/', admin.site.urls),
-    path('graphql/', jwt_cookie(GraphQLView.as_view(graphiql=DEBUG))),
+    path('graphql/', jwt_cookie(GraphQLView.as_view(graphiql=GRAPHIQL_VALUE))),
     path('robots.txt', TemplateView.as_view(template_name='static/text/robots.txt')),
     #re_path('.*', TemplateView.as_view(template_name='index.html')),
 ] 
