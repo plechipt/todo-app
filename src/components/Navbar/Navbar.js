@@ -29,6 +29,7 @@ const useStyles = makeStyles(() => ({
 
 const Navbar = ({ user, darkMode, setDarkMode }) => {
   const classes = useStyles();
+  const userIsAnonymous = sessionStorage.getItem("isAnonymous");
 
   const profileMenuRef = useRef();
   const [profileMenuIsOpen, setProfileMenuIsOpen] = useState(false);
@@ -41,7 +42,7 @@ const Navbar = ({ user, darkMode, setDarkMode }) => {
           <Typography variant="h6" className={classes.logo}>
             Todo List
           </Typography>
-          {user ? (
+          {user || userIsAnonymous ? (
             <>
               <SelectLanguage />
               <IconButton
