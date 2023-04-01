@@ -36,8 +36,6 @@ const App = () => {
     fetchPolicy: "network-only",
   });
 
-  console.log(meQuery);
-
   // Set user to memory
   useEffect(() => {
     if (meQuery && meQuery.me) {
