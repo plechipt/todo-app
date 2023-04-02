@@ -3,6 +3,19 @@ import Cookies from "js-cookie";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
+export const deleteCookies = async () => {
+  const csrftoken = Cookies.get("csrftoken");
+
+  await axios({
+    url: `${BASE_URL}/delete_cookies/`,
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": csrftoken,
+    },
+  });
+};
+
 export const refreshTokenSilently = async () => {
   const csrftoken = Cookies.get("csrftoken");
 

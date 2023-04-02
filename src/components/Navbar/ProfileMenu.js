@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { LanguageContext } from "../Contexts/LanguageContext";
 import { useMutation } from "@apollo/client";
 import { USER_DELETE_TOKENS_MUTATION } from "../Api/resolvers/user";
+import { deleteCookies } from "../Api/axios";
 
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
@@ -11,8 +12,7 @@ const ProfileMenu = ({ closeProfileMenu, anchorEl, isOpen }) => {
   const [deleteTokens] = useMutation(USER_DELETE_TOKENS_MUTATION);
 
   const handleOnLogout = async () => {
-    await deleteTokens();
-    window.location.reload(); // Reset page
+    await deleteCookies();
   };
 
   return (

@@ -94,5 +94,3 @@ class VerifyAccessToken(graphene.Mutation):
             is_expired = False
 
         return VerifyAccessToken(is_expired)
-    
-    
