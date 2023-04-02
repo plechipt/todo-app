@@ -12,7 +12,8 @@ const ProfileMenu = ({ closeProfileMenu, anchorEl, isOpen }) => {
   const [deleteTokens] = useMutation(USER_DELETE_TOKENS_MUTATION);
 
   const handleOnLogout = async () => {
-    await deleteCookies();
+    const res = await deleteCookies();
+    console.log(res);
   };
 
   return (
