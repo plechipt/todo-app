@@ -1,15 +1,12 @@
 import React, { useContext } from "react";
 import Cookies from "js-cookie";
-import { useHistory } from "react-router-dom";
-import { useApolloClient } from "@apollo/client";
 import { LanguageContext } from "../Contexts/LanguageContext";
 
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 
 const ProfileMenu = ({ closeProfileMenu, anchorEl, isOpen }) => {
-  const client = useApolloClient();
-  const history = useHistory();
+  console.log("test");
   const { englishSelected } = useContext(LanguageContext);
 
   const handleOnLogout = async () => {
