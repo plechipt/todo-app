@@ -6,7 +6,6 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 
 const ProfileMenu = ({ closeProfileMenu, anchorEl, isOpen }) => {
-  console.log("test");
   const { englishSelected } = useContext(LanguageContext);
 
   const handleOnLogout = async () => {
