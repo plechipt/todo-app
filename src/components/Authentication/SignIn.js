@@ -73,7 +73,6 @@ const SignIn = () => {
 
       if (loginWasSuccessful) {
         Cookies.set("token", tokenAuth.token);
-
         client.resetStore();
         history.push("/");
       } else {
