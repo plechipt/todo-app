@@ -20,7 +20,7 @@ if DEBUG == 'False':
     GRAPHIQL_VALUE = False
 else:
     GRAPHIQL_VALUE = True
-
+    
 
 urlpatterns = [
     path("", include("todolist.urls")),
