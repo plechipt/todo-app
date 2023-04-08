@@ -4,7 +4,7 @@
   "private": true,
   "engines": {
     "npm": "6.14.10",
-    "node": "12.18.3"
+    "node": "16.x"
   },
   "dependencies": {
     "@apollo/client": "3.3.7",
