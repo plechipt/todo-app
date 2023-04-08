@@ -10,10 +10,6 @@ import {
   InMemoryCache,
   createHttpLink,
 } from "@apollo/client";
-import {
-  refreshTokenSilently,
-  verifyAccessToken,
-} from "./components/Api/axios";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 

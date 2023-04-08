@@ -1,18 +1,20 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext } from "react";
+import Cookies from "js-cookie";
+import { useHistory } from "react-router-dom";
+import { useApolloClient } from "@apollo/client";
 import { LanguageContext } from "../Contexts/LanguageContext";
-import { useMutation } from "@apollo/client";
-import { USER_DELETE_TOKENS_MUTATION } from "../Api/resolvers/user";
-import { deleteCookies } from "../Api/axios";
 
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 
 const ProfileMenu = ({ closeProfileMenu, anchorEl, isOpen }) => {
+  const client = useApolloClient();
+  const history = useHistory();
   const { englishSelected } = useContext(LanguageContext);
-  const [deleteTokens] = useMutation(USER_DELETE_TOKENS_MUTATION);
 
   const handleOnLogout = async () => {
-    await deleteTokens();
+    Cookies.remove("token");
+    window.location.reload();
   };
 
   return (
