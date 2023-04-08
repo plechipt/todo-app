@@ -17,6 +17,7 @@ import {
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
+/*
 // Verify if access token expired
 const customFetch = async (uri, options) => {
   const tokenExpired = await verifyAccessToken();
@@ -27,24 +28,24 @@ const customFetch = async (uri, options) => {
 
   return fetch(uri, options);
 };
+*/
 
 const httpLink = createHttpLink({
   uri: `${BASE_URL}/graphql/`,
-  credentials: "include",
-  withCredentials: true,
-  fetch: customFetch,
+  //fetch: customFetch,
 });
 
 // Access token is send through httponly cookie
 const authLink = setContext((_, { headers }) => {
-  // Get csrftoken from Cookies
   const csrftoken = Cookies.get("csrftoken");
+  const token = Cookies.get("token");
 
   // Return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
       "X-CSRFToken": csrftoken,
+      Authorization: `JWT ${token}`,
     },
   };
 });

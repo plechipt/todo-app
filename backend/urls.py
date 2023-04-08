@@ -26,7 +26,7 @@ urlpatterns = [
     path("", include("todolist.urls")),
     path(f'{ADMIN_PATH}/', admin.site.urls),
     path('delete_cookies/', views.delete_cookies),
-    path('graphql/', jwt_cookie(GraphQLView.as_view(graphiql=GRAPHIQL_VALUE))),
+    path('graphql/', GraphQLView.as_view(graphiql=GRAPHIQL_VALUE)),
     path('robots.txt', TemplateView.as_view(template_name='static/text/robots.txt')),
     #re_path('.*', TemplateView.as_view(template_name='index.html')),
 ] 

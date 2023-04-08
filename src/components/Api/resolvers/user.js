@@ -41,7 +41,6 @@ export const USER_LOGIN_MUTATION = gql`
     tokenAuth(username: $username, password: $password) {
       payload
       token
-      refreshToken
     }
   }
 `;

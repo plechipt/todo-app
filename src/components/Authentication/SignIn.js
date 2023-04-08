@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import Cookies from "js-cookie";
 import { LanguageContext } from "../Contexts/LanguageContext";
 import { useMutation, useApolloClient } from "@apollo/client";
 import { useHistory, Link } from "react-router-dom";
@@ -71,6 +72,8 @@ const SignIn = () => {
       const loginWasSuccessful = tokenAuth !== null;
 
       if (loginWasSuccessful) {
+        Cookies.set("token", tokenAuth.token);
+
         client.resetStore();
         history.push("/");
       } else {
