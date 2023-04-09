@@ -50,12 +50,9 @@ const App = () => {
     const isNotTrueOrFalseValue =
       userIsAnonymous !== "false" && userIsAnonymous !== "true";
 
-    console.log("test");
-
     if (userIsAnonymous === null || isNotTrueOrFalseValue) {
       sessionStorage.setItem("isAnonymous", false);
     } else {
-      console.log("test2");
       setUserIsAnonymous(userIsAnonymous);
     }
   }, []);
