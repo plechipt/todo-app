@@ -19,7 +19,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Database
 DATABASES = {}
 
-if DEBUG == True or DEBUG == 'True':
+if DEBUG == 'True':
+    DEBUG = True
+else:
+    DEBUG = False
+
+if DEBUG == True:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',

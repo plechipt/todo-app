@@ -16,7 +16,7 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 # Server is running in production
-if DEBUG_VALUE == False or DEBUG_VALUE == 'False':
+if DEBUG_VALUE == 'False':
     # HTTPS settings
     CSRF_COOKIE_HTTPONLY = False
     CSRF_COOKIE_SECURE = True
