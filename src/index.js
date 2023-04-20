@@ -33,8 +33,8 @@ const httpLink = createHttpLink({
 
 // Access token is send through httponly cookie
 const authLink = setContext((_, { headers }) => {
-  const csrftoken = Cookies.get("csrftoken");
   const token = Cookies.get("token");
+  const csrftoken = Cookies.get("csrftoken");
 
   // Return the headers to the context so httpLink can read them
   return {
