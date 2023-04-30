@@ -21,12 +21,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 25,
     spacing: theme.spacing(2),
   },
-  formButton: {
-    background: "#1976D2",
-    "&:hover": {
-      background: "#1976D2",
-    },
-  },
   cancelButton: {
     marginLeft: 20,
   },
@@ -43,9 +37,8 @@ const UpdateForm = ({ todo }) => {
 
   const { englishSelected } = useContext(LanguageContext);
   const { setUpdateMode } = useContext(UpdateModeContext);
-  const [updateTodo, { loading: updateLoading }] = useMutation(
-    TODO_UPDATE_MUTATION
-  );
+  const [updateTodo, { loading: updateLoading }] =
+    useMutation(TODO_UPDATE_MUTATION);
 
   useEffect(() => {
     setNewContent(content);
@@ -100,7 +93,6 @@ const UpdateForm = ({ todo }) => {
               <Button
                 type="submit"
                 disabled={updateLoading}
-                className={classes.formButton}
                 variant="contained"
                 color="primary"
               >
@@ -109,7 +101,7 @@ const UpdateForm = ({ todo }) => {
               <Button
                 onClick={() => setUpdateMode(false)}
                 disabled={updateLoading}
-                className={`${classes.formButton} ${classes.cancelButton}`}
+                className={classes.cancelButton}
                 variant="contained"
                 color="primary"
               >

@@ -56,6 +56,12 @@ const App = () => {
     () =>
       createMuiTheme({
         palette: {
+          primary: {
+            main: "#1976D2",
+            "&:hover": {
+              background: "#1976D2",
+            },
+          },
           type: darkMode ? "dark" : "light",
         },
       }),
