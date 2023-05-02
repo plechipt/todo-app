@@ -6,8 +6,8 @@ import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const MapTodos = ({ todos: { userTodos: todos } }) => {
-  const TODOS_ON_MOBILE = 4;
-  const TODOS_ON_DESKTOP = 5;
+  const TODOS_PER_PAGE_ON_MOBILE = 4;
+  const TODOS_PER_PAGE_ON_DESKTOP = 5;
   const DEFAULT_TODOS = 5;
 
   const theme = useTheme();
@@ -23,8 +23,8 @@ const MapTodos = ({ todos: { userTodos: todos } }) => {
   const currentTodos = todos.slice(indexOfFirstTodos, indexOfLastTodos);
 
   useEffect(() => {
-    if (matches) setTodosPerPage(TODOS_ON_DESKTOP);
-    else setTodosPerPage(TODOS_ON_MOBILE);
+    if (matches) setTodosPerPage(TODOS_PER_PAGE_ON_DESKTOP);
+    else setTodosPerPage(TODOS_PER_PAGE_ON_MOBILE);
   }, [matches]);
 
   return (

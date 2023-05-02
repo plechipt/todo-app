@@ -38,6 +38,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     marginLeft: 15,
   },
+  penIcon: {
+    marginRight: -10,
+  },
 }));
 
 const Todo = ({ id, content, completed: isCompleted }) => {
@@ -46,9 +49,8 @@ const Todo = ({ id, content, completed: isCompleted }) => {
   const [completed, setCompleted] = useState(false);
   const { turnOnUpdateMode } = useContext(UpdateModeContext);
 
-  const [deleteTodo, { loading: deleteLoading }] = useMutation(
-    TODO_DELETE_MUTATION
-  );
+  const [deleteTodo, { loading: deleteLoading }] =
+    useMutation(TODO_DELETE_MUTATION);
   const [toggleCompleted] = useMutation(TODO_TOGGLE_COMPLETED_MUTATION);
   //const [setCompletedTodo] = useMutation(TODO_SET_COMPLETED_MUTATION);
 
@@ -80,6 +82,7 @@ const Todo = ({ id, content, completed: isCompleted }) => {
           </Typography>
           <div className={classes.iconsContainer}>
             <IconButton
+              className={classes.penIcon}
               onClick={() => turnOnUpdateMode(id)}
               disabled={deleteLoading}
               aria-label="edit"
