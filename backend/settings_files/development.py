@@ -9,7 +9,6 @@ CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'None'
 CSRF_COOKIE_HTTPONLY = False
 CSRF_COOKIE_NAME = "csrftoken"
-CSRF_COOKIE_DOMAIN = HOST_URL
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:3000',
     'https://my-todo-app-frontend-site.netlify.app'
