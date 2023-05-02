@@ -5,7 +5,7 @@ import Todo from "./Todo";
 const MapTodos = ({ todos: { userTodos: todos } }) => {
   // Define pages
   const [currentPage, setCurrentPage] = useState(1);
-  const [todosPerPage] = useState(4);
+  const [todosPerPage] = useState(5);
 
   // Get current todos
   const indexOfLastTodos = currentPage * todosPerPage;
@@ -21,7 +21,7 @@ const MapTodos = ({ todos: { userTodos: todos } }) => {
           );
         })}
       </div>
-      {todos.length > 4 ? (
+      {todos.length > todosPerPage ? (
         <div className="pagination-container">
           <Paginator
             todosPerPage={todosPerPage}

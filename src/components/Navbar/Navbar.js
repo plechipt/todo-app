@@ -3,7 +3,8 @@ import ProfileMenu from "./ProfileMenu";
 import PaymentModal from "../Payments/PaymentModal";
 import SelectLanguage from "./SelectLanguage";
 
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -17,7 +18,6 @@ import PaymentIcon from "@material-ui/icons/Payment";
 const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
-    marginBottom: 100,
   },
   appBar: {
     background: "#1976D2",
@@ -28,7 +28,12 @@ const useStyles = makeStyles(() => ({
 }));
 
 const Navbar = ({ user, darkMode, setDarkMode }) => {
+  const MOBILE_MARGIN = 50;
+  const DESKTOP_MARGIN = 100;
+
   const classes = useStyles();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
 
   const profileMenuRef = useRef();
   const [profileMenuIsOpen, setProfileMenuIsOpen] = useState(false);
@@ -36,7 +41,11 @@ const Navbar = ({ user, darkMode, setDarkMode }) => {
 
   return (
     <div className={classes.root}>
-      <AppBar className={classes.appBar} position="static">
+      <AppBar
+        style={{ marginBottom: matches ? DESKTOP_MARGIN : MOBILE_MARGIN }}
+        className={classes.appBar}
+        position="static"
+      >
         <Toolbar>
           <Typography variant="h6" className={classes.logo}>
             Todo List

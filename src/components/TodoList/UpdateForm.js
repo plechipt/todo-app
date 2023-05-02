@@ -10,9 +10,6 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
-  updateForm: {
-    marginTop: 25,
-  },
   gridContainer: {
     display: "flex",
     justifyContent: "center",
@@ -56,7 +53,7 @@ const UpdateForm = ({ todo }) => {
   };
 
   return (
-    <div className={classes.updateForm}>
+    <div>
       <Grid className={classes.gridContainer} container>
         <Grid item xs={11} sm={8} md={6} lg={4}>
           <form onSubmit={handleOnUpdate}>
