@@ -14,12 +14,15 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
   },
+  updateForm: {
+    marginTop: theme.spacing(2),
+  },
   buttonsContainer: {
     marginTop: 25,
     spacing: theme.spacing(2),
   },
   cancelButton: {
-    marginLeft: 20,
+    marginLeft: 15,
   },
 }));
 
@@ -58,6 +61,7 @@ const UpdateForm = ({ todo }) => {
         <Grid item xs={11} sm={8} md={6} lg={4}>
           <form onSubmit={handleOnUpdate}>
             <TextField
+              className={classes.updateForm}
               value={newContent}
               onChange={(e) => setNewContent(e.target.value)}
               error={contentDidntChange ? true : false}
