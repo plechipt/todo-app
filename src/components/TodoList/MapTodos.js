@@ -3,6 +3,9 @@ import Paginator from "../Paginator";
 import Todo from "./Todo";
 
 const MapTodos = ({ todos: { userTodos: todos } }) => {
+  const MOBILE_MARGIN = 50;
+  const DESKTOP_MARGIN = 100;
+
   // Define pages
   const [currentPage, setCurrentPage] = useState(1);
   const [todosPerPage] = useState(5);
