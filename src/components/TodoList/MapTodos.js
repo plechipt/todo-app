@@ -1,19 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Paginator from "../Paginator";
 import Todo from "./Todo";
 
+import { useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+
 const MapTodos = ({ todos: { userTodos: todos } }) => {
-  const MOBILE_MARGIN = 50;
-  const DESKTOP_MARGIN = 100;
+  const TODOS_ON_MOBILE = 4;
+  const TODOS_ON_DESKTOP = 5;
+  const DEFAULT_TODOS = 5;
+
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
 
   // Define pages
   const [currentPage, setCurrentPage] = useState(1);
-  const [todosPerPage] = useState(5);
+  const [todosPerPage, setTodosPerPage] = useState(DEFAULT_TODOS);
 
   // Get current todos
   const indexOfLastTodos = currentPage * todosPerPage;
   const indexOfFirstTodos = indexOfLastTodos - todosPerPage;
   const currentTodos = todos.slice(indexOfFirstTodos, indexOfLastTodos);
+
+  useEffect(() => {
+    if (matches) setTodosPerPage(TODOS_ON_DESKTOP);
+    else setTodosPerPage(TODOS_ON_MOBILE);
+  }, [matches]);
 
   return (
     <>
