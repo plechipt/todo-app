@@ -15,6 +15,7 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 # Server is running in production
+'''
 if DEBUG_VALUE == 'False':
     # HTTPS settings
     CSRF_COOKIE_HTTPONLY = False
@@ -26,7 +27,8 @@ if DEBUG_VALUE == 'False':
     SECURE_HSTS_SECONDS = 31536000 # 1 year
     SECURE_HSTS_PRELOAD = True
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-
+'''
+    
 # Corsheaders
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
