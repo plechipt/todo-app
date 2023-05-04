@@ -6,9 +6,9 @@ import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const MapTodos = ({ todos: { userTodos: todos } }) => {
+  const DEFAULT_TODOS = 5;
   const TODOS_PER_PAGE_ON_MOBILE = 4;
   const TODOS_PER_PAGE_ON_DESKTOP = 5;
-  const DEFAULT_TODOS = 5;
 
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
