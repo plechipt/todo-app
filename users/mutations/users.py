@@ -14,11 +14,10 @@ class UserType(DjangoObjectType):
         model = User
 
 class RegisterForm(UserCreationForm):
-    email = forms.EmailField(required=True, max_length=100) 
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username', 'password1', 'password2']
 
 
 class Register(DjangoModelFormMutation):

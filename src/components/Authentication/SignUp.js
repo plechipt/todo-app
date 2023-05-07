@@ -53,27 +53,20 @@ export default function SignUp() {
   );
 
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [showPasswords, setShowPasswords] = useState(false);
 
   const [usernameMessageError, setUsernameMessageError] = useState("");
-  const [emailMessageError, setEmailMessageError] = useState("");
   const [passwordMessageError, setPasswordMessageError] = useState("");
-  const [
-    passwordConfirmMessageError,
-    setPasswordConfirmMessageError,
-  ] = useState("");
+  const [passwordConfirmMessageError, setPasswordConfirmMessageError] =
+    useState("");
 
   const setErrorMessage = (message, field) => {
     message = message.replace(".", ""); // Remove dot from message
 
     if (field === "username") {
       setUsernameMessageError(message);
-    }
-    if (field === "email") {
-      setEmailMessageError(message);
     }
     if (field === "password1") {
       setPasswordMessageError(message);
@@ -85,7 +78,6 @@ export default function SignUp() {
 
   const resetErrorMessages = () => {
     setUsernameMessageError("");
-    setEmailMessageError("");
     setPasswordConfirmMessageError("");
     setPasswordConfirmMessageError("");
   };
@@ -116,7 +108,6 @@ export default function SignUp() {
     await register({
       variables: {
         username,
-        email,
         password1: password,
         password2: passwordConfirm,
       },
@@ -152,21 +143,7 @@ export default function SignUp() {
                 InputLabelProps={{ required: false }}
               />
             </Grid>
-            <Grid item xs={12}>
-              <TextField
-                onChange={(e) => setEmail(e.target.value)}
-                error={emailMessageError !== "" ? true : false}
-                helperText={emailMessageError !== "" ? emailMessageError : ""}
-                variant="outlined"
-                id="email"
-                label="Email"
-                name="email"
-                autoComplete="email"
-                required
-                fullWidth
-                InputLabelProps={{ required: false }}
-              />
-            </Grid>
+
             <Grid item xs={12}>
               <TextField
                 onChange={(e) => setPassword(e.target.value)}
@@ -210,7 +187,6 @@ export default function SignUp() {
                 control={
                   <Checkbox
                     onClick={() => setShowPasswords(!showPasswords)}
-                    value="allowExtraEmails"
                     color="primary"
                   />
                 }
