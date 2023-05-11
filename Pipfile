@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+graphene-django = "*"
+django-graphql-jwt = "*"
+django-cors-headers = "*"
+gunicorn = "*"
+whitenoise = "*"
+dj-database-url = "*"
+django-graphql-ratelimit = "*"
+ipython = "*"
+stripe = "*"
+python-dotenv = "*"
+psycopg2-binary = "*"
+pyjwt = "*"
+python-decouple = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
