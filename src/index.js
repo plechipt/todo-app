@@ -41,7 +41,7 @@ const authLink = setContext((_, { headers }) => {
     headers: {
       ...headers,
       "X-CSRFToken": csrftoken,
-      Authorization: `JWT ${token}`,
+      Authorization: token ? `JWT ${token}` : "",
     },
   };
 });
