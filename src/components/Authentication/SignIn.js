@@ -19,7 +19,7 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(5),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -43,6 +43,10 @@ const useStyles = makeStyles((theme) => ({
   registerLink: {
     color: "#1976D2",
     marginLeft: 5,
+    textDecoration: "none",
+  },
+  anonymousLink: {
+    color: "#1976D2",
     textDecoration: "none",
   },
 }));
@@ -159,6 +163,13 @@ const SignIn = () => {
             {englishSelected ? "Don't have an account?" : "Nemáte účet?"}
             <Link to="/register" className={classes.registerLink}>
               {englishSelected ? "Sign Up" : "Registrovat se"}
+            </Link>
+          </Typography>
+          <Typography>
+            <Link to="/register" className={classes.anonymousLink}>
+              {englishSelected
+                ? "Continue with registration"
+                : "Pokračovat bez registrace"}
             </Link>
           </Typography>
         </form>
