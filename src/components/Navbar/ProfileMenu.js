@@ -10,6 +10,7 @@ const ProfileMenu = ({ closeProfileMenu, anchorEl, isOpen }) => {
 
   const handleOnLogout = async () => {
     Cookies.remove("token");
+    sessionStorage.setItem("isAnonymous", false);
     window.location.reload();
   };
 

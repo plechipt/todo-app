@@ -19,7 +19,7 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(5),
+    marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -94,6 +94,11 @@ const SignIn = () => {
     });
   };
 
+  const handleAnonymous = () => {
+    sessionStorage.setItem("isAnonymous", true);
+    history.go(0);
+  };
+
   return (
     <Container component="main" maxWidth="xs">
       <div className={classes.paper}>
@@ -166,9 +171,13 @@ const SignIn = () => {
             </Link>
           </Typography>
           <Typography>
-            <Link to="/register" className={classes.anonymousLink}>
+            <Link
+              to="/"
+              onClick={handleAnonymous}
+              className={classes.anonymousLink}
+            >
               {englishSelected
-                ? "Continue with registration"
+                ? "Continue without registration"
                 : "Pokračovat bez registrace"}
             </Link>
           </Typography>

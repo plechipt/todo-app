@@ -26,6 +26,8 @@ const App = () => {
   );
 
   const [user, setUser] = useState(null);
+  const [userIsAnonymous, setUserIsAnonymous] = useState(false);
+
   const [message, setMessage] = useState(null);
   const messageValue = useMemo(
     () => ({ message, setMessage }),
@@ -42,6 +44,19 @@ const App = () => {
       setUser(meQuery.me.username);
     }
   }, [meQuery]);
+
+  // User is anonymous
+  useEffect(() => {
+    const userIsAnonymous = sessionStorage.getItem("isAnonymous");
+    const isNotTrueOrFalseValue =
+      userIsAnonymous !== "false" && userIsAnonymous !== "true";
+
+    if (userIsAnonymous === null || isNotTrueOrFalseValue) {
+      sessionStorage.setItem("isAnonymous", false);
+    } else {
+      setUserIsAnonymous(userIsAnonymous);
+    }
+  }, []);
 
   // Set theme mode on change to local storage
   useEffect(() => {
@@ -93,7 +108,7 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <header>
-          {user && loading === false ? (
+          {(user || userIsAnonymous === "true") && loading === false ? (
             <LanguageContext.Provider value={englishSelectedValue}>
               <MessageContext.Provider value={messageValue}>
                 <Navbar
@@ -107,7 +122,7 @@ const App = () => {
           ) : null}
         </header>
         <main>
-          {user && loading === false ? (
+          {(user || userIsAnonymous === "true") && loading === false ? (
             <LanguageContext.Provider value={englishSelectedValue}>
               <MessageContext.Provider value={messageValue}>
                 <Suspense fallback={<div>Loading...</div>}>
