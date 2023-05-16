@@ -1,4 +1,5 @@
 import os
+from corsheaders.defaults import default_headers
 
 DEBUG_VALUE = os.getenv('DEBUG')
 SECRET_KEY = os.getenv('SECRET_KEY') 
@@ -35,6 +36,10 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:8000',
     'http://localhost:3000',
     'https://my-todo-app-frontend-site.netlify.app'
+]
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    "x-session-id",
 ]
 
 ALLOWED_HOSTS = [
