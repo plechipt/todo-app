@@ -20,22 +20,30 @@ class RegisterForm(UserCreationForm):
         fields = ['username', 'password1', 'password2']
 
 
+class CreateAnonymousUser(graphene.Mutation):
+    user = graphene.Field(UserType)
+
+    def mutate(self, info):
+        request = info.context
+        session_id = request.headers['X-Session-Id']
+
+        user, created = CustomUser.objects.get_or_create(session_id=session_id)
+
+        if created:
+            user.username = session_id 
+            user.save()
+
+        return user 
+
+
 class Register(DjangoModelFormMutation):
     user = graphene.Field(UserType)
 
     class Meta:
         form_class = RegisterForm
         return_field_name = 'user'
+
     
-    def resolve_user(self, info, **kwargs):
-        request = info.context
-        session_id = request.headers['X-Session-Id']
-
-        user, created = CustomUser.objects.get_or_create(session_id=session_id)
-        
-        return self.user
-   
-
 class Login(graphene.Mutation):
     class Arguments:
         username = graphene.String(required=True)

@@ -22,6 +22,12 @@ class TodoQuery(graphene.ObjectType):
         return Todo.objects.all()
 
     def resolve_user_todos(root, info, **kwargs):
+        request = info.context
         user = info.context.user
+
+        if user.is_authenticated is False:
+            session_id = request.headers['X-Session-Id']
+            user = CustomUser.objects.get(session_id=session_id)
+            
         return Todo.objects.filter(user=user)
 

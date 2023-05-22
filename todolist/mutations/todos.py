@@ -1,7 +1,9 @@
 import graphene
 #from django_graphql_ratelimit import ratelimit
-from todolist.models import Todo
 from graphene_django import DjangoObjectType
+
+from todolist.models import Todo
+from users.models import CustomUser
 
 
 class TodoType(DjangoObjectType):
@@ -17,7 +19,20 @@ class CreateTodo(graphene.Mutation):
 
     #@ratelimit(key="ip", rate="30/m", block=True)
     def mutate(root, info, content):
+        request = info.context
         user = info.context.user
+
+        if user.is_authenticated is False:
+            session_id = request.headers['X-Session-Id']
+            user = CustomUser.objects.filter(session_id=session_id)
+
+            if not user:
+                user = CustomUser.objects.create(session_id=session_id)
+                user.username = session_id
+                user.save()
+            else:
+                user = user[0]
+
         todo = Todo.objects.create(user=user, content=content)
         todo.save()
 
@@ -32,7 +47,6 @@ class UpdateTodo(graphene.Mutation):
     todo = graphene.Field(TodoType)
 
     def mutate(root, info, id, new_content):
-        user = info.context.user
         todo = Todo.objects.get(id=id)
 
         todo.content = new_content        

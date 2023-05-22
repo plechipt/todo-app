@@ -8,6 +8,7 @@ class UserMutation(AuthMutation, graphene.ObjectType):
     login = Login.Field()
     logout = Logout.Field()
     verify_access_token = VerifyAccessToken.Field()
+    create_anonymous_user = CreateAnonymousUser.Field()
 
     
 class UserQuery(graphene.ObjectType):

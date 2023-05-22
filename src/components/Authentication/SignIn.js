@@ -3,7 +3,10 @@ import Cookies from "js-cookie";
 import { LanguageContext } from "../Contexts/LanguageContext";
 import { useMutation, useApolloClient } from "@apollo/client";
 import { useHistory, Link } from "react-router-dom";
-import { USER_LOGIN_MUTATION } from "../Api/resolvers/user";
+import {
+  USER_LOGIN_MUTATION,
+  USER_CREATE_ANONYMOUS_USER,
+} from "../Api/resolvers/user";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
@@ -57,6 +60,7 @@ const SignIn = () => {
   const { englishSelected } = useContext(LanguageContext);
 
   const client = useApolloClient();
+  const [createAnonymousUser] = useMutation(USER_CREATE_ANONYMOUS_USER);
   const [login, { data: loginData, loading }] = useMutation(
     USER_LOGIN_MUTATION,
     {
@@ -94,7 +98,9 @@ const SignIn = () => {
     });
   };
 
-  const handleAnonymous = () => {
+  const handleAnonymous = async () => {
+    await createAnonymousUser();
+
     sessionStorage.setItem("isAnonymous", true);
     history.go(0);
   };

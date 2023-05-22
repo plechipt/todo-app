@@ -4,7 +4,7 @@ from django.contrib.auth.models import User, AbstractUser
 
 class CustomUser(AbstractUser):
     id = models.AutoField(primary_key=True)
-    session_id = models.CharField(unique=True, max_length=100)
+    session_id = models.CharField(default='', blank=True, max_length=100)
  
     def __str__(self):
         if self.username:

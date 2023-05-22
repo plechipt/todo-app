@@ -10,6 +10,16 @@ export const USER_ME_QUERY = gql`
 `;
 
 // Mutations
+export const USER_CREATE_ANONYMOUS_USER = gql`
+  mutation {
+    createAnonymousUser {
+      user {
+        sessionId
+      }
+    }
+  }
+`;
+
 export const USER_REGISTER_MUTATION = gql`
   mutation ($username: String!, $password1: String!, $password2: String!) {
     register(
