@@ -6,17 +6,17 @@ from graphene_django.forms.mutation import DjangoModelFormMutation
 from django.contrib.auth import authenticate, login, logout
 from graphql_jwt.decorators import login_required
 
-from users.models import User
+from users.models import CustomUser
 
 
 class UserType(DjangoObjectType):
     class Meta:
-        model = User
+        model = CustomUser
 
 class RegisterForm(UserCreationForm):
 
     class Meta:
-        model = User
+        model = CustomUser
         fields = ['username', 'password1', 'password2']
 
 
@@ -26,6 +26,14 @@ class Register(DjangoModelFormMutation):
     class Meta:
         form_class = RegisterForm
         return_field_name = 'user'
+    
+    def resolve_user(self, info, **kwargs):
+        request = info.context
+        session_id = request.headers['X-Session-Id']
+
+        user, created = CustomUser.objects.get_or_create(session_id=session_id)
+        
+        return self.user
    
 
 class Login(graphene.Mutation):
