@@ -19,6 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Database
 DATABASES = {}
 
+
 if DEBUG == 'True':
     DEBUG = True
 else:
